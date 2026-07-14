@@ -1,0 +1,116 @@
+[gd_scene load_steps=12 format=3 uid="uid://cki0a6e8u02rv"]
+
+[ext_resource type="Script" uid="uid://ca8bxsbyosdxa" path="res://src/levels/floor_manager/floor_manager.gd" id="1_cqjrl"]
+[ext_resource type="Texture2D" uid="uid://bva2ullwi8bj3" path="res://src/levels/background/bg.png" id="2_icbfp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cqjrl"]
+size = Vector2(1245, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qh42g"]
+size = Vector2(177, 255)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7sxvy"]
+size = Vector2(230, 320)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_icbfp"]
+size = Vector2(1245, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c06da"]
+size = Vector2(177, 255)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v8krx"]
+size = Vector2(230, 320)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eaqci"]
+size = Vector2(1245, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4eidc"]
+size = Vector2(177, 255)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mw5vh"]
+size = Vector2(230, 320)
+
+[node name="FloorMovingObjects" type="Node"]
+script = ExtResource("1_cqjrl")
+
+[node name="Floor1" type="Node2D" parent="."]
+z_index = 1
+
+[node name="FloorZone1" type="Area2D" parent="Floor1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor1/FloorZone1"]
+position = Vector2(645, 585)
+shape = SubResource("RectangleShape2D_cqjrl")
+
+[node name="Stairs" type="Area2D" parent="Floor1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor1/Stairs"]
+position = Vector2(825, 489)
+shape = SubResource("RectangleShape2D_qh42g")
+
+[node name="Lift" type="Area2D" parent="Floor1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor1/Lift"]
+position = Vector2(1125, 449)
+shape = SubResource("RectangleShape2D_7sxvy")
+
+[node name="Floor2" type="Node2D" parent="."]
+z_index = 1
+
+[node name="FloorZone2" type="Area2D" parent="Floor2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor2/FloorZone2"]
+position = Vector2(635, -140)
+shape = SubResource("RectangleShape2D_icbfp")
+
+[node name="Stairs" type="Area2D" parent="Floor2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor2/Stairs"]
+position = Vector2(825, -233)
+shape = SubResource("RectangleShape2D_c06da")
+
+[node name="Lift" type="Area2D" parent="Floor2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor2/Lift"]
+position = Vector2(1125, -270)
+shape = SubResource("RectangleShape2D_v8krx")
+
+[node name="Floor3" type="Node2D" parent="."]
+z_index = 1
+
+[node name="FloorZone3" type="Area2D" parent="Floor3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor3/FloorZone3"]
+position = Vector2(645, -863)
+shape = SubResource("RectangleShape2D_eaqci")
+
+[node name="Stairs" type="Area2D" parent="Floor3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor3/Stairs"]
+position = Vector2(825, -955)
+shape = SubResource("RectangleShape2D_4eidc")
+
+[node name="Lift" type="Area2D" parent="Floor3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor3/Lift"]
+position = Vector2(1125, -990)
+shape = SubResource("RectangleShape2D_mw5vh")
+
+[node name="Floors" type="Node" parent="."]
+
+[node name="Floor01" type="Sprite2D" parent="Floors"]
+texture = ExtResource("2_icbfp")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="Floor02" type="Sprite2D" parent="Floors"]
+position = Vector2(0, -720)
+texture = ExtResource("2_icbfp")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="Floor03" type="Sprite2D" parent="Floors"]
+position = Vector2(0, -1440)
+texture = ExtResource("2_icbfp")
+centered = false
+metadata/_edit_lock_ = true

@@ -1,0 +1,25 @@
+# Специфичная папка Godot 4 (КРИТИЧЕСКИ ВАЖНО ИГНОРИРОВАТЬ!)
+.godot/
+/android/
+
+# Папки для готовых сборок игры (чтобы не пушить тяжелые .exe или .apk файлы)
+export/
+export_presets.cfg
+build/
+builds/
+
+# Файлы операционных систем (системный мусор, который создают Windows и macOS)
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Папки внешних редакторов кода (если ты используешь VS Code, Rider и т.д.)
+.vscode/
+.idea/
+*.sln
+*.csproj
