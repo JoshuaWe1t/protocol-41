@@ -17,8 +17,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Events="*res://src/core/globals/events.gd"
-Global="*res://src/core/globals/global.gd"
+Events="*res://src/core/autoload/events.gd"
+Global="*res://src/core/autoload/global.gd"
+WinConditionManager="*res://src/core/autoload/win_condition_manager.gd"
 
 [display]
 

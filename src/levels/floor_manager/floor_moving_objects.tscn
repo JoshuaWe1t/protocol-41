@@ -99,17 +99,20 @@ shape = SubResource("RectangleShape2D_mw5vh")
 [node name="Floors" type="Node" parent="."]
 
 [node name="Floor01" type="Sprite2D" parent="Floors"]
+visible = false
 texture = ExtResource("2_icbfp")
 centered = false
 metadata/_edit_lock_ = true
 
 [node name="Floor02" type="Sprite2D" parent="Floors"]
+visible = false
 position = Vector2(0, -720)
 texture = ExtResource("2_icbfp")
 centered = false
 metadata/_edit_lock_ = true
 
 [node name="Floor03" type="Sprite2D" parent="Floors"]
+visible = false
 position = Vector2(0, -1440)
 texture = ExtResource("2_icbfp")
 centered = false
