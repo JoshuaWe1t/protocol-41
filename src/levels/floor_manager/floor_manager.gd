@@ -1,9 +1,17 @@
 extends Node
 
+
 var current_floor: int
 var total_floors: int = Global.TOTAL_FLOORS
 
+@onready var lift_timer: Timer = $TimerLiftAccess
+
+
 func _ready() -> void:
+	lift_timer.wait_time = Global.LIFT_TIMER_WAIT_TIME
+	lift_timer.one_shot = Global.LIFT_TIMER_ONE_SHOT
+	lift_timer.start()
+	
 	# 1. Привязываем номера этажей не только к входу, но и к ВЫХОДУ с лестниц
 	get_node("Floor1/Stairs").body_entered.connect(_on_stairs_entered.bind(1))
 	get_node("Floor2/Stairs").body_entered.connect(_on_stairs_entered.bind(2))
@@ -26,6 +34,9 @@ func _ready() -> void:
 	get_node("Floor1/Lift").body_exited.connect(_on_lift_exited.bind(1))
 	get_node("Floor2/Lift").body_exited.connect(_on_lift_exited.bind(2))
 	get_node("Floor3/Lift").body_exited.connect(_on_lift_exited.bind(3))
+
+	# managment lift life timer
+	lift_timer.timeout.connect(_on_timer_lift_access_timeout)
 
 
 func _on_stairs_entered(body: Node2D, floor_number: int) -> void:
@@ -69,8 +80,14 @@ func _on_floor_zone_entered(body: Node2D, floor_number: int) -> void:
 func get_current_floor():
 	return current_floor
 
+
 func can_go_up():
 	return current_floor < total_floors
 
+
 func can_go_down():
 	return current_floor > 1
+
+
+func _on_timer_lift_access_timeout() -> void:
+	Events.lift_crashed.emit()

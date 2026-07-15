@@ -15,7 +15,9 @@ var current_floor: int
 var at_stairs: bool = false
 var can_up: bool
 var can_down: bool
-var can_use_lift: bool
+var at_lift: bool = false
+var can_use_lift: bool 
+var is_lift_broken: bool = false
 # Переменная, которая управляет возможностью ходить
 var is_frozen: bool = false
 # Запоминаем нормальный масштаб игрока (обычно это 1, 1)
@@ -28,6 +30,7 @@ func _ready() -> void:
 	
 	# Прячем диалог при старте на всякий случай
 	dialogue_box.hide() 
+	
 	# Подключаем таймер
 	dialogue_timer.timeout.connect(_on_dialogue_timeout)
 	# Подключаемся к сигналу
@@ -36,6 +39,7 @@ func _ready() -> void:
 	Events.player_exited_stairs.connect(_on_exited_stairs)
 	Events.player_entered_lift.connect(_on_entered_lift)
 	Events.player_exited_lift.connect(_on_exited_lift)
+	Events.lift_crashed.connect(_on_lift_denied)
 	# Подписываемся на новые сигналы камеры
 	Events.camera_transition_started.connect(_on_camera_started)
 	Events.camera_transition_finished.connect(_on_camera_finished)
@@ -85,7 +89,9 @@ func _physics_process(_delta: float) -> void:
 			self.position.y += 1440
 			print("PlayerPosition: ", self.position)
 			dialogue_box.hide()
-		else:
+		elif is_lift_broken and at_lift:
+			show_dialogue("Лифт застрял и больше не работает")
+		elif at_lift:
 			show_dialogue("Лифт сейчас на третьем этаже")
 
 	move_and_slide()
@@ -106,12 +112,14 @@ func _on_exited_stairs() -> void:
 
 func _on_entered_lift(is_usable: bool) -> void:
 	print("Игрок может спуститься: ", is_usable)
-	can_use_lift = is_usable
+	can_use_lift = false if is_lift_broken else is_usable
+	at_lift = true
 
 
 func _on_exited_lift() -> void:
 	print("Игрок вышел из зоны лифта")
 	can_use_lift = false
+	at_lift = false
 
 
 func _on_entered_floor(floor_number: int) -> void:
@@ -135,5 +143,12 @@ func show_dialogue(text: String) -> void:
 	dialogue_box.show()
 	dialogue_timer.start() # Запускаем отсчет 2 секунд
 
+
 func _on_dialogue_timeout() -> void:
 	dialogue_box.hide() # Прячем окно, когда таймер заканчивается
+
+
+func _on_lift_denied() -> void:
+	can_use_lift = false
+	is_lift_broken = true
+	print("Lift is broken: ", is_lift_broken)

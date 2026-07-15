@@ -15,6 +15,8 @@ signal player_exited_stairs
 signal player_entered_lift(is_usable: bool)
 @warning_ignore("unused_signal")
 signal player_exited_lift
+@warning_ignore("unused_signal")
+signal lift_crashed
 
 # Сигналы для игрока
 #@warning_ignore("unused_signal")
