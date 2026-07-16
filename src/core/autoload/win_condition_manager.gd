@@ -17,6 +17,7 @@ var floor_condition = {
 		"has_spore_activity": false,
 		"apartments": [
 			{
+				"apartment_name": "Apartment1",
 				"apartment_number": 1,
 				"is_infected": false,
 				"water_infected_level": 0,
@@ -27,6 +28,7 @@ var floor_condition = {
 				}
 			},
 			{
+				"apartment_name": "Apartment2",
 				"apartment_number": 2,
 				"is_infected": false,
 				"water_infected_level": 0,
@@ -43,6 +45,7 @@ var floor_condition = {
 		"has_spore_activity": false,
 		"apartments": [
 			{
+				"apartment_name": "Apartment3",
 				"apartment_number": 3,
 				"is_infected": false,
 				"water_infected_level": 0,
@@ -53,6 +56,7 @@ var floor_condition = {
 				}
 			},
 			{
+				"apartment_name": "Apartment4",
 				"apartment_number": 4,
 				"is_infected": false,
 				"water_infected_level": 0,
@@ -69,6 +73,7 @@ var floor_condition = {
 		"has_spore_activity": false,
 		"apartments": [
 			{
+				"apartment_name": "Apartment5",
 				"apartment_number": 5,
 				"is_infected": false,
 				"water_infected_level": 0,
@@ -79,6 +84,7 @@ var floor_condition = {
 				}
 			},
 			{
+				"apartment_name": "Apartment6",
 				"apartment_number": 6,
 				"is_infected": false,
 				"water_infected_level": 0,

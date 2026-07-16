@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ubbjbgh5d5fe"]
+[gd_scene load_steps=6 format=3 uid="uid://ubbjbgh5d5fe"]
 
 [ext_resource type="PackedScene" uid="uid://crpll8ydxbhxu" path="res://src/gameplay/player/player.tscn" id="1_41tyt"]
 [ext_resource type="PackedScene" uid="uid://qwd7dt0ryf8d" path="res://src/levels/background/background.tscn" id="2_e3ckf"]
 [ext_resource type="PackedScene" uid="uid://cki0a6e8u02rv" path="res://src/levels/floor_manager/floor_moving_objects.tscn" id="3_22h53"]
 [ext_resource type="PackedScene" uid="uid://b8rxr0df02wo7" path="res://assets/ui/camera_floor.tscn" id="4_05bgm"]
+[ext_resource type="PackedScene" uid="uid://btn3j3mjtxlfj" path="res://src/levels/apartment_manager/apartment_objects.tscn" id="5_g75iy"]
 
 [node name="SandBox" type="Node2D"]
 
@@ -18,3 +19,5 @@ metadata/_edit_lock_ = true
 [node name="FloorStairs" parent="." instance=ExtResource("3_22h53")]
 
 [node name="CameraFloor" parent="." instance=ExtResource("4_05bgm")]
+
+[node name="apartment_objects" parent="." instance=ExtResource("5_g75iy")]

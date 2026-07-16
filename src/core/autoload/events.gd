@@ -18,6 +18,12 @@ signal player_exited_lift
 @warning_ignore("unused_signal")
 signal lift_crashed
 
+# Сигналы для апартаментов
+@warning_ignore("unused_signal")
+signal player_entered_apartment(apartment_number: int)
+@warning_ignore("unused_signal")
+signal player_exited_apartment()
+
 # Сигналы для игрока
 #@warning_ignore("unused_signal")
 #signal player_health_changed(new_health)

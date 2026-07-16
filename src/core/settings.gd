@@ -15,7 +15,7 @@ var settings: Dictionary = {
 					"hight": 50
 				}
 			},
-			"satirs": {
+			"stairs": {
 				"name": "Stairs",
 				"position_x": 825,
 				"position_y": 482,
@@ -34,7 +34,29 @@ var settings: Dictionary = {
 					"width": 230,
 					"hight": 320
 				}
-			}
+			},
+			"apartments": [
+				{
+					"apartment_name": "Apartment1",
+					"position_x": 200,
+					"position_y": 480,
+					"collision_shape_setup": {
+						"shape": "RectangleShape2D",
+						"width": 155,
+						"hight": 255
+					}
+				},
+				{
+					"apartment_name": "Apartment2",
+					"position_x": 550,
+					"position_y": 480,
+					"collision_shape_setup": {
+						"shape": "RectangleShape2D",
+						"width": 155,
+						"hight": 255
+					}
+				}
+			]
 		},
 		"floor2": {
 			"name": "Floor2",
@@ -48,7 +70,7 @@ var settings: Dictionary = {
 					"hight": 50
 				}
 			},
-			"satirs": {
+			"stairs": {
 				"name": "Stairs",
 				"position_x": 825,
 				"position_y": -240,
@@ -67,7 +89,29 @@ var settings: Dictionary = {
 					"width": 230,
 					"hight": 320
 				}
-			}
+			},
+			"apartments": [
+				{
+					"apartment_name": "Apartment3",
+					"position_x": 200,
+					"position_y": -240,
+					"collision_shape_setup": {
+						"shape": "RectangleShape2D",
+						"width": 155,
+						"hight": 255
+					}
+				},
+				{
+					"apartment_name": "Apartment4",
+					"position_x": 550,
+					"position_y": -240,
+					"collision_shape_setup": {
+						"shape": "RectangleShape2D",
+						"width": 155,
+						"hight": 255
+					}
+				}
+			]
 		},
 		"floor3": {
 			"name": "Floor3",
@@ -81,7 +125,7 @@ var settings: Dictionary = {
 					"hight": 50
 				}
 			},
-			"satirs": {
+			"stairs": {
 				"name": "Stairs",
 				"position_x": 825,
 				"position_y": -962,
@@ -99,7 +143,29 @@ var settings: Dictionary = {
 					"shape": "RectangleShape2D",
 					"width": 230,
 					"hight": 320
+				},
+				"apartments": [
+				{
+					"apartment_name": "Apartment5",
+					"position_x": 200,
+					"position_y": -960,
+					"collision_shape_setup": {
+						"shape": "RectangleShape2D",
+						"width": 155,
+						"hight": 255
+					}
+				},
+				{
+					"apartment_name": "Apartment6",
+					"position_x": 550,
+					"position_y": -960,
+					"collision_shape_setup": {
+						"shape": "RectangleShape2D",
+						"width": 155,
+						"hight": 255
+					}
 				}
+			]
 			}
 		}
 	}
