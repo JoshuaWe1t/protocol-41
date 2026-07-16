@@ -45,7 +45,7 @@ shape = SubResource("RectangleShape2D_cqjrl")
 [node name="Stairs" type="Area2D" parent="Floor1"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor1/Stairs"]
-position = Vector2(825, 489)
+position = Vector2(825, 482)
 shape = SubResource("RectangleShape2D_qh42g")
 
 [node name="Lift" type="Area2D" parent="Floor1"]
@@ -66,7 +66,7 @@ shape = SubResource("RectangleShape2D_icbfp")
 [node name="Stairs" type="Area2D" parent="Floor2"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor2/Stairs"]
-position = Vector2(825, -233)
+position = Vector2(825, -240)
 shape = SubResource("RectangleShape2D_c06da")
 
 [node name="Lift" type="Area2D" parent="Floor2"]
@@ -87,7 +87,7 @@ shape = SubResource("RectangleShape2D_eaqci")
 [node name="Stairs" type="Area2D" parent="Floor3"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor3/Stairs"]
-position = Vector2(825, -955)
+position = Vector2(825, -962)
 shape = SubResource("RectangleShape2D_4eidc")
 
 [node name="Lift" type="Area2D" parent="Floor3"]
