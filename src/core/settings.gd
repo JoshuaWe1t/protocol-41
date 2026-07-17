@@ -173,4 +173,4 @@ var settings: Dictionary = {
 
 
 func _ready() -> void:
-	print("SETTINGS LOADED")
+	print("SettingData инициализирован")

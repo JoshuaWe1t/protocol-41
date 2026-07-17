@@ -111,12 +111,12 @@ func generate_level_settings():
 	anomalies_encountered.clear()
 	
 	# Генерируем квартиру и ПРИВЯЗЫВАЕМ к ней этаж
-	var infected_apartment = randi_range(1, 6)
+	Global.infected_apartment = randi_range(1, 6)
 	var infected_floor = 1
 	
-	if infected_apartment in [1, 2]:
+	if Global.infected_apartment in [1, 2]:
 		infected_floor = 1
-	elif infected_apartment in [3, 4]:
+	elif Global.infected_apartment in [3, 4]:
 		infected_floor = 2
 	else:
 		infected_floor = 3
@@ -133,7 +133,7 @@ func generate_level_settings():
 		
 	# ЗАПИСЫВАЕМ сгенерированные данные в наш главный объект floor_condition
 	floor_condition["infected_floor"] = infected_floor
-	floor_condition["infected_apartment"] = infected_apartment
+	floor_condition["infected_apartment"] = Global.infected_apartment
 	floor_condition["is_anomaly_exist"] = is_anomaly_exist
 	floor_condition["anomaly_floor_located"] = anomaly_floor_located
 	floor_condition["is_spore_exist"] = is_spore_exist
@@ -142,7 +142,7 @@ func generate_level_settings():
 	# Обновляем статус заражения внутри конкретной квартиры в словаре
 	var floor_key = "floor0" + str(infected_floor)
 	for apt in floor_condition[floor_key]["apartments"]:
-		if apt["apartment_number"] == infected_apartment:
+		if apt["apartment_number"] == Global.infected_apartment:
 			apt["is_infected"] = true
 			apt["water_infected_level"] = randi_range(5, 10) # Делаем воду "Красной" или "ЭкстраКрасной"
 			
@@ -156,7 +156,49 @@ func generate_level_settings():
 	print("Зараженный этаж: ", floor_condition["infected_floor"])
 	print("Зараженная квартира: ", floor_condition["infected_apartment"])
 	print("Наличие аномалии: ", floor_condition["is_anomaly_exist"], " (на этаже ", floor_condition["anomaly_floor_located"], ")")
+
+	# === НОВАЯ ЛОГИКА: РАСПРЕДЕЛЕНИЕ ДИАЛОГОВ ===
 	
+	# 1. Создаем копии массивов и перемешиваем их, чтобы фразы не повторялись
+	var available_commons = Dwellers.common_dialog_lines.duplicate()
+	available_commons.shuffle()
+	
+	var available_hints = Dwellers.hints_dialog_lines.duplicate()
+	available_hints.shuffle()
+	
+	# 2. Выбираем, кто из жильцов получит подсказки. 
+	# У нас 6 квартир. Пусть 3 квартиры получат подсказки, остальные — только бытовуху.
+	var apartments_with_hints = [1, 2, 3, 4, 5, 6]
+	apartments_with_hints.shuffle()
+	var lucky_apartments = apartments_with_hints.slice(0, 3) # Берем первые 3 случайные квартиры
+	
+	# 3. Раздаем диалоги по квартирам
+	for floor_num in range(1, 4):
+		floor_key = "floor0" + str(floor_num)
+		for apt in floor_condition[floor_key]["apartments"]:
+			var apt_num = apt["apartment_number"]
+			
+			# У некоторых жильцов может никого не быть дома (например, 15% шанс)
+			if randf() < 0.15:
+				continue # Оставляем массивы пустыми, ответа не последует
+			
+			# Раздаем 2-3 обычные фразы
+			var common_count = randi_range(2, 3)
+			for i in range(common_count):
+				if available_commons.size() > 0:
+					apt["dweller"]["common_dialog_lines"].append(available_commons.pop_back())
+			
+			# Если квартира входит в список "везунчиков", даем ей 1 подсказку
+			if apt_num in lucky_apartments:
+				if available_hints.size() > 0:
+					var raw_hint = available_hints.pop_back()
+					
+					# ВАЖНО: Проверяем, есть ли "%d" в строке, чтобы не было ошибки при форматировании
+					if "%d" in raw_hint:
+						raw_hint = raw_hint % Global.infected_apartment
+						
+					apt["dweller"]["hints_dialog_lines"].append(raw_hint)
+
 	# Файл запишется только при запуске из редактора или в дебаг-билде
 	if OS.is_debug_build():
 		save_foo_to_debug_file()
