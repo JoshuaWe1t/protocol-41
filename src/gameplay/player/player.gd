@@ -1,6 +1,10 @@
 extends CharacterBody2D
 
 
+# Загружаем сцену диалогового окна один раз при старте игры
+const DIALOGUE_BUBBLE = preload("res://src/core/dialogue_box/dialogue_box.tscn")
+
+
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D # Ссылка на спрайт для разворота
 @onready var dialogue_box: PanelContainer = $DialogueBox
@@ -46,9 +50,10 @@ func _ready() -> void:
 	# Подписываемся на новые сигналы камеры
 	Events.camera_transition_started.connect(_on_camera_started)
 	Events.camera_transition_finished.connect(_on_camera_finished)
-	# 
+	# Подписываемся под новые сигналы для взаимодействия с дверьми
 	Events.player_entered_apartment.connect(_on_entered_apartment)
 	Events.player_exited_apartment.connect(_on_exited_apartment)
+	Events.get_text_line.connect(_on_get_text_line)
 
 
 func _physics_process(_delta: float) -> void:
@@ -114,6 +119,7 @@ func _physics_process(_delta: float) -> void:
 			await anim_player.animation_finished 
 			
 			is_knocking = false         # Снимаем блокировку
+			Events.get_text_line.emit(current_floor, current_apartment)
 
 	move_and_slide()
 
@@ -183,3 +189,39 @@ func _on_entered_apartment(apartment_number: int) -> void:
 func _on_exited_apartment() -> void:
 	at_door = false
 	print("Выход из зоны кв | at_door: ", at_door)
+
+
+func _on_get_text_line(floor_number: int, apartment_number: int) -> void:
+	current_floor = floor_number
+	current_apartment = apartment_number
+	var dialog_box_pox_x: int
+	var dialog_box_pox_y: int
+	var floor_settings = Settings.settings.get("floors_settings").get(floor_number)
+	var apartments = floor_settings.get("apartments")
+	
+	for apartment in apartments:
+		if apartment.get("id") == current_apartment:
+			var dialog_box_settings = apartment.get("dialogue_box")
+			dialog_box_pox_x = dialog_box_settings.get("position_x")
+			dialog_box_pox_y = dialog_box_settings.get("position_y")
+			print("Vector2(x, y): ", dialog_box_pox_x, ", ", dialog_box_pox_y)
+	
+	
+	
+	spawn_door_dialogue(Vector2(dialog_box_pox_x,dialog_box_pox_y))
+
+
+# Эта функция вызывается, когда игрок успешно постучал в дверь
+func spawn_door_dialogue(door_global_position: Vector2, text: String = "...") -> void:
+	# 2. Создаем копию загруженной сцены
+	var bubble_instance = DIALOGUE_BUBBLE.instantiate()
+	
+	# 3. Добавляем облачко на основную сцену игры.
+	# Лучше всего добавлять его в текущую сцену (current_scene), а не внутрь двери.
+	# Если добавить внутрь двери, текст может случайно отмасштабироваться вместе с ней.
+	get_tree().current_scene.add_child(bubble_instance)
+	
+	# 4. Передаем координаты (например, позицию двери, поднятую чуть выше) и текст
+	var offset_position = door_global_position + Vector2(0, -20) # Поднимаем на 20 пикселей выше центра двери
+	
+	bubble_instance.setup(text, offset_position)
