@@ -23,6 +23,8 @@ signal lift_crashed
 signal player_entered_apartment(apartment_number: int)
 @warning_ignore("unused_signal")
 signal player_exited_apartment()
+@warning_ignore("unused_signal")
+signal get_text_line(floor_number: int, apartment_number: int)
 
 # Сигналы для игрока
 #@warning_ignore("unused_signal")
