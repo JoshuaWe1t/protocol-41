@@ -32,6 +32,30 @@ script = ExtResource("1_sibv8")
 position = Vector2(200, 480)
 shape = SubResource("RectangleShape2D_sibv8")
 
+[node name="DialogueBox" type="PanelContainer" parent="Floor1/Apartment1"]
+visible = false
+offset_left = 44.0
+offset_top = 202.0
+offset_right = 364.0
+offset_bottom = 271.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Floor1/Apartment1/DialogueBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="Floor1/Apartment1/DialogueBox/MarginContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "Не ходите на верхний этаж без нужды. Там воздух такой тяжелый, голова сразу кружиться начинает."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Timer" type="Timer" parent="Floor1/Apartment1/DialogueBox"]
+
 [node name="Apartment2" type="Area2D" parent="Floor1"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor1/Apartment2"]
