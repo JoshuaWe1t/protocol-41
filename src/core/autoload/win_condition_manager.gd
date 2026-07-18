@@ -24,7 +24,8 @@ var floor_condition = {
 				"dweller": {
 					"name": "",
 					"common_dialog_lines": [],
-					"hints_dialog_lines": []
+					"hints_dialog_lines": [],
+					"full_dialog_lines": []
 				}
 			},
 			{
@@ -35,7 +36,8 @@ var floor_condition = {
 				"dweller": {
 					"name": "",
 					"common_dialog_lines": [],
-					"hints_dialog_lines": []
+					"hints_dialog_lines": [],
+					"full_dialog_lines": []
 				}
 			}
 		]
@@ -52,7 +54,8 @@ var floor_condition = {
 				"dweller": {
 					"name": "",
 					"common_dialog_lines": [],
-					"hints_dialog_lines": []
+					"hints_dialog_lines": [],
+					"full_dialog_lines": []
 				}
 			},
 			{
@@ -63,7 +66,8 @@ var floor_condition = {
 				"dweller": {
 					"name": "",
 					"common_dialog_lines": [],
-					"hints_dialog_lines": []
+					"hints_dialog_lines": [],
+					"full_dialog_lines": []
 				}
 			}
 		]
@@ -80,7 +84,8 @@ var floor_condition = {
 				"dweller": {
 					"name": "",
 					"common_dialog_lines": [],
-					"hints_dialog_lines": []
+					"hints_dialog_lines": [],
+					"full_dialog_lines": []
 				}
 			},
 			{
@@ -91,7 +96,8 @@ var floor_condition = {
 				"dweller": {
 					"name": "",
 					"common_dialog_lines": [],
-					"hints_dialog_lines": []
+					"hints_dialog_lines": [],
+					"full_dialog_lines": []
 				}
 			}
 		]
@@ -187,6 +193,7 @@ func generate_level_settings():
 			for i in range(common_count):
 				if available_commons.size() > 0:
 					apt["dweller"]["common_dialog_lines"].append(available_commons.pop_back())
+					apt["dweller"]["full_dialog_lines"].append(available_commons.pop_back())
 			
 			# Если квартира входит в список "везунчиков", даем ей 1 подсказку
 			if apt_num in lucky_apartments:
@@ -195,9 +202,11 @@ func generate_level_settings():
 					
 					# ВАЖНО: Проверяем, есть ли "%d" в строке, чтобы не было ошибки при форматировании
 					if "%d" in raw_hint:
-						raw_hint = raw_hint % Global.infected_apartment
+						var error_point = randi_range(-1, 1)
+						raw_hint = raw_hint % (Global.infected_apartment + error_point)
 						
 					apt["dweller"]["hints_dialog_lines"].append(raw_hint)
+					apt["dweller"]["full_dialog_lines"].append(raw_hint)
 
 	# Файл запишется только при запуске из редактора или в дебаг-билде
 	if OS.is_debug_build():
