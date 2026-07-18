@@ -22,6 +22,9 @@ var is_lift_broken: bool = false
 var is_frozen: bool = false
 # Запоминаем нормальный масштаб игрока (обычно это 1, 1)
 var normal_scale: Vector2 = Vector2(1.0, 1.0)
+var current_apartment: int
+var at_door: bool = false
+var is_knocking: bool = false
 
 
 func _ready() -> void:
@@ -43,6 +46,9 @@ func _ready() -> void:
 	# Подписываемся на новые сигналы камеры
 	Events.camera_transition_started.connect(_on_camera_started)
 	Events.camera_transition_finished.connect(_on_camera_finished)
+	# 
+	Events.player_entered_apartment.connect(_on_entered_apartment)
+	Events.player_exited_apartment.connect(_on_exited_apartment)
 
 
 func _physics_process(_delta: float) -> void:
@@ -54,16 +60,19 @@ func _physics_process(_delta: float) -> void:
 		anim_player.play("idle")
 		move_and_slide()
 		return 
+	elif is_frozen and at_door:
+		velocity = Vector2.ZERO
+		
 	
 	if direction:
 		velocity.x = direction * SPEED
-		anim_player.play("walk")
-		
-		# Разворачиваем спрайт влево или вправо в зависимости от направления движения
+		if not is_knocking: # <--- Добавили проверку
+			anim_player.play("walk")
 		sprite.flip_h = (direction < 0)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-		anim_player.play("idle") # <--- Если никуда не идет, включаем покой
+		if not is_knocking: # <--- Добавили проверку
+			anim_player.play("idle")
 	
 	# Обработка движения ВВЕРХ
 	if Input.is_action_just_pressed("go_up"):
@@ -93,6 +102,18 @@ func _physics_process(_delta: float) -> void:
 			show_dialogue("Лифт застрял и больше не работает")
 		elif at_lift:
 			show_dialogue("Лифт сейчас на третьем этаже")
+	
+	
+	if Input.is_action_just_pressed("interact"):
+		print("Interact")
+		if at_door and not is_knocking: # <--- Проверяем, что уже не стучим
+			is_knocking = true          # Включаем блокировку анимаций
+			anim_player.play("knock")   # Запускаем стук
+			
+			# Ждем завершения именно этой анимации
+			await anim_player.animation_finished 
+			
+			is_knocking = false         # Снимаем блокировку
 
 	move_and_slide()
 
@@ -152,3 +173,13 @@ func _on_lift_denied() -> void:
 	can_use_lift = false
 	is_lift_broken = true
 	print("Lift is broken: ", is_lift_broken)
+
+
+func _on_entered_apartment(apartment_number: int) -> void:
+	current_apartment = apartment_number
+	at_door = true
+	print("Вход в зону кв ", apartment_number, " | at_door: ", at_door)
+
+func _on_exited_apartment() -> void:
+	at_door = false
+	print("Выход из зоны кв | at_door: ", at_door)
