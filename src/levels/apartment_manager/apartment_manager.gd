@@ -6,7 +6,7 @@ var current_appartment: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#$Floor1/Apartment1/DialogueBox/MarginContainer/Label.text = Dwellers.common_dialog_lines[6]
+	
 	
 	$Floor1/Apartment1.body_entered.connect(_on_entered_apartment.bind(1))
 	$Floor1/Apartment2.body_entered.connect(_on_entered_apartment.bind(2))
