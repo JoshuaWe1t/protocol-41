@@ -3,7 +3,7 @@ extends Node
 
 var settings: Dictionary = {
 	"floors_settings": {
-		"floor1": {
+		1 : {
 			"name": "Floor1",
 			"floor_zone": {
 				"name": "FloorZone1",
@@ -37,6 +37,7 @@ var settings: Dictionary = {
 			},
 			"apartments": [
 				{
+					"id": 1,
 					"apartment_name": "Apartment1",
 					"position_x": 200,
 					"position_y": 480,
@@ -44,9 +45,14 @@ var settings: Dictionary = {
 						"shape": "RectangleShape2D",
 						"width": 155,
 						"hight": 255
+					},
+					"dialogue_box": {
+						"position_x": 45,
+						"position_y": 160,
 					}
 				},
 				{
+					"id": 2,
 					"apartment_name": "Apartment2",
 					"position_x": 550,
 					"position_y": 480,
@@ -54,11 +60,15 @@ var settings: Dictionary = {
 						"shape": "RectangleShape2D",
 						"width": 155,
 						"hight": 255
+					},
+					"dialogue_box": {
+						"position_x": 390,
+						"position_y": 160,
 					}
 				}
 			]
 		},
-		"floor2": {
+		2 : {
 			"name": "Floor2",
 			"floor_zone": {
 				"name": "FloorZone2",
@@ -92,6 +102,7 @@ var settings: Dictionary = {
 			},
 			"apartments": [
 				{
+					"id": 3,
 					"apartment_name": "Apartment3",
 					"position_x": 200,
 					"position_y": -240,
@@ -99,9 +110,14 @@ var settings: Dictionary = {
 						"shape": "RectangleShape2D",
 						"width": 155,
 						"hight": 255
+					},
+					"dialogue_box": {
+						"position_x": 45,
+						"position_y": -560,
 					}
 				},
 				{
+					"id": 4,
 					"apartment_name": "Apartment4",
 					"position_x": 550,
 					"position_y": -240,
@@ -109,11 +125,15 @@ var settings: Dictionary = {
 						"shape": "RectangleShape2D",
 						"width": 155,
 						"hight": 255
+					},
+					"dialogue_box": {
+						"position_x": 390,
+						"position_y": -560,
 					}
 				}
 			]
 		},
-		"floor3": {
+		3 : {
 			"name": "Floor3",
 			"floor_zone": {
 				"name": "FloorZone3",
@@ -143,9 +163,11 @@ var settings: Dictionary = {
 					"shape": "RectangleShape2D",
 					"width": 230,
 					"hight": 320
-				},
-				"apartments": [
+				}
+			},
+			"apartments": [
 				{
+					"id": 5,
 					"apartment_name": "Apartment5",
 					"position_x": 200,
 					"position_y": -960,
@@ -153,9 +175,14 @@ var settings: Dictionary = {
 						"shape": "RectangleShape2D",
 						"width": 155,
 						"hight": 255
+					},
+					"dialogue_box": {
+						"position_x": 45,
+						"position_y": -1280,
 					}
 				},
 				{
+					"id": 6,
 					"apartment_name": "Apartment6",
 					"position_x": 550,
 					"position_y": -960,
@@ -163,12 +190,15 @@ var settings: Dictionary = {
 						"shape": "RectangleShape2D",
 						"width": 155,
 						"hight": 255
+					},
+					"dialogue_box": {
+						"position_x": 390,
+						"position_y": -1280,
 					}
 				}
 			]
 			}
 		}
-	}
 }
 
 
