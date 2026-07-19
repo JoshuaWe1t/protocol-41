@@ -196,6 +196,7 @@ func _on_get_text_line(floor_number: int, apartment_number: int) -> void:
 	current_apartment = apartment_number
 	var dialog_box_pox_x: int
 	var dialog_box_pox_y: int
+	var dialogue_line: String
 	var floor_settings = Settings.settings.get("floors_settings").get(floor_number)
 	var apartments = floor_settings.get("apartments")
 	
@@ -206,9 +207,9 @@ func _on_get_text_line(floor_number: int, apartment_number: int) -> void:
 			dialog_box_pox_y = dialog_box_settings.get("position_y")
 			print("Vector2(x, y): ", dialog_box_pox_x, ", ", dialog_box_pox_y)
 	
+	dialogue_line = get_unique_dialogue_line(floor_number, apartment_number)
 	
-	
-	spawn_door_dialogue(Vector2(dialog_box_pox_x,dialog_box_pox_y))
+	spawn_door_dialogue(Vector2(dialog_box_pox_x,dialog_box_pox_y), dialogue_line)
 
 
 # Эта функция вызывается, когда игрок успешно постучал в дверь
@@ -225,3 +226,46 @@ func spawn_door_dialogue(door_global_position: Vector2, text: String = "...") ->
 	var offset_position = door_global_position + Vector2(0, -20) # Поднимаем на 20 пикселей выше центра двери
 	
 	bubble_instance.setup(text, offset_position)
+
+
+func get_unique_dialogue_line(floor_number: int, apt_number: int) -> String:
+	var win_condition = WinConditionManager.floor_condition.get(floor_number)
+	
+	if win_condition == null:
+		return "..." 
+		
+	var apartments = win_condition.get("apartments", [])
+	
+	for apt in apartments:
+		if apt["apartment_number"] == apt_number:
+			
+			# === НОВАЯ ЛОГИКА: Таймер кулдауна на 15 секунд ===
+			
+			# Получаем текущее время работы игры в миллисекундах
+			var current_time = Time.get_ticks_msec()
+			
+			# Проверяем, стучали ли мы уже в эту дверь (если нет, по умолчанию 0)
+			var last_interact_time = apt.get("last_interaction_time", 0)
+			
+			# Если время записано и прошло меньше 15000 миллисекунд (15 сек)
+			if last_interact_time > 0 and (current_time - last_interact_time) < 15000:
+				return "Не беспокойте меня хотя бы немного..."
+				
+			# Обновляем таймер: записываем текущее время как момент последнего стука
+			apt["last_interaction_time"] = current_time
+			
+			# =================================================
+			
+			# Получаем доступ к массиву фраз
+			var dialog_lines: Array = apt["dweller"]["full_dialog_lines"]
+			
+			if dialog_lines.is_empty():
+				return "..." 
+				
+			var random_index = randi() % dialog_lines.size()
+			var selected_line = dialog_lines[random_index]
+			dialog_lines.remove_at(random_index)
+			
+			return selected_line
+			
+	return "Дверь заперта."
