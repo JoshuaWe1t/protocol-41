@@ -1,11 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://7q0gmfnefpdx"]
+[gd_scene load_steps=3 format=3 uid="uid://7q0gmfnefpdx"]
 
 [ext_resource type="Script" uid="uid://bvuab46ce0dca" path="res://src/core/dialogue_box/dialogue_box.gd" id="1_a6v5q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a6v5q"]
+bg_color = Color(0.14406255, 0.14406255, 0.14406249, 0.30980393)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="DialogueBox" type="PanelContainer"]
 z_index = 2
 offset_right = 320.0
 offset_bottom = 95.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_a6v5q")
 script = ExtResource("1_a6v5q")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

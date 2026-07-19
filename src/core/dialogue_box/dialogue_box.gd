@@ -8,7 +8,7 @@ func _ready() -> void:
 	timer.timeout.connect(_on_timer_timeout)
 	
 	# Можно задать таймеру время жизни по умолчанию, например 3 секунды
-	timer.wait_time = 3.0 
+	timer.wait_time = 1.5
 	timer.one_shot = true
 
 # Функция для приёма данных извне при спавне
