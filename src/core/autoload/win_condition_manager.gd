@@ -162,14 +162,13 @@ func generate_level_settings():
 	
 	# Генерируем квартиру и ПРИВЯЗЫВАЕМ к ней этаж
 	Global.infected_apartment = randi_range(1, 6)
-	var infected_floor = 1
 	
 	if Global.infected_apartment in [1, 2]:
-		infected_floor = 1
+		Global.infected_floor = 1
 	elif Global.infected_apartment in [3, 4]:
-		infected_floor = 2
+		Global.infected_floor = 2
 	else:
-		infected_floor = 3
+		Global.infected_floor = 3
 		
 	# === ГЕНЕРАЦИЯ АКТИВНОСТЕЙ НА ОСНОВЕ МОНСТРА ===
 	var is_anomaly_exist = active_monster["anomaly"]
@@ -178,19 +177,19 @@ func generate_level_settings():
 	# Общие данные
 	floor_condition["active_monster_id"] = selected_monster_id
 	floor_condition["active_monster_name"] = active_monster["name"]
-	floor_condition["infected_floor"] = infected_floor
+	floor_condition["infected_floor"] = Global.infected_floor
 	floor_condition["infected_apartment"] = Global.infected_apartment
 	floor_condition["is_anomaly_exist"] = is_anomaly_exist
 	floor_condition["anomaly_floor_located"] = anomaly_floor_located
 	floor_condition["is_spore_exist"] = true # Споры теперь есть всегда (хотя бы у монстра или зеленый фон)
-	floor_condition["spore_floor_located"] = infected_floor # Очаг спор всегда на зараженном этаже
+	floor_condition["spore_floor_located"] = Global.infected_floor # Очаг спор всегда на зараженном этаже
 
 	# === НАСТРОЙКА ЭТАЖЕЙ И КВАРТИР ===
 	for floor_num in range(1, 4):
 		var current_floor_data = floor_condition[floor_num]
 		
 		# 1. Устанавливаем уровень спор для этажа
-		if floor_num == infected_floor:
+		if floor_num == Global.infected_floor:
 			current_floor_data["spore_level"] = active_monster["spores"]
 			current_floor_data["has_spore_activity"] = true
 		else:
@@ -227,7 +226,7 @@ func generate_level_settings():
 	print("Тип угрозы: ", floor_condition["active_monster_name"])
 	print("Зараженный этаж: ", floor_condition["infected_floor"])
 	print("Зараженная квартира: ", floor_condition["infected_apartment"])
-	print("Споры на зараженном этаже: ", floor_condition[infected_floor]["spore_level"])
+	print("Споры на зараженном этаже: ", floor_condition[Global.infected_floor]["spore_level"])
 	print("Наличие аномалии: ", floor_condition["is_anomaly_exist"], " (на этаже ", floor_condition["anomaly_floor_located"], ")")
 	
 	# === ЛОГИКА РАСПРЕДЕЛЕНИЯ ДИАЛОГОВ ===
