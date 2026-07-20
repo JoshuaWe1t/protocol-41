@@ -198,7 +198,69 @@ var settings: Dictionary = {
 				}
 			]
 			}
-		}
+		},
+	"spore_settings": {
+		1 : [
+			{
+				"collision_shape": "CicleShapre2D",
+				"radius": 40,
+				"position_x": 50,
+				"position_y": 400
+			},
+			{
+				"collision_shape": "CicleShapre2D",
+				"radius": 70,
+				"position_x": 375,
+				"position_y": 390
+			},
+			{
+				"collision_shape": "CicleShapre2D",
+				"radius": 30,
+				"position_x": 670,
+				"position_y": 450
+			}
+		],
+		2 : [
+			{
+				"collision_shape": "CicleShapre2D",
+				"radius": 40,
+				"position_x": 50,
+				"position_y": -320
+			},
+			{
+				"collision_shape": "CicleShapre2D",
+				"radius": 70,
+				"position_x": 375,
+				"position_y": -330
+			},
+			{
+				"collision_shape": "CicleShapre2D",
+				"radius": 30,
+				"position_x": 670,
+				"position_y": -300
+			}
+		],
+		3 : [
+			{
+				"collision_shape": "CicleShapre2D",
+				"radius": 40,
+				"position_x": 50,
+				"position_y": -1040
+			},
+			{
+				"collision_shape": "CicleShapre2D",
+				"radius": 70,
+				"position_x": 375,
+				"position_y": -1050
+			},
+			{
+				"collision_shape": "CicleShapre2D",
+				"radius": 30,
+				"position_x": 670,
+				"position_y": -1020
+			}
+		]
+	}
 }
 
 
