@@ -8,6 +8,7 @@ const LIFT_TIMER_WAIT_TIME: float = 10.0
 const LIFT_TIMER_ONE_SHOT: bool = true
 
 var infected_apartment: int
+var infected_floor: int
 
 # Другие глобальные данные
 var player_health = 100
