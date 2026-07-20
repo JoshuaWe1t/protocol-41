@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtqxiud3cxq0k"]
+
+[ext_resource type="Script" uid="uid://y7ecyx7epq4m" path="res://src/levels/spore_manager/spore_area.gd" id="1_86uui"]
+[ext_resource type="Texture2D" uid="uid://bva2ullwi8bj3" path="res://src/levels/background/bg.png" id="1_toulw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jfeb1"]
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_86uui"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qm2s0"]
+
+[node name="SporeArea" type="Area2D"]
+script = ExtResource("1_86uui")
+
+[node name="CollisionSporeFl1" type="CollisionShape2D" parent="."]
+position = Vector2(670, -300)
+shape = SubResource("CircleShape2D_jfeb1")
+
+[node name="CollisionSporeFl2" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_86uui")
+
+[node name="CollisionSporeFl3" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qm2s0")
+
+[node name="Floors" type="Node" parent="."]
+
+[node name="Floor01" type="Sprite2D" parent="Floors"]
+visible = false
+z_index = -1
+texture = ExtResource("1_toulw")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="Floor02" type="Sprite2D" parent="Floors"]
+visible = false
+z_index = -1
+position = Vector2(0, -720)
+texture = ExtResource("1_toulw")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="Floor03" type="Sprite2D" parent="Floors"]
+visible = false
+z_index = -1
+position = Vector2(0, -1440)
+texture = ExtResource("1_toulw")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="TimerActivateSpore" type="Timer" parent="."]
+wait_time = 30.0
+autostart = true
