@@ -26,6 +26,12 @@ signal player_exited_apartment()
 @warning_ignore("unused_signal")
 signal get_text_line(floor_number: int, apartment_number: int)
 
+# Сигналы для споровых областей
+@warning_ignore("unused_signal")
+signal player_entered_spore_area()
+@warning_ignore("unused_signal")
+signal player_exited_spore_area()
+
 # Сигналы для игрока
 #@warning_ignore("unused_signal")
 #signal player_health_changed(new_health)
