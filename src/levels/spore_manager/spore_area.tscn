@@ -10,18 +10,31 @@ radius = 30.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qm2s0"]
 
-[node name="SporeArea" type="Area2D"]
+[node name="SporeArea" type="Node"]
 script = ExtResource("1_86uui")
 
-[node name="CollisionSporeFl1" type="CollisionShape2D" parent="."]
+[node name="TimerActivateSpore" type="Timer" parent="."]
+wait_time = 30.0
+autostart = true
+
+[node name="Floor1" type="Area2D" parent="."]
+
+[node name="CollisionSporeFl1" type="CollisionShape2D" parent="Floor1"]
 position = Vector2(670, -300)
 shape = SubResource("CircleShape2D_jfeb1")
+debug_color = Color(0.90260875, 0.24428764, 0.48697972, 0.41960785)
 
-[node name="CollisionSporeFl2" type="CollisionShape2D" parent="."]
+[node name="Floor2" type="Area2D" parent="."]
+
+[node name="CollisionSporeFl2" type="CollisionShape2D" parent="Floor2"]
 shape = SubResource("CircleShape2D_86uui")
+debug_color = Color(0.9019608, 0.24313726, 0.4862745, 0.41960785)
 
-[node name="CollisionSporeFl3" type="CollisionShape2D" parent="."]
+[node name="Floor3" type="Area2D" parent="."]
+
+[node name="CollisionSporeFl3" type="CollisionShape2D" parent="Floor3"]
 shape = SubResource("CircleShape2D_qm2s0")
+debug_color = Color(0.9019608, 0.24313726, 0.4862745, 0.41960785)
 
 [node name="Floors" type="Node" parent="."]
 
@@ -47,7 +60,3 @@ position = Vector2(0, -1440)
 texture = ExtResource("1_toulw")
 centered = false
 metadata/_edit_lock_ = true
-
-[node name="TimerActivateSpore" type="Timer" parent="."]
-wait_time = 30.0
-autostart = true
