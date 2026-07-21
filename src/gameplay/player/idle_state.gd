@@ -1,14 +1,26 @@
 extends State
 
-
-@export var idle_state: State
-#@onready var anim_player: AnimationPlayer = $AnimationPlayer
+@export var move_state: State
+@export var knock_state: State
 
 func enter_state() -> void:
-	#anim_player.play("idle")
-	pass
+	player.velocity.x = 0
+	player.anim_player.play("idle")
 
-
-func update(_delta: float) -> void:
-	if Input.get_vector("backward", "forward", "ui_up", "ui_down") == Vector2.ZERO:
-		switch_state.emit(idle_state)
+func physics_process(_delta: float) -> void:
+	var direction := Input.get_axis("backward", "forward")
+	
+	if direction != 0:
+		switch_state.emit(move_state)
+		return
+		
+	# Обработка интерактива
+	if Input.is_action_just_pressed("go_up"):
+		player.try_go_up()
+	elif Input.is_action_just_pressed("go_down"):
+		player.try_go_down()
+	elif Input.is_action_just_pressed("interact"):
+		if player.at_door:
+			switch_state.emit(knock_state)
+		elif player.at_lift:
+			player.try_use_lift()
