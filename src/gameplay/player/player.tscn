@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://crpll8ydxbhxu"]
+[gd_scene load_steps=16 format=3 uid="uid://crpll8ydxbhxu"]
 
 [ext_resource type="Script" uid="uid://dcu2ha2l0d0re" path="res://src/gameplay/player/player.gd" id="1_d3trc"]
 [ext_resource type="Texture2D" uid="uid://bbe5uya5r3lw6" path="res://src/gameplay/player/Soviet_militiaman_8-bit_pixel_art_202607110954_2.png" id="2_d3trc"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dy2b16bgka7a1" path="res://src/gameplay/player/move_state.gd" id="4_sjr3t"]
 [ext_resource type="Script" uid="uid://cogdl76u0yshf" path="res://src/gameplay/player/knock_state.gd" id="6_dxsvo"]
 [ext_resource type="Script" uid="uid://xjkeb2ulhdxs" path="res://src/gameplay/player/frozen_state.gd" id="7_kjyqo"]
+[ext_resource type="PackedScene" uid="uid://h6c6jvosmsgf" path="res://src/ui/hud.tscn" id="8_uia4o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_64h4j"]
 size = Vector2(115, 246)
@@ -154,3 +155,5 @@ vertical_alignment = 1
 [node name="DialogueTimer" type="Timer" parent="DialogueBox"]
 wait_time = 2.0
 one_shot = true
+
+[node name="HUD" parent="." instance=ExtResource("8_uia4o")]

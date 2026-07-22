@@ -39,6 +39,8 @@ func _ready() -> void:
 	Events.player_entered_spore_area.connect(_on_entered_spore)
 	Events.player_exited_spore_area.connect(_on_exited_spore)
 
+	
+
 
 func try_go_up() -> void:
 	if can_up:
