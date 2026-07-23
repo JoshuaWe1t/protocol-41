@@ -28,7 +28,7 @@ signal get_text_line(floor_number: int, apartment_number: int)
 
 # Сигналы для споровых областей
 @warning_ignore("unused_signal")
-signal player_entered_spore_area()
+signal player_entered_spore_area(spore_level: String)
 @warning_ignore("unused_signal")
 signal player_exited_spore_area()
 
@@ -39,10 +39,11 @@ signal player_exited_spore_area()
 #signal player_died
 
 # Сигналы для UI
-#@warning_ignore("unused_signal")
-#signal floor_changed(floor_number)
-#@warning_ignore("unused_signal")
-#signal item_collected(item_name)
+@warning_ignore("unused_signal")
+signal item_uses(item_slot_number: int)
+@warning_ignore("unused_signal")
+signal item_used(item_slot_number: int)
+
 
 @warning_ignore("unused_signal")
 signal camera_transition_started
