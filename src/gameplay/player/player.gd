@@ -19,6 +19,7 @@ var can_use_lift: bool
 var is_lift_broken: bool = false
 var current_apartment: int
 var at_door: bool = false
+var at_spore_area: bool = false
 
 func _ready() -> void:
 	dialogue_box.hide() 
@@ -38,8 +39,6 @@ func _ready() -> void:
 	Events.get_text_line.connect(_on_get_text_line)
 	Events.player_entered_spore_area.connect(_on_entered_spore)
 	Events.player_exited_spore_area.connect(_on_exited_spore)
-
-	
 
 
 func try_go_up() -> void:
@@ -134,12 +133,13 @@ func _on_exited_apartment() -> void:
 	print("Выход из зоны кв | at_door: ", at_door)
 
 
-func _on_entered_spore() -> void:
-	pass
+func _on_entered_spore(spore_level: String) -> void:
+	print("player._on_entered_spore.spore_level: ", spore_level)
+	at_spore_area = true
 
 
 func _on_exited_spore() -> void:
-	pass
+	at_spore_area = false
 
 
 func _on_get_text_line(floor_number: int, apartment_number: int) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://crpll8ydxbhxu"]
+[gd_scene load_steps=18 format=3 uid="uid://crpll8ydxbhxu"]
 
 [ext_resource type="Script" uid="uid://dcu2ha2l0d0re" path="res://src/gameplay/player/player.gd" id="1_d3trc"]
 [ext_resource type="Texture2D" uid="uid://bbe5uya5r3lw6" path="res://src/gameplay/player/Soviet_militiaman_8-bit_pixel_art_202607110954_2.png" id="2_d3trc"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dy2b16bgka7a1" path="res://src/gameplay/player/move_state.gd" id="4_sjr3t"]
 [ext_resource type="Script" uid="uid://cogdl76u0yshf" path="res://src/gameplay/player/knock_state.gd" id="6_dxsvo"]
 [ext_resource type="Script" uid="uid://xjkeb2ulhdxs" path="res://src/gameplay/player/frozen_state.gd" id="7_kjyqo"]
+[ext_resource type="Script" uid="uid://wb547nyip52h" path="res://src/gameplay/player/use_item_state.gd" id="8_rdc6l"]
 [ext_resource type="PackedScene" uid="uid://h6c6jvosmsgf" path="res://src/ui/hud.tscn" id="8_uia4o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_64h4j"]
@@ -72,11 +73,27 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4]
 }
 
+[sub_resource type="Animation" id="Animation_rdc6l"]
+resource_name = "use_item"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.03333333, 0.23333333, 0.46666667, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 8, 8, 8]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rdc6l"]
 _data = {
 &"RESET": SubResource("Animation_kjyqo"),
 &"idle": SubResource("Animation_dxsvo"),
 &"knock": SubResource("Animation_d3trc"),
+&"use_item": SubResource("Animation_rdc6l"),
 &"walk": SubResource("Animation_uia4o")
 }
 
@@ -128,10 +145,15 @@ metadata/_custom_type_script = "uid://dd0pbyv5o86oo"
 script = ExtResource("7_kjyqo")
 metadata/_custom_type_script = "uid://dd0pbyv5o86oo"
 
+[node name="UseItemState" type="Node" parent="StateMachine"]
+script = ExtResource("8_rdc6l")
+metadata/_custom_type_script = "uid://dd0pbyv5o86oo"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_rdc6l")
 }
+autoplay = "walk"
 
 [node name="DialogueBox" type="PanelContainer" parent="."]
 anchors_preset = -1
