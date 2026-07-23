@@ -22,24 +22,19 @@ offset_left = 48.0
 offset_top = 10.0
 offset_right = 561.0
 offset_bottom = 110.0
-theme_override_constants/separation = 60
+theme_override_constants/separation = 100
 
 [node name="ItemSlot" parent="UIRoot/HBoxContainer" instance=ExtResource("1_snmo6")]
 layout_mode = 2
-expand_mode = 2
-stretch_mode = 5
 
 [node name="ItemSlot2" parent="UIRoot/HBoxContainer" instance=ExtResource("1_snmo6")]
 layout_mode = 2
-expand_mode = 2
-stretch_mode = 5
 
 [node name="ItemSlot3" parent="UIRoot/HBoxContainer" instance=ExtResource("1_snmo6")]
 layout_mode = 2
-expand_mode = 2
-stretch_mode = 5
 
 [node name="TextureRect" type="TextureRect" parent="UIRoot"]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
