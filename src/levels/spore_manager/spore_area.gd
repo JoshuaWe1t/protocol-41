@@ -8,8 +8,8 @@ extends Node
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Floor1.body_entered.connect(_on_entered_spore_area.bind(1, setup_infected_level(1)))
-	$Floor2.body_entered.connect(_on_entered_spore_area.bind(2, setup_infected_level(1)))
-	$Floor3.body_entered.connect(_on_entered_spore_area.bind(3, setup_infected_level(1)))
+	$Floor2.body_entered.connect(_on_entered_spore_area.bind(2, setup_infected_level(2)))
+	$Floor3.body_entered.connect(_on_entered_spore_area.bind(3, setup_infected_level(3)))
 	
 	$Floor1.body_exited.connect(_on_exited_spore_area)
 	$Floor2.body_exited.connect(_on_exited_spore_area)
@@ -25,8 +25,10 @@ func _ready() -> void:
 
 
 func _on_entered_spore_area(body: Node2D, floor_number: int, spore_level: String) -> void:
+	var spore_lvl = spore_level
 	if body.name == "Player":
-		print("spore_area._on_entered_spore_area.floor_number: %d, _on_entered_spore_area.spore_level: %s" % [floor_number, spore_level])
+		print("spore_area._on_entered_spore_area.floor_number: %d, _on_entered_spore_area.spore_level: %s" % [floor_number, spore_lvl])
+		Events.player_entered_spore_area.emit(spore_lvl)
 
 
 func _on_exited_spore_area(_body: Node2D) -> void:
@@ -54,4 +56,5 @@ func setup_infected_level(floor_number: int) -> String:
 	var spore_level: String = WinConditionManager.floor_condition\
 		.get(floor_number)\
 		.get("spore_level")
+	print("spore_area.setup_infected_level.spore_level:", spore_level)
 	return spore_level
