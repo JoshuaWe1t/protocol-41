@@ -135,10 +135,12 @@ func _on_exited_apartment() -> void:
 
 func _on_entered_spore(spore_level: String) -> void:
 	print("player._on_entered_spore.spore_level: ", spore_level)
+	Global.current_spore_level = spore_level
 	at_spore_area = true
 
 
 func _on_exited_spore() -> void:
+	Global.current_spore_level = ""
 	at_spore_area = false
 
 
@@ -156,7 +158,8 @@ func _on_get_text_line(floor_number: int, apartment_number: int) -> void:
 			var dialog_box_settings = apartment.get("dialogue_box")
 			dialog_box_pox_x = dialog_box_settings.get("position_x")
 			dialog_box_pox_y = dialog_box_settings.get("position_y")
-			print("Vector2(x, y): ", dialog_box_pox_x, ", ", dialog_box_pox_y)
+			# print("Vector2(x, y): ", dialog_box_pox_x, ", ", dialog_box_pox_y)
+			print("Vector2(x, y): %d, %d" % [dialog_box_pox_x, dialog_box_pox_y])
 	
 	dialogue_line = get_unique_dialogue_line(floor_number, apartment_number)
 	
