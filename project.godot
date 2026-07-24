@@ -22,6 +22,7 @@ Global="*res://src/core/autoload/global.gd"
 WinConditionManager="*res://src/core/autoload/win_condition_manager.gd"
 Settings="*res://src/core/settings.gd"
 Dwellers="*res://src/core/autoload/dwellers.gd"
+Items="*res://src/core/autoload/items.gd"
 
 [display]
 
