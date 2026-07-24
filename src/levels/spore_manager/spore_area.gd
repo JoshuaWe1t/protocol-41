@@ -32,7 +32,7 @@ func _on_entered_spore_area(body: Node2D, floor_number: int, spore_level: String
 
 
 func _on_exited_spore_area(_body: Node2D) -> void:
-	pass
+	Events.player_exited_spore_area.emit()
 
 
 func setup_radious(colision_obj: CollisionShape2D, floor_number: int) -> void:
