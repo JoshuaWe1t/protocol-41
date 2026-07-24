@@ -1,23 +1,40 @@
-extends CanvasLayer # Это скрипт твоего главного HUD
+extends CanvasLayer
 
-# 1. Загружаем текстуру предмета. 
-# Укажи здесь точный путь до твоей картинки зелья, аптечки или шестеренки!
-const ITEM_GEAR_TEXTURE = preload("res://icon.svg")
-const ITEM_MEDKIT_TEXTURE = preload("res://icon.svg")
+# Перетащи сюда сцену ItemSlot.tscn через инспектор
+@export var item_slot_scene: PackedScene = preload("res://src/ui/item_slot.tscn")
 
-# 2. Получаем ссылки на наши слоты (пути могут немного отличаться, проверь свои)
-@onready var slot_1 = $UIRoot/HBoxContainer/ItemSlot
-@onready var slot_2 = $UIRoot/HBoxContainer/ItemSlot2
-@onready var slot_3 = $UIRoot/HBoxContainer/ItemSlot3
+# Путь до твоего контейнера (проверь, чтобы имя совпадало с твоим деревом)
+@onready var hbox: HBoxContainer = $UIRoot/HBoxContainer
+
+var items: Dictionary = Items.items
 
 func _ready() -> void:
-	# 3. Вызываем функцию setup у первого слота
-	# Передаем картинку шестеренки и говорим, что у нее 3 заряда
-	slot_1.setup(ITEM_GEAR_TEXTURE, 3)
-	
-	# Можно сразу настроить и второй слот, дав ему другой предмет и 5 зарядов
-	slot_2.setup(ITEM_MEDKIT_TEXTURE, 5)
+	# Инициализируем генератор случайных чисел
+	randomize() 
+	generate_random_inventory()
 
 
-func get_iteam_data() -> void:
-	pass
+func generate_random_inventory() -> void:
+	# Проходим по каждому ключу в словаре (1, 2, 3 — это наши слоты)
+	for key in items.keys():
+		var item_variants: Array = items[key]
+		
+		# Защита от ошибок: если массив пустой, просто пропускаем этот слот
+		if item_variants.is_empty():
+			continue
+			
+		# Godot 4 сам выберет один случайный элемент из массива
+		var random_item = item_variants.pick_random()
+		
+		# Назначаем горячую клавишу строго по ключу словаря, 
+		# чтобы предмет из ключа 1 всегда нажимался на "1"
+		random_item["hot_key"] = key
+		
+		# Создаем экземпляр сцены слота
+		var slot_instance = item_slot_scene.instantiate()
+		
+		# Добавляем его в HBoxContainer
+		hbox.add_child(slot_instance)
+		
+		# Передаем данные выбранного предмета в слот
+		slot_instance.setup(random_item)
