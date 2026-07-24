@@ -10,10 +10,17 @@ const LIFT_TIMER_ONE_SHOT: bool = true
 var infected_apartment: int
 var infected_floor: int
 
+var current_spore_level: String = ""
+var current_item_number: int = 0
+
 # Другие глобальные данные
 var player_health = 100
 var player_score = 0
 var inventory = []
+
+var item_cooldowns: Dictionary = {} # Хранит true/false для каждого слота
+var item_charges: Dictionary = {}   # Хранит текущее количество зарядов
+var item_names: Dictionary = {} 
 
 func _ready():
 	print("GlobalData инициализирован")
