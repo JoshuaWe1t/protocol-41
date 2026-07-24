@@ -2,49 +2,77 @@ extends Control
 
 @onready var item_icon: TextureRect = $ItemIcon
 @onready var cooldown_bar: TextureProgressBar = $ItemIcon/CooldownOverlay
-
+@onready var hotkey_label: Label = $ItemIcon/HotkeyText
 
 var max_charges: int = 3
 var current_charges: int = 3
-var is_on_cooldown: bool = false
+var item_id: int = 0
+var reload_time: float = 0.0
+
+# ДОБАВЛЕНО: Храним ссылку на оригинальный словарь предмета
+var item_data_ref: Dictionary 
 
 func _ready() -> void:
 	Events.item_uses.connect(_on_item_uses)
 	Events.item_used.connect(_on_item_used)
 
+func setup(item_data: Dictionary) -> void:
+	# Сохраняем ссылку. Теперь любые изменения item_data_ref 
+	# изменят данные в самом HUD!
+	item_data_ref = item_data 
 
-func _on_item_uses(item_number: int) -> void:
-	pass
+	var tex_path = item_data.get("sprite_path", "")
+	var item_name: String
+	if tex_path != "":
+		var loaded_texture = load(tex_path)
+		item_icon.texture = loaded_texture
+		cooldown_bar.texture_progress = loaded_texture
+		cooldown_bar.tint_progress = Color(0, 0, 0, 0.5)
+		
+	max_charges = item_data.get("total_charges_cnt", 1)
+	# Берем текущие заряды из словаря (на случай, если они уже потрачены)
+	current_charges = item_data.get("current_charges_cnt", max_charges) 
 
+	item_id = item_data.get("hot_key", 1)
+	hotkey_label.text = str(item_id)
+	reload_time = item_data.get("reload_duration", 0.0)
+
+	item_name = item_data.get("name", "")
+
+	# ДОБАВЛЕНО: Регистрируем статус предмета в Global
+	Global.item_cooldowns[item_id] = false
+	Global.item_charges[item_id] = current_charges
+	Global.item_names[item_id] = item_name
 
 func _on_item_used(item_number: int) -> void:
-	pass
+	if item_number == item_id: 
+		if current_charges > 0 and not Global.item_cooldowns.get(item_id, false):
+			# 1. Отнимаем заряд
+			current_charges -= 1
 
+			# 2. ОБНОВЛЯЕМ ОРИГИНАЛЬНУЮ СТРУКТУРУ!
+			item_data_ref["current_charges_cnt"] = current_charges
 
-# Вызывай эту функцию при старте игры, чтобы настроить слот
-func setup(texture: Texture2D, charges: int) -> void:
-	item_icon.texture = texture
-	max_charges = charges
-	current_charges = charges
+			# 3. Обновляем глобальный статус для игрока
+			Global.item_charges[item_id] = current_charges
 
-
-# Вызывай эту функцию, когда игрок нажимает 1, 2 или 3
-func use_item(item_number: int, cooldown_time: float) -> void:
-	print("item_slot.use_item.item_number: ", item_number)
-	if current_charges > 0 and not is_on_cooldown:
-		current_charges -= 1
-		_start_cooldown(cooldown_time)
-		print("Предмет использован!")
-	elif current_charges <= 0:
-		print("Нет зарядов!")
-
+			_start_cooldown(reload_time)
 
 func _start_cooldown(time: float) -> void:
-	is_on_cooldown = true
+	if time <= 0:
+		return
+		
+	# Блокируем использование глобально
+	Global.item_cooldowns[item_id] = true 
 	cooldown_bar.max_value = time
 	cooldown_bar.value = time
-	
+
 	var tween = create_tween()
 	tween.tween_property(cooldown_bar, "value", 0.0, time)
-	
-	tween.finished.connect(func(): is_on_cooldown = false)
+
+	# Когда анимация закончится — снимаем блокировку
+	tween.finished.connect(func(): Global.item_cooldowns[item_id] = false)
+
+
+func _on_item_uses():
+	pass
