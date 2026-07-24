@@ -2,6 +2,7 @@ extends State
 
 @export var move_state: State
 @export var knock_state: State
+@export var use_item_state: State 
 
 func enter_state() -> void:
 	player.velocity.x = 0
@@ -24,3 +25,8 @@ func physics_process(_delta: float) -> void:
 			switch_state.emit(knock_state)
 		elif player.at_lift:
 			player.try_use_lift()
+	
+	if Input.is_action_just_pressed("item1"):
+		Global.current_item_number = 1
+		switch_state.emit(use_item_state)
+		return # Выходим, чтобы другой код физики не перебил состояние
