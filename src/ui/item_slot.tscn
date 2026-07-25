@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://di3yo06qis1sd"]
 
 [ext_resource type="Script" uid="uid://dr3evxds12xkv" path="res://src/ui/item_slot.gd" id="1_havih"]
-[ext_resource type="Texture2D" uid="uid://6erlccrr6cwx" path="res://icon.svg" id="1_jd8g2"]
+[ext_resource type="Texture2D" uid="uid://2p6cb1300m43" path="res://assets/art/item2.png" id="2_havih"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_xcstw"]
 specular_color = Color(0.14813608, 0.08626477, 0.112524934, 1)
@@ -17,19 +17,19 @@ script = ExtResource("1_havih")
 layout_mode = 0
 offset_right = 80.0
 offset_bottom = 80.0
-texture = ExtResource("1_jd8g2")
+texture = ExtResource("2_havih")
 expand_mode = 1
 
 [node name="HotkeyText" type="Label" parent="ItemIcon"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.7125
-anchor_top = 0.6
-anchor_right = 1.025
-anchor_bottom = 1.05
+anchor_left = 0.9125
+anchor_top = 0.8
+anchor_right = 1.225
+anchor_bottom = 1.25
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 24
 text = "0"
 horizontal_alignment = 1

@@ -17,11 +17,11 @@ grow_vertical = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UIRoot"]
 layout_mode = 1
-offset_left = 48.0
-offset_top = 10.0
-offset_right = 561.0
-offset_bottom = 110.0
-theme_override_constants/separation = 100
+offset_left = 32.0
+offset_top = 18.0
+offset_right = 545.0
+offset_bottom = 118.0
+theme_override_constants/separation = 120
 
 [node name="TextureRect" type="TextureRect" parent="UIRoot"]
 visible = false
