@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://qwd7dt0ryf8d"]
+[gd_scene load_steps=6 format=3 uid="uid://qwd7dt0ryf8d"]
 
-[ext_resource type="Texture2D" uid="uid://bva2ullwi8bj3" path="res://src/levels/background/bg.png" id="1_sobub"]
+[ext_resource type="Texture2D" uid="uid://cljhiuh0dxutx" path="res://assets/art/floor1.png" id="1_wngtd"]
+[ext_resource type="Texture2D" uid="uid://dgw82xdhtc8ud" path="res://assets/art/floor2.png" id="2_plrbc"]
+[ext_resource type="Texture2D" uid="uid://c3w8oje27ijwr" path="res://assets/art/floor3.png" id="3_y31dk"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sobub"]
 normal = Vector2(1, 0)
@@ -13,19 +15,19 @@ normal = Vector2(-1, 0)
 [node name="Floors" type="Node" parent="."]
 
 [node name="Floor01" type="Sprite2D" parent="Floors"]
-texture = ExtResource("1_sobub")
+texture = ExtResource("1_wngtd")
 centered = false
 metadata/_edit_lock_ = true
 
 [node name="Floor02" type="Sprite2D" parent="Floors"]
 position = Vector2(0, -720)
-texture = ExtResource("1_sobub")
+texture = ExtResource("2_plrbc")
 centered = false
 metadata/_edit_lock_ = true
 
 [node name="Floor03" type="Sprite2D" parent="Floors"]
 position = Vector2(0, -1440)
-texture = ExtResource("1_sobub")
+texture = ExtResource("3_y31dk")
 centered = false
 metadata/_edit_lock_ = true
 
