@@ -36,27 +36,11 @@ func enter_state() -> void:
 		1:
 			get_spore_level(current_used_item_id)
 		2:
-			pass
+			get_water_sample(current_used_item_id)
 		3:
 			pass
 		_:
 			print("Неполучен ID предмета")
-	
-	#if player.at_spore_area:
-		#print("get_current_spore_level")
-		#if Global.current_spore_level:
-			#player.show_dialogue("Уровень спор - %s" % Global.current_spore_level)
-		#else:
-			#player.show_dialogue("Прибор молчит")
-			#
-		## Сигнал интерфейсу на снятие заряда и запуск перезарядки
-		#Events.item_used.emit(current_used_item_id)
-	#else:
-		#print("denied_get_current_level")
-		#player.show_dialogue("Прибор молчит")
-		#
-		## Сигнал интерфейсу на снятие заряда и запуск перезарядки
-		#Events.item_used.emit(current_used_item_id)
 
 
 func physics_process(_delta: float) -> void:
@@ -67,7 +51,7 @@ func physics_process(_delta: float) -> void:
 		switch_state.emit(idle_state)
 
 
-func get_spore_level(current_used_item_id: int) -> void:
+func get_spore_level(current_used_item_number: int) -> void:
 	if player.at_spore_area:
 		print("use_item_state.get_spore_level.get_current_spore_level: ", Global.current_spore_level)
 		if Global.current_spore_level:
@@ -76,10 +60,42 @@ func get_spore_level(current_used_item_id: int) -> void:
 			player.show_dialogue("Прибор молчит")
 			
 		# Сигнал интерфейсу на снятие заряда и запуск перезарядки
-		Events.item_used.emit(current_used_item_id)
+		Events.item_used.emit(current_used_item_number)
 	else:
 		print("denied_get_current_level")
 		player.show_dialogue("Прибор молчит")
 		
 		# Сигнал интерфейсу на снятие заряда и запуск перезарядки
-		Events.item_used.emit(current_used_item_id)
+		Events.item_used.emit(current_used_item_number)
+
+
+func get_water_sample(current_used_item_number: int) -> void:
+	if player.at_door:
+		player.show_dialogue("Налейте водички, пожалуйста. Горло промочить")
+		print("use_item_state.get_water_sample.current_apartment:", player.current_apartment)
+		# Сигнал интерфейсу на снятие заряда и запуск перезарядки
+		Events.item_used.emit(current_used_item_number)
+	else:
+		player.show_dialogue("Попрошу воды у жильцев")
+
+
+#func _on_get_text_line(floor_number: int, apartment_number: int) -> void:
+	#current_floor = floor_number
+	#current_apartment = apartment_number
+	#var dialog_box_pox_x: int
+	#var dialog_box_pox_y: int
+	#var dialogue_line: String
+	#var floor_settings = Settings.settings.get("floors_settings").get(floor_number)
+	#var apartments = floor_settings.get("apartments")
+	#
+	#for apartment in apartments:
+		#if apartment.get("id") == current_apartment:
+			#var dialog_box_settings = apartment.get("dialogue_box")
+			#dialog_box_pox_x = dialog_box_settings.get("position_x")
+			#dialog_box_pox_y = dialog_box_settings.get("position_y")
+			## print("Vector2(x, y): ", dialog_box_pox_x, ", ", dialog_box_pox_y)
+			#print("Vector2(x, y): %d, %d" % [dialog_box_pox_x, dialog_box_pox_y])
+	#
+	#dialogue_line = get_unique_dialogue_line(floor_number, apartment_number)
+	#
+	#spawn_door_dialogue(Vector2(dialog_box_pox_x,dialog_box_pox_y), dialogue_line)
