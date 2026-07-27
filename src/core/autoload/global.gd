@@ -4,7 +4,7 @@ extends Node
 var transition_duration: float = 3.0
 
 const TOTAL_FLOORS: int = 3
-const LIFT_TIMER_WAIT_TIME: float = 10.0
+const LIFT_TIMER_WAIT_TIME: float = 30.0
 const LIFT_TIMER_ONE_SHOT: bool = true
 
 const TIMER_ACTIVATE_SPORE: float = 30.0
@@ -15,6 +15,8 @@ var infected_floor: int
 
 var current_spore_level: String = ""
 var current_item_number: int = 0
+var current_apartment: int
+var current_floor: int
 
 # Другие глобальные данные
 var player_health = 100
