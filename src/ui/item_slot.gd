@@ -58,6 +58,7 @@ func _on_item_used(item_number: int) -> void:
 
 			_start_cooldown(reload_time)
 
+
 func _start_cooldown(time: float) -> void:
 	if time <= 0:
 		return
