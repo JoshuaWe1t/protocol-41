@@ -103,6 +103,7 @@ func _on_exited_lift() -> void:
 
 func _on_entered_floor(floor_number: int) -> void:
 	current_floor = floor_number
+	Global.current_floor = floor_number
 	print("Игрок на этаже: ", current_floor)
 
 
@@ -124,12 +125,14 @@ func _on_lift_denied() -> void:
 
 func _on_entered_apartment(apartment_number: int) -> void:
 	current_apartment = apartment_number
+	Global.current_apartment = apartment_number
 	at_door = true
 	print("Вход в зону кв ", apartment_number, " | at_door: ", at_door)
 
 
 func _on_exited_apartment() -> void:
 	at_door = false
+	Global.current_apartment = -1
 	print("Выход из зоны кв | at_door: ", at_door)
 
 
