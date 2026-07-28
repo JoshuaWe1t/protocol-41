@@ -172,7 +172,9 @@ func generate_level_settings():
 		
 	# === ГЕНЕРАЦИЯ АКТИВНОСТЕЙ НА ОСНОВЕ МОНСТРА ===
 	var is_anomaly_exist = active_monster["anomaly"]
+	Global.has_anomaly = is_anomaly_exist
 	var anomaly_floor_located = randi_range(1, 3) if is_anomaly_exist else 0
+	Global.anomaly_located_floor = anomaly_floor_located
 	
 	# Общие данные
 	floor_condition["active_monster_id"] = selected_monster_id
