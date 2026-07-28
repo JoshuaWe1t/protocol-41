@@ -8,8 +8,12 @@ const SPEED: float = 300.0
 @onready var dialogue_box: PanelContainer = $DialogueBox
 @onready var dialogue_label: Label = $DialogueBox/DialogueBox
 @onready var dialogue_timer: Timer = $DialogueBox/DialogueTimer
-@onready var state_machine: StateMachine = $StateMachine # Ссылка на твою машину состояний
+@onready var state_machine: StateMachine = $StateMachine # Ссылка на машину состояний
+@onready var interaction_icon: Sprite2D = $InteractionIcon
+# Запоминаем изначальную позицию иконки по Y
+@onready var base_icon_y: float = interaction_icon.position.y 
 
+var icon_tween: Tween
 var current_floor: int
 var at_stairs: bool = false
 var can_up: bool
@@ -22,6 +26,7 @@ var at_door: bool = false
 var at_spore_area: bool = false
 
 func _ready() -> void:
+	interaction_icon.hide()
 	dialogue_box.hide() 
 	dialogue_timer.timeout.connect(_on_dialogue_timeout)
 	
@@ -43,14 +48,15 @@ func _ready() -> void:
 
 func try_go_up() -> void:
 	if can_up:
+		hide_interaction_icon() # <--- Скрываем старую иконку перед телепортом
 		position.y -= 720
 		dialogue_box.hide() 
 	elif at_stairs:
 		show_dialogue("Выше подниматься некуда...")
 
-
 func try_go_down() -> void:
 	if can_down:
+		hide_interaction_icon() # <--- Скрываем старую иконку перед телепортом
 		position.y += 720
 		dialogue_box.hide()
 	elif at_stairs:
@@ -79,7 +85,8 @@ func _on_entered_stairs(is_can_up: bool, is_can_down: bool) -> void:
 	print("Игрок может подняться: %s, Игрок может спуститься: %s" % [is_can_up, is_can_down])
 	can_up = is_can_up
 	can_down = is_can_down
-	at_stairs = true # <--- ДОБАВЛЕНО: Игрок подошел к лестнице
+	at_stairs = true
+	update_stairs_icon() # <--- Вызываем здесь
 
 
 func _on_exited_stairs() -> void:
@@ -87,24 +94,31 @@ func _on_exited_stairs() -> void:
 	can_up = false
 	can_down = false
 	at_stairs = false # <--- ДОБАВЛЕНО: Игрок ушел от лестницы
+	hide_interaction_icon()
 
 
 func _on_entered_lift(is_usable: bool) -> void:
 	print("Игрок может спуститься: ", is_usable)
 	can_use_lift = false if is_lift_broken else is_usable
 	at_lift = true
+	show_interaction_icon()
 
 
 func _on_exited_lift() -> void:
 	print("Игрок вышел из зоны лифта")
 	can_use_lift = false
 	at_lift = false
+	hide_interaction_icon()
 
 
 func _on_entered_floor(floor_number: int) -> void:
 	current_floor = floor_number
 	Global.current_floor = floor_number
 	print("Игрок на этаже: ", current_floor)
+
+	# Если мы приземлились на новый этаж и все еще стоим в зоне лестницы - обновляем иконку!
+	if at_stairs:
+		update_stairs_icon()
 
 
 func show_dialogue(text: String) -> void:
@@ -128,12 +142,14 @@ func _on_entered_apartment(apartment_number: int) -> void:
 	Global.current_apartment = apartment_number
 	at_door = true
 	print("Вход в зону кв ", apartment_number, " | at_door: ", at_door)
+	show_interaction_icon()
 
 
 func _on_exited_apartment() -> void:
 	at_door = false
 	Global.current_apartment = -1
 	print("Выход из зоны кв | at_door: ", at_door)
+	hide_interaction_icon()
 
 
 func _on_entered_spore(spore_level: String) -> void:
@@ -216,3 +232,59 @@ func get_unique_dialogue_line(floor_number: int, apt_number: int) -> String:
 			return selected_line
 			
 	return "Дверь заперта."
+
+
+func show_interaction_icon(type_interact: String = "interact") -> void:
+	var texture_path = Global.icons.get(type_interact, "")
+	var texture = load(texture_path)
+	interaction_icon.texture = texture
+	interaction_icon.show()
+
+	# Если анимация уже идет, убиваем ее, чтобы не было конфликтов
+	if icon_tween:
+		icon_tween.kill()
+		
+	# Возвращаем иконку на стартовую позицию
+	interaction_icon.position.y = base_icon_y
+
+	# Создаем бесконечно зацикленную анимацию (Tween)
+	icon_tween = create_tween().set_loops()
+
+	# Движение вверх на 10 пикселей за 0.8 секунд
+	icon_tween.tween_property(interaction_icon, "position:y", base_icon_y - 10.0, 0.8) \
+		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		
+	# Движение обратно вниз за 0.8 секунд
+	icon_tween.tween_property(interaction_icon, "position:y", base_icon_y, 0.8) \
+		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+
+# Вызываем, когда игрок выходит из зоны
+func hide_interaction_icon() -> void:
+	interaction_icon.hide()
+	if icon_tween:
+		icon_tween.kill()
+
+
+func update_stairs_icon() -> void:
+	match current_floor:
+		1:
+			show_interaction_icon("up")
+		2:
+			show_interaction_icon("updown")
+		3:
+			show_interaction_icon("down")
+		_:
+			print("Error: Unknown floor")
+
+
+func refresh_interaction_icon() -> void:
+	# Проверяем все зоны, в которых может стоять игрок
+	if at_stairs:
+		update_stairs_icon()
+	elif at_door:
+		show_interaction_icon()
+	elif at_lift:
+		show_interaction_icon()
+	else:
+		hide_interaction_icon()
