@@ -7,6 +7,11 @@ const TOTAL_FLOORS: int = 3
 const LIFT_TIMER_WAIT_TIME: float = 30.0
 const LIFT_TIMER_ONE_SHOT: bool = true
 
+var has_anomaly: bool
+var anomaly_located_floor: int
+const ANOMALY_LIFT_ACTIVE_LOW: float = 10
+const ANOMALY_LIFT_ACTIVE_HIGH: float = 30
+
 const TIMER_ACTIVATE_SPORE: float = 30.0
 const TIMER_ACTIVATE_SPORE_NEW: float = 25.0
 
