@@ -260,6 +260,74 @@ var settings: Dictionary = {
 				"position_y": -1020
 			}
 		]
+	},
+	"anomaly_settings": {
+		1 : [
+			{
+				"position_x": 190,
+				"position_y": 450
+			},
+			{
+				"position_x": 300,
+				"position_y": 470
+			},
+			{
+				"position_x": 500,
+				"position_y": 500
+			},
+			{
+				"position_x": 880,
+				"position_y": 450
+			},
+			{
+				"position_x": 1110,
+				"position_y": 450
+			}
+		],
+		2 : [
+			{
+				"position_x": 190,
+				"position_y": -250
+			},
+			{
+				"position_x": 300,
+				"position_y": -250
+			},
+			{
+				"position_x": 500,
+				"position_y": -250
+			},
+			{
+				"position_x": 880,
+				"position_y": -250
+			},
+			{
+				"position_x": 1110,
+				"position_y": -250
+			}
+		],
+		3 : [
+			{
+				"position_x": 190,
+				"position_y": -950
+			},
+			{
+				"position_x": 300,
+				"position_y": -950
+			},
+			{
+				"position_x": 500,
+				"position_y": -950
+			},
+			{
+				"position_x": 880,
+				"position_y": -950
+			},
+			{
+				"position_x": 1110,
+				"position_y": -950
+			}
+		]
 	}
 }
 
