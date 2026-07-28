@@ -5,6 +5,7 @@ extends State
 @export var use_item_state: State 
 
 func enter_state() -> void:
+	player.refresh_interaction_icon()
 	player.velocity.x = 0
 	player.anim_player.play("idle")
 

@@ -6,6 +6,7 @@ var current_used_item_id: int
 
 
 func enter_state() -> void:
+	player.hide_interaction_icon()
 	current_used_item_id = Global.current_item_number
 
 	# ПРОВЕРКА: На перезарядке ли предмет? Есть ли заряды?
@@ -25,6 +26,7 @@ func enter_state() -> void:
 		print("Предмет на перезарядке или нет зарядов!")
 		# Отменяем использование и сразу возвращаемся в idle
 		# call_deferred нужен, чтобы безопасно сменить состояние в том же кадре
+		player.refresh_interaction_icon()
 		call_deferred("emit_signal", "switch_state", idle_state)
 		return
 	
@@ -105,7 +107,7 @@ func get_water_sample(current_used_item_number: int) -> void:
 
 		# Сигнал интерфейсу на снятие заряда и запуск перезарядки
 		Events.item_used.emit(current_used_item_number)
-		
+		await get_tree().create_timer(2).timeout
 		# Выходим из состояния только когда ВСЁ закончилось!
 		switch_state.emit(idle_state)
 	else:

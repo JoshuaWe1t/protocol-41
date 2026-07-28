@@ -3,6 +3,7 @@ extends State
 @export var idle_state: State
 
 func enter_state() -> void:
+	player.hide_interaction_icon()
 	player.velocity = Vector2.ZERO
 	player.anim_player.play("knock")
 	
