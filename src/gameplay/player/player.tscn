@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://crpll8ydxbhxu"]
+[gd_scene load_steps=20 format=3 uid="uid://crpll8ydxbhxu"]
 
 [ext_resource type="Script" uid="uid://dcu2ha2l0d0re" path="res://src/gameplay/player/player.gd" id="1_d3trc"]
 [ext_resource type="Texture2D" uid="uid://bbe5uya5r3lw6" path="res://src/gameplay/player/Soviet_militiaman_8-bit_pixel_art_202607110954_2.png" id="2_d3trc"]
@@ -9,9 +9,10 @@
 [ext_resource type="Script" uid="uid://xjkeb2ulhdxs" path="res://src/gameplay/player/frozen_state.gd" id="7_kjyqo"]
 [ext_resource type="Script" uid="uid://wb547nyip52h" path="res://src/gameplay/player/use_item_state.gd" id="8_rdc6l"]
 [ext_resource type="PackedScene" uid="uid://h6c6jvosmsgf" path="res://src/ui/hud.tscn" id="8_uia4o"]
+[ext_resource type="Texture2D" uid="uid://d36vkstxgo7ew" path="res://assets/art/interact_icon.png" id="10_xdbtd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_64h4j"]
-size = Vector2(115, 246)
+size = Vector2(83, 246)
 
 [sub_resource type="Animation" id="Animation_kjyqo"]
 length = 0.001
@@ -26,6 +27,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_xdbtd"]
+resource_name = "back"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.03333333, 0.26666668, 0.5, 0.73333335),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [6, 6, 6, 6]
 }
 
 [sub_resource type="Animation" id="Animation_dxsvo"]
@@ -88,21 +104,6 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4]
 }
 
-[sub_resource type="Animation" id="Animation_xdbtd"]
-resource_name = "back"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.03333333, 0.26666668, 0.5, 0.73333335),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [6, 6, 6, 6]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rdc6l"]
 _data = {
 &"RESET": SubResource("Animation_kjyqo"),
@@ -131,7 +132,7 @@ frame = 5
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
+position = Vector2(0.5, 1)
 shape = SubResource("RectangleShape2D_64h4j")
 debug_color = Color(0.7323606, 0.4388022, 0.4755234, 0.41960785)
 
@@ -199,3 +200,9 @@ wait_time = 2.0
 one_shot = true
 
 [node name="HUD" parent="." instance=ExtResource("8_uia4o")]
+
+[node name="InteractionIcon" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(0, -156)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("10_xdbtd")
