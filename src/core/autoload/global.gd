@@ -32,5 +32,12 @@ var item_cooldowns: Dictionary = {} # Хранит true/false для каждо�
 var item_charges: Dictionary = {}   # Хранит текущее количество зарядов
 var item_names: Dictionary = {} 
 
+var icons: Dictionary = {
+	"interact": "res://assets/art/interact_icon.png",
+	"up": "res://assets/art/up_icon.png",
+	"down": "res://assets/art/down_icon.png",
+	"updown": "res://assets/art/updown_icon.png"
+}
+
 func _ready():
 	print("GlobalData инициализирован")
