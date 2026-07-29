@@ -39,5 +39,8 @@ var icons: Dictionary = {
 	"updown": "res://assets/art/updown_icon.png"
 }
 
+var touch_anomaly_cnt: int = 0
+var chance_game_over: float = 0.15
+
 func _ready():
 	print("GlobalData инициализирован")
