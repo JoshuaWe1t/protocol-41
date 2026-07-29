@@ -36,3 +36,8 @@ func physics_process(_delta: float) -> void:
 		Global.current_item_number = 2
 		switch_state.emit(use_item_state)
 		return # Выходим, чтобы другой код физики не перебил состояние
+
+	if Input.is_action_just_pressed("item3"):
+		Global.current_item_number = 3
+		switch_state.emit(use_item_state)
+		return # Выходим, чтобы другой код физики не перебил состояние
