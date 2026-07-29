@@ -51,5 +51,14 @@ signal camera_transition_started
 signal camera_transition_finished
 
 
+@warning_ignore("unused_signal")
+signal player_touch_anomaly
+@warning_ignore("unused_signal")
+signal player_leave_anomaly
+
+
+@warning_ignore("unused_signal")
+signal game_over(text: String)
+
 func _ready():
 	print("Events система инициализирована")
