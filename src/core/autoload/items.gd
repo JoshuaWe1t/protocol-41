@@ -4,7 +4,7 @@ var items: Dictionary = {
 	1 : [
 		{
 			"consumable": 1,
-			"total_charges_cnt": 3,
+			"total_charges_cnt": 5,
 			"current_charges_cnt": 3, 
 			"reload_duration": 5,
 			"work_time": 1,
