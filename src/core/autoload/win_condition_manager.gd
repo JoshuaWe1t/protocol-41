@@ -57,7 +57,9 @@ var floor_condition = {
 					"name": "",
 					"common_dialog_lines": [],
 					"hints_dialog_lines": [],
-					"full_dialog_lines": []
+					"full_dialog_lines": [],
+					"has_bataries": false,
+					"bataries_cnt": 0
 				}
 			},
 			{
@@ -70,7 +72,9 @@ var floor_condition = {
 					"name": "",
 					"common_dialog_lines": [],
 					"hints_dialog_lines": [],
-					"full_dialog_lines": []
+					"full_dialog_lines": [],
+					"has_bataries": false,
+					"bataries_cnt": 0
 				}
 			}
 		]
@@ -90,7 +94,9 @@ var floor_condition = {
 					"name": "",
 					"common_dialog_lines": [],
 					"hints_dialog_lines": [],
-					"full_dialog_lines": []
+					"full_dialog_lines": [],
+					"has_bataries": false,
+					"bataries_cnt": 0
 				}
 			},
 			{
@@ -103,7 +109,9 @@ var floor_condition = {
 					"name": "",
 					"common_dialog_lines": [],
 					"hints_dialog_lines": [],
-					"full_dialog_lines": []
+					"full_dialog_lines": [],
+					"has_bataries": false,
+					"bataries_cnt": 0
 				}
 			}
 		]
@@ -123,7 +131,9 @@ var floor_condition = {
 					"name": "",
 					"common_dialog_lines": [],
 					"hints_dialog_lines": [],
-					"full_dialog_lines": []
+					"full_dialog_lines": [],
+					"has_bataries": false,
+					"bataries_cnt": 0
 				}
 			},
 			{
@@ -136,7 +146,9 @@ var floor_condition = {
 					"name": "",
 					"common_dialog_lines": [],
 					"hints_dialog_lines": [],
-					"full_dialog_lines": []
+					"full_dialog_lines": [],
+					"has_bataries": false,
+					"bataries_cnt": 0
 				}
 			}
 		]
