@@ -24,6 +24,7 @@ var is_lift_broken: bool = false
 var current_apartment: int
 var at_door: bool = false
 var at_spore_area: bool = false
+var at_anomaly: bool = false
 
 func _ready() -> void:
 	interaction_icon.hide()
@@ -44,6 +45,8 @@ func _ready() -> void:
 	Events.get_text_line.connect(_on_get_text_line)
 	Events.player_entered_spore_area.connect(_on_entered_spore)
 	Events.player_exited_spore_area.connect(_on_exited_spore)
+	Events.player_touch_anomaly.connect(_on_entered_anomaly_area)
+	Events.player_touch_anomaly.connect(_on_exited_anomaly_area)
 
 
 func try_go_up() -> void:
@@ -119,6 +122,16 @@ func _on_entered_floor(floor_number: int) -> void:
 	# Если мы приземлились на новый этаж и все еще стоим в зоне лестницы - обновляем иконку!
 	if at_stairs:
 		update_stairs_icon()
+
+
+func _on_entered_anomaly_area() -> void:
+	at_anomaly = true
+	Global.touch_anomaly_cnt += 1
+	check_anomaly_effect(Global.touch_anomaly_cnt)
+
+
+func _on_exited_anomaly_area() -> void:
+	at_anomaly = false
 
 
 func show_dialogue(text: String) -> void:
@@ -288,3 +301,43 @@ func refresh_interaction_icon() -> void:
 		show_interaction_icon()
 	else:
 		hide_interaction_icon()
+
+
+func trigger_anomaly_effect() -> void:
+	# 1. Замораживаем игрока (отключаем управление)
+	state_machine.change_state(state_machine.get_node("FrozenState"))
+	velocity = Vector2.ZERO
+	hide_interaction_icon() # На всякий случай прячем иконку
+
+	# Проверяем, есть ли заряды у предмета №3
+	var charges_left = Global.item_charges.get(3, 0)
+
+	if charges_left > 0:
+		# 2. Игрок пишет сообщение
+		show_dialogue("Аномалия! Может быть опасно двигаться дальше")
+
+		# 3. Ждем, пока фраза повисит на экране (например, 2 секунды)
+		await get_tree().create_timer(2.0).timeout
+
+		# 4. Снимаем заряд! 
+		Events.item_used.emit(3)
+	#else:
+		## Что будет, если зарядов нет?
+		#show_dialogue("Черт! Защиты от аномалии больше нет...")
+		#await get_tree().create_timer(2.0).timeout
+		#print("Игрок получает урон или умирает!")
+		## Здесь можно вызвать Game Over или отнять HP
+
+	# 5. Возвращаем игроку управление
+	state_machine.change_state(state_machine.get_node("IdleState"))
+
+
+
+func check_anomaly_effect(value: int) -> void:
+	print("player.check_anomaly_effect.value: ", value)
+	var rng = RandomNumberGenerator.new()
+	if value % 5 == 0:
+		print("player.check_anomaly_effect.value % 5: ", value % 5 == 0)
+		if rng.randf() < Global.chance_game_over:
+			print("Game over")
+			Events.game_over.emit("Player was killed by anomaly")
