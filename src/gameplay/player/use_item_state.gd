@@ -26,7 +26,7 @@ func enter_state() -> void:
 		print("Предмет на перезарядке или нет зарядов!")
 		# Отменяем использование и сразу возвращаемся в idle
 		# call_deferred нужен, чтобы безопасно сменить состояние в том же кадре
-		player.refresh_interaction_icon()
+		#player.refresh_interaction_icon()
 		call_deferred("emit_signal", "switch_state", idle_state)
 		return
 	
