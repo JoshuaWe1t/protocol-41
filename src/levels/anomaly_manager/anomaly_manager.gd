@@ -8,6 +8,10 @@ extends Node
 var is_active: bool = false 
 
 func _ready() -> void:
+	
+	$Area2D.body_entered.connect(_on_player_entered_anomaly)
+	$Area2D.body_exited.connect(_on_player_exited_anomaly)
+	
 	# 1. Если этаж равен 0 — значит, аномалии в этом матче нет
 	if Global.anomaly_located_floor == 0:
 		print("Аномалия на этом уровне не сгенерирована.")
@@ -59,3 +63,17 @@ func _on_timer_timeout() -> void:
 	is_active = true
 	area.monitoring = true
 	print("Аномалия стала активной! Ширина: ", collision_shape.shape.size.x)
+
+
+func _on_player_entered_anomaly(body: Node2D) -> void:
+	if body.name == "Player":
+		print("anomaly_manager._on_player_entered_anomaly: ", true)
+		Events.player_touch_anomaly.emit()
+		# Запускаем логику в скрипте игрока
+		body.trigger_anomaly_effect()
+
+
+func _on_player_exited_anomaly(body: Node2D) -> void:
+	if body.name == "Player":
+		print("anomaly_manager._on_player_entered_anomaly: ", false)
+		Events.player_leave_anomaly.emit()
