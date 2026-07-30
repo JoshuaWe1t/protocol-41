@@ -42,5 +42,21 @@ var icons: Dictionary = {
 var touch_anomaly_cnt: int = 0
 var chance_game_over: float = 0.15
 
+const NAME_OPER_LIST = [
+	'Виктор Строгов',
+	'Юрий Зимин',
+	'Григорий Быков',
+	'Алексей Воронов'
+]
+
+const SPRITE_OPER_LIST = [
+	preload("res://assets/art/avatar1.png"),
+	preload("res://assets/art/avatar2.png"),
+	preload("res://assets/art/avatar3.png"),
+	preload("res://assets/art/avatar4.png")
+]
+
+var current_monster: String
+
 func _ready():
 	print("GlobalData инициализирован")
