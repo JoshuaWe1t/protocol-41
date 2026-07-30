@@ -171,6 +171,7 @@ func generate_level_settings():
 	var monster_keys = MONSTERS.keys()
 	var selected_monster_id = monster_keys.pick_random()
 	var active_monster = MONSTERS[selected_monster_id]
+	Global.current_monster = active_monster.name
 	
 	# Генерируем квартиру и ПРИВЯЗЫВАЕМ к ней этаж
 	Global.infected_apartment = randi_range(1, 6)
