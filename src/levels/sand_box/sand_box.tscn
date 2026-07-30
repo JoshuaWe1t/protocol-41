@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ubbjbgh5d5fe"]
+[gd_scene load_steps=9 format=3 uid="uid://ubbjbgh5d5fe"]
 
 [ext_resource type="PackedScene" uid="uid://crpll8ydxbhxu" path="res://src/gameplay/player/player.tscn" id="1_41tyt"]
 [ext_resource type="PackedScene" uid="uid://qwd7dt0ryf8d" path="res://src/levels/background/background.tscn" id="2_e3ckf"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://btn3j3mjtxlfj" path="res://src/levels/apartment_manager/apartment_objects.tscn" id="5_g75iy"]
 [ext_resource type="PackedScene" uid="uid://dtqxiud3cxq0k" path="res://src/levels/spore_manager/spore_area.tscn" id="6_208kc"]
 [ext_resource type="PackedScene" uid="uid://1ou8rt0c5b0s" path="res://src/levels/anomaly_manager/anomaly_area.tscn" id="7_f480l"]
+[ext_resource type="PackedScene" uid="uid://uosgh1opi55u" path="res://journal.tscn" id="8_k0oc7"]
 
 [node name="SandBox" type="Node2D"]
 
@@ -27,3 +28,5 @@ metadata/_edit_lock_ = true
 [node name="SporeArea" parent="." instance=ExtResource("6_208kc")]
 
 [node name="anomaly_area" parent="." instance=ExtResource("7_f480l")]
+
+[node name="Journal" parent="." instance=ExtResource("8_k0oc7")]
