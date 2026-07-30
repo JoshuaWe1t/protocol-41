@@ -1,0 +1,933 @@
+[gd_scene load_steps=14 format=3 uid="uid://uosgh1opi55u"]
+
+[ext_resource type="Texture2D" uid="uid://c6itg0yoq7rbt" path="res://assets/art/jrnl3.png" id="1_8slvk"]
+[ext_resource type="Texture2D" uid="uid://cthunuqttt8u3" path="res://assets/art/jrnl1.png" id="1_julo4"]
+[ext_resource type="Script" uid="uid://77nk2b8jqkv3" path="res://journal_manager.gd" id="1_mfopc"]
+[ext_resource type="Texture2D" uid="uid://dg6fglg0w23t6" path="res://assets/art/item3.png" id="2_8slvk"]
+[ext_resource type="Texture2D" uid="uid://bboagj7sfsdt7" path="res://assets/art/item1.png" id="2_g0kyd"]
+[ext_resource type="Texture2D" uid="uid://2p6cb1300m43" path="res://assets/art/item2.png" id="3_g0kyd"]
+[ext_resource type="Texture2D" uid="uid://bwta2pvhphuyh" path="res://assets/art/down_icon.png" id="3_hite2"]
+[ext_resource type="Texture2D" uid="uid://dlkmgaumwn3oa" path="res://assets/art/avatar2.png" id="6_pmo0p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y32ns"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hite2"]
+load_path = "res://.godot/imported/jrnl3.png-12ce3dd1072986849abbced2f5b111a8.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g0kyd"]
+load_path = "res://.godot/imported/jrnl3.png-12ce3dd1072986849abbced2f5b111a8.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pmo0p"]
+load_path = "res://.godot/imported/jrnl1.png-8d04f2b03b61dd3879d5263fc335037f.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ddldy"]
+
+[node name="Journal" type="CanvasLayer"]
+process_mode = 3
+layer = 100
+script = ExtResource("1_mfopc")
+
+[node name="JournalUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pages" type="Control" parent="JournalUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PagePlayer" type="Panel" parent="JournalUI/Pages"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y32ns")
+
+[node name="BG" type="TextureRect" parent="JournalUI/Pages/PagePlayer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -301.0
+offset_right = -64.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.3, 2.3)
+texture = SubResource("CompressedTexture2D_hite2")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Item1" type="TextureRect" parent="JournalUI/Pages/PagePlayer"]
+layout_mode = 1
+offset_left = -436.00003
+offset_top = -230.00002
+offset_right = 478.99997
+offset_bottom = 650.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("6_pmo0p")
+expand_mode = 1
+
+[node name="Title" type="Label" parent="JournalUI/Pages/PagePlayer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.425
+anchor_top = -0.075
+anchor_right = 3.0333333
+anchor_bottom = 0.15
+offset_left = -228.0
+offset_top = -234.0
+offset_right = -35.0
+offset_bottom = -120.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+text = "Виктор Строгов
+"
+autowrap_mode = 2
+
+[node name="Title2" type="Label" parent="JournalUI/Pages/PagePlayer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.425
+anchor_top = -0.075
+anchor_right = 3.0333333
+anchor_bottom = 0.15
+offset_left = 60.375
+offset_top = -233.70001
+offset_right = 454.0
+offset_bottom = -197.70001
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+text = "УПРАВЛЕНИЕ"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title3" type="Label" parent="JournalUI/Pages/PagePlayer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.425
+anchor_top = -0.075
+anchor_right = 3.0333333
+anchor_bottom = 0.15
+offset_left = -443.625
+offset_top = -1.7000122
+offset_right = -50.0
+offset_bottom = 34.299988
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+text = "Вводная информация:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="RichTextLabel" parent="JournalUI/Pages/PagePlayer"]
+layout_mode = 0
+offset_left = -452.0
+offset_top = 38.0
+offset_right = -36.0
+offset_bottom = 249.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[b]Кому[/b]: Оперативному сотруднику.
+
+[b]Легенда[/b]: Участковый инспектор полиции.
+
+[b]Локация[/b]: Старая трехэтажная хрущевка.
+
+Поступил сигнал о предполагаемом биологическом заражении жилого дома спорами О-41. У вас есть строго ограниченное время на проведение осмотра трех этажей здания. 
+
+[u]Ваша задача[/u] — провести скрытый анализ объекта, собрать данные и корректно заполнить Акт обследования, не вызывая подозрений у гражданских."
+autowrap_mode = 2
+
+[node name="Description2" type="Label" parent="JournalUI/Pages/PagePlayer"]
+layout_mode = 0
+offset_left = 180.0
+offset_top = -188.0
+offset_right = 464.0
+offset_bottom = -5.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Движение влево/вправо
+
+Взаимодействие с дверьми/лифтом
+
+Использование предметов из инвентаря
+
+Открыть/закрыть журнал оперативника"
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="JournalUI/Pages/PagePlayer"]
+layout_mode = 0
+offset_left = 59.0
+offset_top = -184.0
+offset_right = 163.0
+offset_bottom = -161.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_constants/shadow_outline_size = 3
+text = "A/D"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="JournalUI/Pages/PagePlayer"]
+layout_mode = 0
+offset_left = 59.0
+offset_top = -128.0
+offset_right = 163.0
+offset_bottom = -105.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "Е"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="JournalUI/Pages/PagePlayer"]
+layout_mode = 0
+offset_left = 59.0
+offset_top = -56.0
+offset_right = 163.0
+offset_bottom = -33.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "1/2/3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="JournalUI/Pages/PagePlayer"]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 24.0
+offset_right = 163.0
+offset_bottom = 47.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "J"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PagePlayer2" type="Panel" parent="JournalUI/Pages"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y32ns")
+
+[node name="BG" type="TextureRect" parent="JournalUI/Pages/PagePlayer2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -301.0
+offset_right = -64.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.3, 2.3)
+texture = ExtResource("1_julo4")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Description" type="RichTextLabel" parent="JournalUI/Pages/PagePlayer2"]
+layout_mode = 0
+offset_left = -450.0
+offset_top = -190.0
+offset_right = -34.0
+offset_bottom = 250.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[u]Сбор информации[/u]:
+Опросите жильцов. Обращайте внимание на их фразы — они могут служить подсказками о том, что происходит в доме.
+
+[u]Оценка заражения[/u]:
+С помощью выданного инструментария проводите анализ воздуха и воды, чтобы отследить концентрацию спор.
+
+[u]Локализация очага[/u]:
+Выявите и зафиксируйте в журнале конкретный этаж и квартиру, откуда распространяется заражение.
+
+[u]Идентификация угроз[/u]:
+Учитывая особенность заражения на объекте может присустивовать один из трех видов монстров.
+
+[u]Заполнение документации[/u]: 
+Внесите все собранные улики, найденные аномалии и данные об угрозах в ваш служебный журнал. Вы можете покинуть объект досрочно, если все пункты расследования успешно закрыты. "
+autowrap_mode = 2
+
+[node name="Description2" type="RichTextLabel" parent="JournalUI/Pages/PagePlayer2"]
+layout_mode = 0
+offset_left = 55.0
+offset_top = -181.0
+offset_right = 464.0
+offset_bottom = 113.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "После истечения таймера вы обязаны отметить в журнале всё, что успели выяснить. За абсолютно верный отчет вы получите очки для улучшения экипировки.  
+
+[b]Предупреждение:[/b] 
+
+Любая ошибка в Акте обследования приведет к вашему переводу в статус испытуемого на объекте по исследованию аномалий, а все накопленные улучшения будут сброшены."
+autowrap_mode = 2
+
+[node name="Title" type="Label" parent="JournalUI/Pages/PagePlayer2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.425
+anchor_top = -0.075
+anchor_right = 3.0333333
+anchor_bottom = 0.15
+offset_left = -444.0
+offset_top = -230.0
+offset_right = -39.0
+offset_bottom = -194.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+text = "Ваши цели на объекте"
+horizontal_alignment = 1
+
+[node name="Title1" type="Label" parent="JournalUI/Pages/PagePlayer2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.425
+anchor_top = -0.075
+anchor_right = 3.0333333
+anchor_bottom = 0.15
+offset_left = 52.0
+offset_top = -230.0
+offset_right = 457.0
+offset_bottom = -194.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+text = "Критерии завершения"
+horizontal_alignment = 1
+
+[node name="PageItem1" type="Panel" parent="JournalUI/Pages"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y32ns")
+
+[node name="BG" type="TextureRect" parent="JournalUI/Pages/PageItem1"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -301.0
+offset_right = -64.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.3, 2.3)
+texture = ExtResource("1_8slvk")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Item1" type="TextureRect" parent="JournalUI/Pages/PageItem1"]
+layout_mode = 1
+offset_left = -399.0
+offset_top = -222.0
+offset_right = -279.0
+offset_bottom = -62.0
+texture = ExtResource("2_g0kyd")
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="JournalUI/Pages/PageItem1/Item1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.041666627
+anchor_top = -0.056249976
+anchor_right = 0.9883721
+anchor_bottom = 1.0375
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.28235295, 0.28235295, 0.28235295, 0.47058824)
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="Label" parent="JournalUI/Pages/PageItem1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.425
+anchor_top = -0.075
+anchor_right = 3.0333333
+anchor_bottom = 0.15
+offset_left = -228.0
+offset_top = -234.0
+offset_right = -133.0
+offset_bottom = -198.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+text = "УСМ-04"
+metadata/_edit_use_anchors_ = true
+
+[node name="Properties" type="Label" parent="JournalUI/Pages/PageItem1"]
+layout_mode = 0
+offset_left = -230.0
+offset_top = -121.0
+offset_right = -46.0
+offset_bottom = -6.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Расходуемый: Да
+Количество зарядов: 5
+Перезарядка: 5 сек
+Время работы: 1 сек"
+
+[node name="Description1" type="Label" parent="JournalUI/Pages/PageItem1"]
+layout_mode = 0
+offset_left = -444.0
+offset_top = 13.0
+offset_right = -54.0
+offset_bottom = 199.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "УСМ-04 (уловитель споровых масс, версия 4) - это устройство с тремя разноцветными лампами, которые отражают степень заражения области. Внутри устройства есть тканевый фильтр с активным реагентом для определения спор в атмосфере, светодатчик, насос."
+autowrap_mode = 2
+
+[node name="Description2" type="Label" parent="JournalUI/Pages/PageItem1"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = -242.0
+offset_right = 457.0
+offset_bottom = 239.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "При активации устройства, начинается активное всасывание ближайшего воздуха (в радиусе до 1м) и пропускание его через тканевый фильтр с активным веществом. Если споры есть в забранном воздухе, то активное вещество окрашивается в черный. Чем больше спор, тем сильнее фильтр окрашивается. После всасывания и окрашивания фильтра, светодатчик фиксирует пропускаемый свет и передает сигнал на одну из ламп.
+
+После использования необходимо заменить фильтр, что занимает не более 5 сек.
+
+"
+autowrap_mode = 2
+
+[node name="PageItem2" type="Panel" parent="JournalUI/Pages"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y32ns")
+
+[node name="BG" type="TextureRect" parent="JournalUI/Pages/PageItem2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -301.0
+offset_right = -64.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.3, 2.3)
+texture = SubResource("CompressedTexture2D_g0kyd")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Item1" type="TextureRect" parent="JournalUI/Pages/PageItem2"]
+layout_mode = 1
+offset_left = -421.0
+offset_top = -222.0
+offset_right = -262.0
+offset_bottom = -59.0
+texture = ExtResource("3_g0kyd")
+
+[node name="ColorRect" type="ColorRect" parent="JournalUI/Pages/PageItem2/Item1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.041666627
+anchor_top = -0.056249976
+anchor_right = 0.9883721
+anchor_bottom = 1.0375
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.28235295, 0.28235295, 0.28235295, 0.47058824)
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="Label" parent="JournalUI/Pages/PageItem2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.362107
+anchor_top = -0.07500005
+anchor_right = 2.8320754
+anchor_bottom = 0.14999998
+offset_left = -228.0
+offset_top = -234.0
+offset_right = -36.0
+offset_bottom = -183.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+text = "Бумажный индикатор"
+autowrap_mode = 2
+
+[node name="Properties" type="Label" parent="JournalUI/Pages/PageItem2"]
+layout_mode = 0
+offset_left = -230.0
+offset_top = -121.0
+offset_right = -46.0
+offset_bottom = -6.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Расходуемый: Да
+Количество зарядов: 3
+Перезарядка: 0 сек
+Время работы: 3 сек"
+
+[node name="Description1" type="Label" parent="JournalUI/Pages/PageItem2"]
+layout_mode = 0
+offset_left = -442.0
+offset_top = 13.0
+offset_right = -52.0
+offset_bottom = 199.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Обычный бумажный индикатор с цветовыми шкалами, который идет в комплекте с колбой для забора водных проб."
+autowrap_mode = 2
+
+[node name="Description2" type="Label" parent="JournalUI/Pages/PageItem2"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = -242.0
+offset_right = 451.0
+offset_bottom = 239.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Образец воды переливается в колбу (или сразу набирается в нее). После набора воды бумажный индикатор помещается в воду и через короткий промежуток времени вынимается. 
+
+В зависимости от заражение бумажный индикатор примет соответствующий цвет."
+autowrap_mode = 2
+
+[node name="PageItem3" type="Panel" parent="JournalUI/Pages"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y32ns")
+
+[node name="BG" type="TextureRect" parent="JournalUI/Pages/PageItem3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -301.0
+offset_right = -64.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.3, 2.3)
+texture = SubResource("CompressedTexture2D_hite2")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Item1" type="TextureRect" parent="JournalUI/Pages/PageItem3"]
+layout_mode = 1
+offset_left = -419.0
+offset_top = -222.0
+offset_right = -264.0
+offset_bottom = -62.0
+texture = ExtResource("2_8slvk")
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="JournalUI/Pages/PageItem3/Item1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.041666627
+anchor_top = -0.056249976
+anchor_right = 0.9883721
+anchor_bottom = 1.0375
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.28235295, 0.28235295, 0.28235295, 0.47058824)
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="Label" parent="JournalUI/Pages/PageItem3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.425
+anchor_top = -0.075
+anchor_right = 3.0333333
+anchor_bottom = 0.15
+offset_left = -228.0
+offset_top = -234.0
+offset_right = -133.0
+offset_bottom = -198.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+text = "САП-13"
+metadata/_edit_use_anchors_ = true
+
+[node name="Properties" type="Label" parent="JournalUI/Pages/PageItem3"]
+layout_mode = 0
+offset_left = -230.0
+offset_top = -121.0
+offset_right = -46.0
+offset_bottom = -6.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Расходуемый: Да
+Количество зарядов: 1
+Перезарядка: 0 сек
+Время работы: 0 сек"
+
+[node name="Description1" type="Label" parent="JournalUI/Pages/PageItem3"]
+layout_mode = 0
+offset_left = -444.0
+offset_top = 13.0
+offset_right = -54.0
+offset_bottom = 199.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "При выявлении аномального поля, издает писк и выводит сообщение (АНОМ) на экран дисплея"
+autowrap_mode = 2
+
+[node name="Description2" type="Label" parent="JournalUI/Pages/PageItem3"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = -242.0
+offset_right = 457.0
+offset_bottom = 239.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Данное устройство включено по умолчанию и срабатывает в непосредственной близости к аномалии, после срабатывания устройство непригодно к использованию без замены батарейки. 
+
+Не указывает тип аномалии, кратковременно не прерывает ее действие"
+autowrap_mode = 2
+
+[node name="PageReport" type="Panel" parent="JournalUI/Pages"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y32ns")
+
+[node name="BG" type="TextureRect" parent="JournalUI/Pages/PageReport"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -301.0
+offset_right = -64.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.3, 2.3)
+texture = SubResource("CompressedTexture2D_pmo0p")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="InfectedSource" type="RichTextLabel" parent="JournalUI/Pages/PageReport"]
+layout_mode = 0
+offset_left = -432.0
+offset_top = -180.0
+offset_right = -114.0
+offset_bottom = -153.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[u]Отметьте источник заражения[/u]"
+scroll_active = false
+vertical_alignment = 1
+
+[node name="Monster" type="RichTextLabel" parent="JournalUI/Pages/PageReport"]
+layout_mode = 0
+offset_left = -432.0
+offset_top = -60.0
+offset_right = -114.0
+offset_bottom = -33.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[u]Отметьте источник заражения[/u]"
+scroll_active = false
+vertical_alignment = 1
+
+[node name="Anomaly" type="RichTextLabel" parent="JournalUI/Pages/PageReport"]
+layout_mode = 0
+offset_left = -432.0
+offset_top = 20.0
+offset_right = -114.0
+offset_bottom = 47.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[u]Отметьте информацию об аномалии[/u]"
+scroll_active = false
+vertical_alignment = 1
+
+[node name="FloorOption" type="OptionButton" parent="JournalUI/Pages/PageReport"]
+layout_mode = 0
+offset_left = -385.0
+offset_top = -149.0
+offset_right = -181.0
+offset_bottom = -118.0
+item_count = 3
+popup/item_0/text = "Этаж 1"
+popup/item_0/id = 1
+popup/item_1/text = "Этаж 2"
+popup/item_1/id = 2
+popup/item_2/text = "Этаэ 3"
+popup/item_2/id = 3
+
+[node name="AptOption" type="OptionButton" parent="JournalUI/Pages/PageReport"]
+layout_mode = 0
+offset_left = -352.0
+offset_top = -109.0
+offset_right = -148.0
+offset_bottom = -78.0
+item_count = 6
+popup/item_0/text = "Квартира 1"
+popup/item_0/id = 1
+popup/item_1/text = "Квартира 2"
+popup/item_1/id = 2
+popup/item_2/text = "Квартира 3"
+popup/item_2/id = 3
+popup/item_3/text = "Квартира 4"
+popup/item_3/id = 4
+popup/item_4/text = "Квартира 5"
+popup/item_4/id = 5
+popup/item_5/text = "Квартира 6"
+popup/item_5/id = 6
+
+[node name="MonsterOption" type="OptionButton" parent="JournalUI/Pages/PageReport"]
+layout_mode = 0
+offset_left = -349.0
+offset_top = -22.0
+offset_right = -214.0
+offset_bottom = 9.0
+item_count = 4
+popup/item_0/text = "Перекожник"
+popup/item_0/id = 1
+popup/item_1/text = "Мимик"
+popup/item_1/id = 2
+popup/item_2/text = "Симулякр"
+popup/item_2/id = 3
+popup/item_3/text = "Заразитель"
+popup/item_3/id = 4
+
+[node name="AnomalyCheck" type="CheckBox" parent="JournalUI/Pages/PageReport"]
+layout_mode = 0
+offset_left = -432.0
+offset_top = 56.0
+offset_right = -210.0
+offset_bottom = 87.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+text = "Аномалия обнаружена?"
+
+[node name="AnomalyFloorOption" type="OptionButton" parent="JournalUI/Pages/PageReport"]
+layout_mode = 0
+offset_left = -344.0
+offset_top = 96.0
+offset_right = -153.0
+offset_bottom = 116.0
+item_count = 6
+popup/item_0/text = "Квартира 1"
+popup/item_0/id = 1
+popup/item_1/text = "Квартира 2"
+popup/item_1/id = 2
+popup/item_2/text = "Квартира 3"
+popup/item_2/id = 3
+popup/item_3/text = "Квартира 4"
+popup/item_3/id = 4
+popup/item_4/text = "Квартира 5"
+popup/item_4/id = 5
+popup/item_5/text = "Квартира 6"
+popup/item_5/id = 6
+
+[node name="SubmitBtn" type="Button" parent="JournalUI/Pages/PageReport"]
+layout_mode = 0
+offset_left = -395.0
+offset_top = 203.0
+offset_right = -248.0
+offset_bottom = 234.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+text = "Подписать"
+
+[node name="Title" type="RichTextLabel" parent="JournalUI/Pages/PageReport"]
+layout_mode = 0
+offset_left = -424.0
+offset_top = -234.0
+offset_right = -49.0
+offset_bottom = -186.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+bbcode_enabled = true
+text = "[b]Итоговый отчет[/b]"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FloorLabel" type="RichTextLabel" parent="JournalUI/Pages/PageReport"]
+layout_mode = 0
+offset_left = -432.0
+offset_top = -146.0
+offset_right = -361.13043
+offset_bottom = -126.43477
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "Этаж:"
+scroll_active = false
+vertical_alignment = 1
+
+[node name="ApartmentLabel" type="RichTextLabel" parent="JournalUI/Pages/PageReport"]
+layout_mode = 0
+offset_left = -432.0
+offset_top = -107.000015
+offset_right = -354.6087
+offset_bottom = -88.30436
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "Квартира:"
+scroll_active = false
+vertical_alignment = 1
+
+[node name="MonsterLabel" type="RichTextLabel" parent="JournalUI/Pages/PageReport"]
+layout_mode = 0
+offset_left = -429.0
+offset_top = -16.0
+offset_right = -358.13043
+offset_bottom = 3.5652313
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "Монстер:"
+scroll_active = false
+vertical_alignment = 1
+
+[node name="ApartmentLabel2" type="RichTextLabel" parent="JournalUI/Pages/PageReport"]
+layout_mode = 0
+offset_left = -432.0
+offset_top = 98.0
+offset_right = -345.0
+offset_bottom = 124.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "Этаж:"
+scroll_active = false
+vertical_alignment = 1
+
+[node name="ApartmentLabel3" type="RichTextLabel" parent="JournalUI/Pages/PageReport"]
+layout_mode = 0
+offset_left = -192.0
+offset_top = 213.0
+offset_right = -41.0
+offset_bottom = 231.69565
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "_________________________"
+scroll_active = false
+vertical_alignment = 1
+
+[node name="NextBtn" type="TextureButton" parent="JournalUI"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9171875
+anchor_top = 0.4263889
+anchor_right = 0.9921875
+anchor_bottom = 0.4263889
+offset_top = 96.0
+offset_bottom = 192.0
+rotation = -1.5707964
+texture_normal = ExtResource("3_hite2")
+ignore_texture_size = true
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="PrevBtn" type="TextureButton" parent="JournalUI"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.012499994
+anchor_top = 0.43055555
+anchor_right = 0.012499994
+anchor_bottom = 0.5638889
+offset_left = 96.00001
+offset_right = 192.0
+grow_vertical = 2
+rotation = 1.5707964
+texture_normal = ExtResource("3_hite2")
+ignore_texture_size = true
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="ResultsUI" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="ResultsUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ddldy")
+
+[node name="ResultText" type="RichTextLabel" parent="ResultsUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+
+[connection signal="pressed" from="JournalUI/Pages/PageReport/SubmitBtn" to="." method="_on_submit_btn_pressed"]
+[connection signal="pressed" from="JournalUI/NextBtn" to="." method="_on_next_btn_pressed"]
+[connection signal="pressed" from="JournalUI/PrevBtn" to="." method="_on_prev_btn_pressed"]
