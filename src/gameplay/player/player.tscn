@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://crpll8ydxbhxu"]
+[gd_scene load_steps=22 format=3 uid="uid://crpll8ydxbhxu"]
 
 [ext_resource type="Script" uid="uid://dcu2ha2l0d0re" path="res://src/gameplay/player/player.gd" id="1_d3trc"]
 [ext_resource type="Texture2D" uid="uid://bbe5uya5r3lw6" path="res://src/gameplay/player/Soviet_militiaman_8-bit_pixel_art_202607110954_2.png" id="2_d3trc"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://wb547nyip52h" path="res://src/gameplay/player/use_item_state.gd" id="8_rdc6l"]
 [ext_resource type="PackedScene" uid="uid://h6c6jvosmsgf" path="res://src/ui/hud.tscn" id="8_uia4o"]
 [ext_resource type="Texture2D" uid="uid://d36vkstxgo7ew" path="res://assets/art/interact_icon.png" id="10_xdbtd"]
+[ext_resource type="AudioStream" uid="uid://byx7bs4uuxcui" path="res://assets/audio/sfx/adoiren24__walk1-concrete.wav" id="11_hmrcn"]
+[ext_resource type="AudioStream" uid="uid://c1rn721k1g7qf" path="res://assets/audio/sfx/blou27__door-knock-1.wav" id="12_en18r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_64h4j"]
 size = Vector2(83, 246)
@@ -206,3 +208,9 @@ z_index = 10
 position = Vector2(0, -156)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("10_xdbtd")
+
+[node name="WalkSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_hmrcn")
+
+[node name="KnockSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_en18r")
