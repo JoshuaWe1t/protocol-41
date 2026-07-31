@@ -6,7 +6,9 @@ func enter_state() -> void:
 	player.hide_interaction_icon()
 	player.velocity = Vector2.ZERO
 	player.anim_player.play("knock")
-	
+	# Запускаем звук стука
+	player.knock_sound.play()
+
 	# Ждем окончания анимации
 	await player.anim_player.animation_finished
 	

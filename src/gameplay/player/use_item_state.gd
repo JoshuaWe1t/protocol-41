@@ -40,6 +40,8 @@ func enter_state() -> void:
 			get_spore_level(current_used_item_id)
 		2:
 			player.anim_player.play("knock")
+			# Запускаем звук стука
+			player.knock_sound.play()
 			await get_tree().create_timer(1.1).timeout
 			player.anim_player.play("back")
 			get_water_sample(current_used_item_id)

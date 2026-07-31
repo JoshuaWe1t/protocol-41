@@ -8,6 +8,9 @@ func enter_state() -> void:
 	player.refresh_interaction_icon()
 	player.velocity.x = 0
 	player.anim_player.play("idle")
+	
+	# Останавливаем звук шагов
+	player.walk_sound.stop()
 
 func physics_process(_delta: float) -> void:
 	var direction := Input.get_axis("backward", "forward")

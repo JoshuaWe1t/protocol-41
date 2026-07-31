@@ -7,6 +7,9 @@ extends State
 func enter_state() -> void:
 	player.anim_player.get_animation("walk").loop_mode = Animation.LOOP_LINEAR
 	player.anim_player.play("walk")
+	
+	# Включаем звук шагов
+	player.walk_sound.play()
 
 func physics_process(_delta: float) -> void:
 	var direction := Input.get_axis("backward", "forward")
