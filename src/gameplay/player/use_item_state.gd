@@ -39,11 +39,6 @@ func enter_state() -> void:
 			player.anim_player.play("use_item")
 			get_spore_level(current_used_item_id)
 		2:
-			player.anim_player.play("knock")
-			# Запускаем звук стука
-			player.knock_sound.play()
-			await get_tree().create_timer(1.1).timeout
-			player.anim_player.play("back")
 			get_water_sample(current_used_item_id)
 		3:
 			pass
@@ -86,11 +81,16 @@ func get_spore_level(current_used_item_number: int) -> void:
 
 func get_water_sample(current_used_item_number: int) -> void:
 	if player.at_door:
+		player.anim_player.play("knock")
+		# Запускаем звук стука
+		player.knock_sound.play()
+		await get_tree().create_timer(1.1).timeout
+		player.anim_player.play("back")
 		player.show_dialogue("Налейте водички, пожалуйста. Горло промочить")
 		await get_tree().create_timer(2.3).timeout
 		print("use_item_state.get_water_sample.current_apartment:", player.current_apartment)
 
-		# 1. Спавним ответ из-за двери ("Да-Да, прошу")
+		# 1. Спавним ответ из-за двериd
 		_on_get_text_line() 
 
 		# 2. ЖДЕМ, пока реплика двери повисит на экране (например, 3 секунды)
