@@ -9,6 +9,10 @@ extends CanvasLayer
 @onready var article_1: RichTextLabel = $ResultsUI/Mask/TextureRect/Article1
 @onready var title_2: RichTextLabel = $ResultsUI/Mask/TextureRect/Title2
 @onready var article_2: RichTextLabel = $ResultsUI/Mask/TextureRect/Article2
+
+@onready var oper_photo: TextureRect = $ResultsUI/Mask/TextureRect/OperPhoto
+@onready var oper_name: RichTextLabel = $ResultsUI/Mask/TextureRect/OperName
+
 @onready var btn_next = $JournalUI/NextBtn
 @onready var btn_prev = $JournalUI/PrevBtn
 
@@ -28,6 +32,10 @@ extends CanvasLayer
 @export var pan_speed: float = 700.0 # Скорость движения фона
 @export var edge_margin: float = 50.0 # Расстояние от края экрана (в пикселях), где срабатывает движение
 
+#
+var searcher_name: String
+var searcher_avatar: Texture
+
 # --- Переменные состояния ---
 var is_journal_open: bool = false
 var current_page_index: int = 0
@@ -43,8 +51,12 @@ func _ready() -> void:
 	journal_ui.visible = false
 	btn_next.visible = true 
 	btn_prev.visible = true
-	$JournalUI/Pages/PagePlayer/Title.text = Global.NAME_OPER_LIST.pick_random()
-	$JournalUI/Pages/PagePlayer/Item1.texture = Global.SPRITE_OPER_LIST.pick_random()
+	
+	searcher_name = Global.NAME_OPER_LIST.pick_random()
+	searcher_avatar = Global.SPRITE_OPER_LIST.pick_random()
+
+	$JournalUI/Pages/PagePlayer/Title.text = searcher_name
+	$JournalUI/Pages/PagePlayer/Item1.texture = searcher_avatar
 	
 	# Собираем все страницы в массив и показываем только первую
 	pages = pages_container.get_children()
@@ -225,7 +237,14 @@ func _on_submit_btn_pressed():
 	var article_1_txt: String = newspaper_data.get("article1", "-1")
 	var title_2_txt: String = newspaper_data.get("title2", "-1")
 	var article_2_txt: String = newspaper_data.get("article2", "-1")
-
+	 
+	title_1.text = "[center][b]%s[/b][/center]" % title_1_txt
+	article_1.text = article_1_txt
+	title_2.text =  "[center][b]%s[/b][/center]" % title_2_txt
+	article_2.text = article_2_txt
+	oper_photo.texture = searcher_avatar
+	oper_name.text = "[center][b]%s[/b][/center]" % searcher_name
+	 
 	# Сравниваем ответы
 	#var report = "[center][b]ИТОГИ РАССЛЕДОВАНИЯ[/b][/center]\n\n"
 #

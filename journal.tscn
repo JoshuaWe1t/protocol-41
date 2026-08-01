@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://uosgh1opi55u"]
+[gd_scene load_steps=18 format=3 uid="uid://uosgh1opi55u"]
 
 [ext_resource type="Texture2D" uid="uid://c6itg0yoq7rbt" path="res://assets/art/jrnl3.png" id="1_8slvk"]
 [ext_resource type="Texture2D" uid="uid://cthunuqttt8u3" path="res://assets/art/jrnl1.png" id="1_julo4"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dlkmgaumwn3oa" path="res://assets/art/avatar2.png" id="6_pmo0p"]
 [ext_resource type="Texture2D" uid="uid://vitnfl7v8ewv" path="res://assets/art/total_newspaper.png" id="9_543vq"]
 [ext_resource type="AudioStream" uid="uid://dhbhbjweqxymq" path="res://assets/audio/sfx/page-flippage-turn.ogg" id="9_ddldy"]
+[ext_resource type="Texture2D" uid="uid://yvwmlvtm8bg6" path="res://assets/art/avatar1.png" id="10_br8rq"]
 [ext_resource type="AudioStream" uid="uid://ba0fde6nj77sj" path="res://assets/audio/sfx/enviromaniac2__book_open.mp3" id="10_kkyki"]
 [ext_resource type="AudioStream" uid="uid://itbhqhkv5dn0" path="res://assets/audio/sfx/enviromaniac2__book_close.mp3" id="11_543vq"]
 
@@ -929,6 +930,8 @@ offset_top = 191.0
 offset_right = 585.0
 offset_bottom = 231.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
 bbcode_enabled = true
 text = "TEXT
 "
@@ -941,15 +944,17 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 336.0
-offset_top = 1351.0
-offset_right = -417.0
-offset_bottom = 946.0
+offset_top = 1330.0
+offset_right = -1000.0
+offset_bottom = -117.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "TESTS
 "
+autowrap_mode = 2
 
 [node name="Title2" type="RichTextLabel" parent="ResultsUI/Mask/TextureRect"]
 z_index = 10
@@ -959,6 +964,8 @@ offset_top = 1285.0
 offset_right = 865.0
 offset_bottom = 1340.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 26
+theme_override_font_sizes/bold_font_size = 24
 bbcode_enabled = true
 text = "TEXT
 "
@@ -972,9 +979,33 @@ offset_top = 204.0
 offset_right = 1779.0
 offset_bottom = 583.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "TEXT
 "
+autowrap_mode = 2
+
+[node name="OperPhoto" type="TextureRect" parent="ResultsUI/Mask/TextureRect"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 290.0
+offset_right = 554.0
+offset_bottom = 748.0
+texture = ExtResource("10_br8rq")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="OperName" type="RichTextLabel" parent="ResultsUI/Mask/TextureRect"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 754.0
+offset_right = 537.0
+offset_bottom = 824.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/bold_font_size = 32
+bbcode_enabled = true
+text = "TEXT"
+vertical_alignment = 1
 
 [node name="PageSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_ddldy")
