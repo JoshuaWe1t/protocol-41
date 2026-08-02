@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://uosgh1opi55u"]
+[gd_scene load_steps=19 format=3 uid="uid://uosgh1opi55u"]
 
 [ext_resource type="Texture2D" uid="uid://c6itg0yoq7rbt" path="res://assets/art/jrnl3.png" id="1_8slvk"]
 [ext_resource type="Texture2D" uid="uid://cthunuqttt8u3" path="res://assets/art/jrnl1.png" id="1_julo4"]
@@ -25,6 +25,9 @@ load_path = "res://.godot/imported/jrnl3.png-12ce3dd1072986849abbced2f5b111a8.ct
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pmo0p"]
 load_path = "res://.godot/imported/jrnl1.png-8d04f2b03b61dd3879d5263fc335037f.ctex"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_br8rq"]
+bg_color = Color(0.6, 0.6, 0.6, 0.2901961)
 
 [node name="Journal" type="CanvasLayer"]
 process_mode = 3
@@ -760,19 +763,13 @@ offset_left = -344.0
 offset_top = 96.0
 offset_right = -153.0
 offset_bottom = 116.0
-item_count = 6
-popup/item_0/text = "Квартира 1"
+item_count = 3
+popup/item_0/text = "Этаж 1"
 popup/item_0/id = 1
-popup/item_1/text = "Квартира 2"
+popup/item_1/text = "Этаж 2"
 popup/item_1/id = 2
-popup/item_2/text = "Квартира 3"
+popup/item_2/text = "Этаж 3"
 popup/item_2/id = 3
-popup/item_3/text = "Квартира 4"
-popup/item_3/id = 4
-popup/item_4/text = "Квартира 5"
-popup/item_4/id = 5
-popup/item_5/text = "Квартира 6"
-popup/item_5/id = 6
 
 [node name="SubmitBtn" type="Button" parent="JournalUI/Pages/PageReport"]
 layout_mode = 0
@@ -1007,6 +1004,23 @@ bbcode_enabled = true
 text = "TEXT"
 vertical_alignment = 1
 
+[node name="RestartBtn" type="Button" parent="ResultsUI/Mask/TextureRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -124.75
+offset_top = -83.0
+offset_right = 124.75
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_br8rq")
+text = "НОВОЕ РАССЛЕДОВАНИЕ"
+
 [node name="PageSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_ddldy")
 
@@ -1016,6 +1030,21 @@ stream = ExtResource("10_kkyki")
 [node name="JournalCloseSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_543vq")
 
+[node name="TimerLabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -104.5
+offset_right = 104.5
+offset_bottom = 69.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="JournalUI/Pages/PageReport/SubmitBtn" to="." method="_on_submit_btn_pressed"]
 [connection signal="pressed" from="JournalUI/NextBtn" to="." method="_on_next_btn_pressed"]
 [connection signal="pressed" from="JournalUI/PrevBtn" to="." method="_on_prev_btn_pressed"]
+[connection signal="pressed" from="ResultsUI/Mask/TextureRect/RestartBtn" to="." method="_on_restart_btn_pressed"]

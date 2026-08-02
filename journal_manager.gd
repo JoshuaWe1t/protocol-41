@@ -33,6 +33,16 @@ extends CanvasLayer
 @export var edge_margin: float = 50.0 # Расстояние от края экрана (в пикселях), где срабатывает движение
 
 #
+# Ссылка на текст таймера
+@onready var timer_label: Label = $TimerLabel
+
+# --- Переменные таймера и блокировки ---
+@export var max_time_seconds: float = 300.0 # 5 минут (5 * 60)
+var time_left: float = max_time_seconds
+var timer_active: bool = true
+var is_journal_locked: bool = false # Блокирует закрытие на кнопку J
+
+#
 var searcher_name: String
 var searcher_avatar: Texture
 
@@ -71,12 +81,27 @@ func _ready() -> void:
 func _input(event):
 	# Если нажали J и мы не на экране итогов
 	if event.is_action_pressed("journal") and not results_ui.visible:
-		if not is_transitioning:
+		if not is_transitioning and not is_journal_locked:
 			toggle_journal()
 
 
 # --- Вставьте эту новую функцию в любое место скрипта (например, перед _on_next_btn_pressed) ---
 func _process(delta: float) -> void:
+	# --- 1. ЛОГИКА ТАЙМЕРА ---
+	# Таймер тикает только если он активен И игра НЕ на паузе
+	if timer_active and not get_tree().paused:
+		time_left -= delta
+
+		if time_left <= 0:
+			time_left = 0
+			timer_active = false
+			force_open_report_page() # Время вышло!
+			
+		# Форматируем время в MM:SS
+		var minutes: int = int(time_left) / 60
+		var seconds: int = int(time_left) % 60
+		timer_label.text = "%02d:%02d" % [minutes, seconds]
+		
 	# Двигаем фон только если экран итогов открыт
 	if not results_ui.visible:
 		return
@@ -244,30 +269,43 @@ func _on_submit_btn_pressed():
 	article_2.text = article_2_txt
 	oper_photo.texture = searcher_avatar
 	oper_name.text = "[center][b]%s[/b][/center]" % searcher_name
-	 
-	# Сравниваем ответы
-	#var report = "[center][b]ИТОГИ РАССЛЕДОВАНИЯ[/b][/center]\n\n"
-#
-	#if guessed_floor == correct_floor and guessed_apt == correct_apt:
-		#report += "[color=green]Очаг заражения определен верно.[/color]\n"
-	#else:
-		#report += "[color=red]Ошибка! Настоящий очаг был в квартире " + str(correct_apt) + " на " + str(correct_floor) + " этаже.[/color]\n"
-		#
-	#if guessed_monster == correct_monster:
-		#report += "[color=green]Тип сущности установлен верно (" + correct_monster + ").[/color]\n"
-	#else:
-		#report += "[color=red]Неверный тип сущности. Это был " + correct_monster + ".[/color]\n"
-		#
-	#if guessed_has_anomaly == correct_has_anomaly:
-		#if guessed_has_anomaly and guessed_anomaly_floor == correct_anomaly_floor:
-			#report += "[color=green]Аномалия локализована точно.[/color]\n"
-		#elif guessed_has_anomaly:
-			#report += "[color=red]Аномалия есть, но этаж указан неверно.[/color]\n"
-		#else:
-			#report += "[color=green]Отсутствие аномалий подтверждено.[/color]\n"
-	#else:
-		#report += "[color=red]Ошибка в определении аномального фона.[/color]\n"
-
-	## Показываем результаты (в RichTextLabel обязательно включите bbcode_enabled = true)
-	#result_text.text = report
+	# Показываем результаты (в RichTextLabel обязательно включите bbcode_enabled = true)
 	results_ui.visible = true
+
+
+func _on_restart_btn_pressed():
+	# 1. ОБЯЗАТЕЛЬНО снимаем игру с паузы!
+	# Иначе новая сессия начнется, но всё будет стоять на месте
+	get_tree().paused = false 
+	
+	# 2. Прячем курсор обратно (если игра от 1-го лица)
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	# 3. Перезапускаем текущую сцену (начинаем заново)
+	get_tree().reload_current_scene()
+	
+	# Альтернатива: если у вас есть меню или следующая сцена, 
+	# используйте change_scene_to_file:
+	# get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+
+func force_open_report_page():
+	is_journal_locked = true
+	timer_label.visible = false # Можно спрятать таймер с экрана
+	
+	# Если журнал был закрыт, открываем его жестко (без проверки toggle_journal)
+	if not is_journal_open:
+		is_journal_open = true
+		get_tree().paused = true
+		journal_open_sound.play()
+		journal_ui.visible = true
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
+	# Ищем индекс страницы "PageReport" в массиве
+	var report_page_node = $JournalUI/Pages/PageReport
+	var target_index = pages.find(report_page_node)
+	
+	# Переключаем журнал на страницу отчета
+	if target_index != -1:
+		current_page_index = target_index
+		update_pages_visibility()
