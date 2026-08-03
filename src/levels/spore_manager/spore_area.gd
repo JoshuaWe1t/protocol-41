@@ -1,8 +1,8 @@
 extends Node
 
-@export var spore_tex_1: Texture2D = preload("res://assets/art/spores-1.png")
-@export var spore_tex_2: Texture2D = preload("res://assets/art/spores-2.png")
-@export var spore_tex_3: Texture2D = preload("res://assets/art/spores-3.png")
+@export var spore_tex_1: Texture2D = preload("res://src/levels/spore_manager/spore1.png")
+@export var spore_tex_2: Texture2D = preload("res://src/levels/spore_manager/spore2.png")
+@export var spore_tex_3: Texture2D = preload("res://src/levels/spore_manager/spore3.png")
 
 @onready var collision_spore1 = $Floor1/CollisionSporeFl1
 @onready var collision_spore2 = $Floor2/CollisionSporeFl2
@@ -131,6 +131,7 @@ func grow_spore(floor_num: int, level: String) -> void:
 
 
 func update_spore_sprite(sprite: Sprite2D, stage: int) -> void:
+	sprite.scale = Vector2(0.25, 0.25)
 	match stage:
 		0:
 			sprite.texture = null # Не отображаем спрайт (green или до активации)
