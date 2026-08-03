@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+const RETURN_TO_MENU: String = "res://src/levels/menu/menu.tscn"
 
 # --- Ссылки на UI элементы ---
 @onready var journal_ui = $JournalUI
@@ -37,7 +38,7 @@ extends CanvasLayer
 @onready var timer_label: Label = $TimerLabel
 
 # --- Переменные таймера и блокировки ---
-@export var max_time_seconds: float = 300.0 # 5 минут (5 * 60)
+@export var max_time_seconds: float = 180.0 # 5 минут (5 * 60)
 var time_left: float = max_time_seconds
 var timer_active: bool = true
 var is_journal_locked: bool = false # Блокирует закрытие на кнопку J
@@ -274,19 +275,14 @@ func _on_submit_btn_pressed():
 
 
 func _on_restart_btn_pressed():
-	# 1. ОБЯЗАТЕЛЬНО снимаем игру с паузы!
-	# Иначе новая сессия начнется, но всё будет стоять на месте
-	get_tree().paused = false 
-	
-	# 2. Прячем курсор обратно (если игра от 1-го лица)
+	get_tree().paused = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	
+	get_tree().change_scene_to_file(RETURN_TO_MENU)
 	# 3. Перезапускаем текущую сцену (начинаем заново)
-	get_tree().reload_current_scene()
-	
-	# Альтернатива: если у вас есть меню или следующая сцена, 
-	# используйте change_scene_to_file:
-	# get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	#get_tree().reload_current_scene()
+	#Альтернатива: если у вас есть меню или следующая сцена, 
+	#используйте change_scene_to_file:
+	#get_tree().change_scene_to_file(RETURN_TO_MENU)
 
 
 func force_open_report_page():
