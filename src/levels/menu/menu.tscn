@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://y7snlvish2q8"]
+[gd_scene load_steps=9 format=3 uid="uid://y7snlvish2q8"]
 
 [ext_resource type="Texture2D" uid="uid://sn6vip817h" path="res://assets/art/menu.png" id="1_0ouma"]
 [ext_resource type="Texture2D" uid="uid://c7wmoehwga16f" path="res://assets/art/menu_background.png" id="1_p0fp5"]
-[ext_resource type="Texture2D" uid="uid://bbe5uya5r3lw6" path="res://src/gameplay/player/Soviet_militiaman_8-bit_pixel_art_202607110954_2.png" id="2_s6big"]
+[ext_resource type="Script" uid="uid://ubeprx0q57mk" path="res://src/levels/menu/menu.gd" id="1_srolq"]
+[ext_resource type="Texture2D" uid="uid://btg40o0r6vh6w" path="res://assets/art/exit_door_1.png" id="4_f6dtr"]
 [ext_resource type="Texture2D" uid="uid://d2ppcac1nnjc4" path="res://assets/art/level1.png" id="4_prhsm"]
+[ext_resource type="Texture2D" uid="uid://dbresupkk4857" path="res://assets/art/level2_comingsoon.png" id="6_f6dtr"]
+[ext_resource type="Texture2D" uid="uid://ddsoptylokwel" path="res://assets/art/level3_comingsoon.png" id="7_5atdl"]
+[ext_resource type="Texture2D" uid="uid://bhhe6mx53igjn" path="res://assets/art/level4_comingsoon.png" id="8_egbxm"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -12,6 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_srolq")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -24,36 +29,92 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_p0fp5")
+metadata/_edit_lock_ = true
 
 [node name="Menu" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 123.000015
+offset_left = 107.000015
 offset_top = 47.0
-offset_right = 123.0
+offset_right = 107.0
 offset_bottom = 285.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("1_0ouma")
 
-[node name="Player" type="Sprite2D" parent="."]
-position = Vector2(1079.0001, 477.00003)
-scale = Vector2(1.8, 1.8)
-texture = ExtResource("2_s6big")
-hframes = 4
-vframes = 3
-frame = 5
+[node name="ExitButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 951.0
+offset_top = 205.00005
+offset_right = 1361.0
+offset_bottom = 875.00006
+scale = Vector2(0.6, 0.6)
+texture_normal = ExtResource("4_f6dtr")
 
 [node name="Levels" type="Node" parent="."]
 
 [node name="level1" type="TextureButton" parent="Levels"]
-offset_left = 180.0
+offset_left = 164.0
 offset_top = 177.0
-offset_right = 316.0
+offset_right = 300.0
 offset_bottom = 360.0
 texture_normal = ExtResource("4_prhsm")
 ignore_texture_size = true
 stretch_mode = 4
+
+[node name="level2" type="TextureButton" parent="Levels"]
+offset_left = 336.0
+offset_top = 177.0
+offset_right = 472.0
+offset_bottom = 360.0
+texture_normal = ExtResource("6_f6dtr")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="level3" type="TextureButton" parent="Levels"]
+offset_left = 508.0
+offset_top = 177.0
+offset_right = 644.0
+offset_bottom = 360.0
+texture_normal = ExtResource("7_5atdl")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="level4" type="TextureButton" parent="Levels"]
+offset_left = 679.0
+offset_top = 177.0
+offset_right = 815.0
+offset_bottom = 360.0
+texture_normal = ExtResource("8_egbxm")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="InfoPlate" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -401.0
+offset_top = -302.0
+offset_right = -14.0
+offset_bottom = 250.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Description" type="RichTextLabel" parent="InfoPlate"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 20
+autowrap_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
