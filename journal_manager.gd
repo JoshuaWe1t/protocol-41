@@ -99,7 +99,7 @@ func _process(delta: float) -> void:
 			force_open_report_page() # Время вышло!
 			
 		# Форматируем время в MM:SS
-		var minutes: int = int(time_left) / 60
+		var minutes: int = int(time_left / 60.0)
 		var seconds: int = int(time_left) % 60
 		timer_label.text = "%02d:%02d" % [minutes, seconds]
 		
@@ -276,7 +276,7 @@ func _on_submit_btn_pressed():
 
 func _on_restart_btn_pressed():
 	get_tree().paused = false
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	get_tree().change_scene_to_file(RETURN_TO_MENU)
 	# 3. Перезапускаем текущую сцену (начинаем заново)
 	#get_tree().reload_current_scene()

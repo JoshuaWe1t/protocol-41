@@ -28,6 +28,8 @@ const LEVELS_DESCKRIPTION: Dictionary = {
 }
 
 func _ready():
+	# Гарантируем, что в меню курсор всегда включен
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	# 1. При запуске сцены скрываем плашку
 	info_plate.visible = false
 	
