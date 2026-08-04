@@ -35,13 +35,10 @@ func _ready() -> void:
 	$Floor2.body_exited.connect(_on_exited_spore_area)
 	$Floor3.body_exited.connect(_on_exited_spore_area)
 	
-	setup_position(collision_spore1, 1)
-	setup_position(collision_spore2, 2)
-	setup_position(collision_spore3, 3)
-	
-	setup_radious(collision_spore1, 1)
-	setup_radious(collision_spore2, 2)
-	setup_radious(collision_spore3, 3)
+	# Вызываем нашу новую универсальную функцию для каждого этажа
+	setup_spore_properties(1, collision_spore1, spore_sprite_1)
+	setup_spore_properties(2, collision_spore2, spore_sprite_2)
+	setup_spore_properties(3, collision_spore3, spore_sprite_3)
 
 	# Настраиваем и запускаем таймер на первые 30 секунд
 	timer_activite.wait_time = Global.TIMER_ACTIVATE_SPORE
@@ -131,7 +128,6 @@ func grow_spore(floor_num: int, level: String) -> void:
 
 
 func update_spore_sprite(sprite: Sprite2D, stage: int) -> void:
-	sprite.scale = Vector2(0.25, 0.25)
 	match stage:
 		0:
 			sprite.texture = null # Не отображаем спрайт (green или до активации)
@@ -141,3 +137,28 @@ func update_spore_sprite(sprite: Sprite2D, stage: int) -> void:
 			sprite.texture = spore_tex_2
 		3:
 			sprite.texture = spore_tex_3
+
+
+func setup_spore_properties(floor_number: int, collision_obj: CollisionShape2D, sprite_obj: Sprite2D) -> void:
+	# Получаем массив настроек для конкретного этажа
+	var spore_configs: Array = Settings.settings.get("spore_settings").get(floor_number)
+
+	# ВЫБИРАЕМ СЛУЧАЙНЫЕ НАСТРОЙКИ ОДИН РАЗ ДЛЯ ЭТАЖА
+	var random_spore_data: Dictionary = spore_configs.pick_random()
+
+	# 1. Настраиваем позицию (т.к. Sprite2D дочерний у CollisionShape2D, он передвинется вместе с ним)
+	var pos_x: float = random_spore_data.get("position_x")
+	var pos_y: float = random_spore_data.get("position_y")
+	collision_obj.position = Vector2(pos_x, pos_y)
+
+	# 2. Настраиваем радиус коллизии
+	var radius: float = random_spore_data.get("radius")
+	if collision_obj.shape is CircleShape2D:
+		collision_obj.shape.radius = radius
+		
+	# 3. Настраиваем размер (Scale) спрайта
+	var scale_x: float = random_spore_data.get("scale_x")
+	var scale_y: float = random_spore_data.get("scale_y")
+	sprite_obj.scale = Vector2(scale_x, scale_y)
+
+	print("Spore Area [Floor %d] Setup: Pos(%f, %f), Radius(%f), Scale(%f, %f)" % [floor_number, pos_x, pos_y, radius, scale_x, scale_y])

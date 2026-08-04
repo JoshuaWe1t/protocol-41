@@ -12,8 +12,8 @@ var anomaly_located_floor: int
 const ANOMALY_LIFT_ACTIVE_LOW: float = 10
 const ANOMALY_LIFT_ACTIVE_HIGH: float = 30
 
-const TIMER_ACTIVATE_SPORE: float = 30.0
-const TIMER_ACTIVATE_SPORE_NEW: float = 25.0
+const TIMER_ACTIVATE_SPORE: float = 25.0
+const TIMER_ACTIVATE_SPORE_NEW: float = 10.0
 
 var infected_apartment: int
 var infected_floor: int
