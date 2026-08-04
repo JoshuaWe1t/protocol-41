@@ -37,6 +37,7 @@ func enter_state() -> void:
 	match current_used_item_id:
 		1:
 			player.anim_player.play("use_item")
+			await get_tree().create_timer(0.8).timeout
 			get_spore_level(current_used_item_id)
 		2:
 			get_water_sample(current_used_item_id)
