@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://uosgh1opi55u"]
+[gd_scene load_steps=21 format=3 uid="uid://uosgh1opi55u"]
 
 [ext_resource type="Texture2D" uid="uid://c6itg0yoq7rbt" path="res://assets/art/jrnl3.png" id="1_8slvk"]
 [ext_resource type="Texture2D" uid="uid://cthunuqttt8u3" path="res://assets/art/jrnl1.png" id="1_julo4"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://2p6cb1300m43" path="res://assets/art/item2.png" id="3_g0kyd"]
 [ext_resource type="Texture2D" uid="uid://bwta2pvhphuyh" path="res://assets/art/down_icon.png" id="3_hite2"]
 [ext_resource type="Texture2D" uid="uid://dlkmgaumwn3oa" path="res://assets/art/avatar2.png" id="6_pmo0p"]
+[ext_resource type="Texture2D" uid="uid://khilqtuiecgo" path="res://assets/art/spore.png" id="8_hqd1l"]
 [ext_resource type="Texture2D" uid="uid://vitnfl7v8ewv" path="res://assets/art/total_newspaper.png" id="9_543vq"]
 [ext_resource type="AudioStream" uid="uid://dhbhbjweqxymq" path="res://assets/audio/sfx/page-flippage-turn.ogg" id="9_ddldy"]
 [ext_resource type="Texture2D" uid="uid://yvwmlvtm8bg6" path="res://assets/art/avatar1.png" id="10_br8rq"]
@@ -22,6 +23,9 @@ load_path = "res://.godot/imported/jrnl3.png-12ce3dd1072986849abbced2f5b111a8.ct
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g0kyd"]
 load_path = "res://.godot/imported/jrnl3.png-12ce3dd1072986849abbced2f5b111a8.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_somhh"]
+load_path = "res://.godot/imported/jrnl1.png-8d04f2b03b61dd3879d5263fc335037f.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pmo0p"]
 load_path = "res://.godot/imported/jrnl1.png-8d04f2b03b61dd3879d5263fc335037f.ctex"
@@ -327,7 +331,6 @@ text = "Критерии завершения"
 horizontal_alignment = 1
 
 [node name="PageItem1" type="Panel" parent="JournalUI/Pages"]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -629,6 +632,94 @@ text = "Данное устройство включено по умолчани
 
 Не указывает тип аномалии, кратковременно не прерывает ее действие"
 autowrap_mode = 2
+
+[node name="PageDescSpores" type="Panel" parent="JournalUI/Pages"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y32ns")
+
+[node name="BG" type="TextureRect" parent="JournalUI/Pages/PageDescSpores"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -301.0
+offset_right = -64.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.3, 2.3)
+texture = SubResource("CompressedTexture2D_somhh")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Description" type="RichTextLabel" parent="JournalUI/Pages/PageDescSpores"]
+layout_mode = 0
+offset_left = -449.0
+offset_top = -182.0
+offset_right = -34.0
+offset_bottom = 250.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[b]Споры[/b] образуются в местах заражения [u]Грибком О-41[/u]. 
+
+В местах скопления спор обычно идет интенсивное развитие грибка и он агрессивнее начинает себя вести, проявляясь активнее на зараженных этажах. 
+
+Учтите, что они [u]поражают[/u] поверхности [u]со временем[/u] и может потребоваться время на определение места их расползания. 
+
+Для точного определения уровня загрязнения в таких местах [b]РЕКОМЕНДУЕТСЯ[/b] использовать приборы фиксации заражения спорами."
+autowrap_mode = 2
+
+[node name="Title" type="Label" parent="JournalUI/Pages/PageDescSpores"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.425
+anchor_top = -0.075
+anchor_right = 3.0333333
+anchor_bottom = 0.15
+offset_left = -444.0
+offset_top = -230.0
+offset_right = -39.0
+offset_bottom = -194.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+text = "Споры О-41"
+horizontal_alignment = 1
+
+[node name="Title1" type="Label" parent="JournalUI/Pages/PageDescSpores"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.425
+anchor_top = -0.075
+anchor_right = 3.0333333
+anchor_bottom = 0.15
+offset_left = 52.0
+offset_top = -230.0
+offset_right = 457.0
+offset_bottom = -194.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+text = "Стадии развития"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="JournalUI/Pages/PageDescSpores"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = -183.0
+offset_right = 461.0
+offset_bottom = 240.0
+texture = ExtResource("8_hqd1l")
+expand_mode = 1
+stretch_mode = 4
 
 [node name="PageReport" type="Panel" parent="JournalUI/Pages"]
 visible = false
