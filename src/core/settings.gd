@@ -205,19 +205,25 @@ var settings: Dictionary = {
 				"collision_shape": "CicleShapre2D",
 				"radius": 25,
 				"position_x": 50,
-				"position_y": 400
+				"position_y": 400,
+				"scale_x": 0.3,
+				"scale_y": 0.45
 			},
 			{
 				"collision_shape": "CicleShapre2D",
 				"radius": 25,
 				"position_x": 375,
-				"position_y": 390
+				"position_y": 390,
+				"scale_x": 0.5,
+				"scale_y": 0.45
 			},
 			{
 				"collision_shape": "CicleShapre2D",
 				"radius": 25,
 				"position_x": 670,
-				"position_y": 450
+				"position_y": 450,
+				"scale_x": 0.24,
+				"scale_y": 0.4
 			}
 		],
 		2 : [
@@ -225,19 +231,25 @@ var settings: Dictionary = {
 				"collision_shape": "CicleShapre2D",
 				"radius": 25,
 				"position_x": 50,
-				"position_y": -320
+				"position_y": -320,
+				"scale_x": 0.3,
+				"scale_y": 0.45
 			},
 			{
 				"collision_shape": "CicleShapre2D",
 				"radius": 25,
 				"position_x": 375,
-				"position_y": -330
+				"position_y": -330,
+				"scale_x": 0.5,
+				"scale_y": 0.45
 			},
 			{
 				"collision_shape": "CicleShapre2D",
 				"radius": 25,
 				"position_x": 670,
-				"position_y": -300
+				"position_y": -300,
+				"scale_x": 0.24,
+				"scale_y": 0.4
 			}
 		],
 		3 : [
@@ -245,19 +257,25 @@ var settings: Dictionary = {
 				"collision_shape": "CicleShapre2D",
 				"radius": 25,
 				"position_x": 50,
-				"position_y": -1040
+				"position_y": -1040,
+				"scale_x": 0.3,
+				"scale_y": 0.45
 			},
 			{
 				"collision_shape": "CicleShapre2D",
 				"radius": 25,
 				"position_x": 375,
-				"position_y": -1050
+				"position_y": -1050,
+				"scale_x": 0.5,
+				"scale_y": 0.45
 			},
 			{
 				"collision_shape": "CicleShapre2D",
 				"radius": 25,
 				"position_x": 670,
-				"position_y": -1020
+				"position_y": -1020,
+				"scale_x": 0.24,
+				"scale_y": 0.4
 			}
 		]
 	},
