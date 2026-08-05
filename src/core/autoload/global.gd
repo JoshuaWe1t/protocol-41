@@ -58,5 +58,7 @@ const SPRITE_OPER_LIST = [
 
 var current_monster: String
 
+var monster_texture: Texture
+
 func _ready():
 	print("GlobalData инициализирован")
