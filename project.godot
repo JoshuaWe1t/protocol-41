@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="protocol-41"
-run/main_scene="uid://ubbjbgh5d5fe"
+run/main_scene="uid://y7snlvish2q8"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -24,11 +24,13 @@ Settings="*res://src/core/settings.gd"
 Dwellers="*res://src/core/autoload/dwellers.gd"
 Items="*res://src/core/autoload/items.gd"
 VictoriesCombinations="*res://src/core/autoload/victories_combinations.gd"
+MusicController="*res://music_controller.gd"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/stretch/mode="canvas_items"
 
 [input]
 
