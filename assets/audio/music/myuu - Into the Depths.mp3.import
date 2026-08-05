@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cc0iydv7xlt00"
+path="res://.godot/imported/myuu - Into the Depths.mp3-52565e06e244fa210eef3b57e3d3b89f.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/myuu - Into the Depths.mp3"
+dest_files=["res://.godot/imported/myuu - Into the Depths.mp3-52565e06e244fa210eef3b57e3d3b89f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
