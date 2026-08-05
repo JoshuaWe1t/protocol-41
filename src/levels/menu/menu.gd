@@ -1,10 +1,16 @@
 extends Control
 
 # Прописываем пути к нужным узлам
-@onready var level_1_button: TextureButton = $Levels/level1
-@onready var level_2_button: TextureButton = $Levels/level2
-@onready var level_3_button: TextureButton = $Levels/level3
-@onready var level_4_button: TextureButton = $Levels/level4
+#@onready var level_1_button: TextureButton = $Levels/level1
+#@onready var level_2_button: TextureButton = $Levels/level2
+#@onready var level_3_button: TextureButton = $Levels/level3
+#@onready var level_4_button: TextureButton = $Levels/level4
+
+
+@onready var level_1_button: TextureButton = $Menu/Levels/level1
+@onready var level_2_button: TextureButton = $Menu/Levels/level2
+@onready var level_3_button: TextureButton = $Menu/Levels/level3
+@onready var level_4_button: TextureButton = $Menu/Levels/level4
 
 @onready var exit_button = $ExitButton
 
@@ -28,6 +34,8 @@ const LEVELS_DESCKRIPTION: Dictionary = {
 }
 
 func _ready():
+	# Запускаем музыку для меню
+	#MusicController.play_menu_music()
 	# Гарантируем, что в меню курсор всегда включен
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	# 1. При запуске сцены скрываем плашку
