@@ -10,25 +10,29 @@ const MONSTERS = {
 		"name": "Перекожник",
 		"water": "red",    # Оставляет биологические следы/слизь
 		"spores": "red",   # Активно мутирует или разлагается, фон спор зашкаливает
-		"anomaly": true   # Сильнейшее искажение пространства
+		"anomaly": true,   # Сильнейшее искажение пространства
+		"sprite": preload("res://assets/art/threats4.png")
 	},
 	"mimic": {
 		"name": "Мимик",
 		"water": "green",  # Идеально маскируется, воду не мутит
 		"spores": "yellow",# Спор почти не выделяет
-		"anomaly": false    # Излучает аномалию
+		"anomaly": false,    # Излучает аномалию
+		"sprite": preload("res://assets/art/threats2.png")
 	},
 	"simulacrum": {
 		"name": "Симулякр",
 		"water": "red",    # Искажает реальность (вода черная)
 		"spores": "yellow",# Остаточные фантомные следы
-		"anomaly": true    # Сильнейшее искажение пространства
+		"anomaly": true,    # Сильнейшее искажение пространства
+		"sprite": preload("res://assets/art/threats3.png")
 	},
 	"infestor": {
 		"name": "Заразитель",
 		"water": "yellow",    # Заражает воду, но медленно
 		"spores": "red", # Покрывает все пространство спорами
-		"anomaly": false    #  Биологическая тварь, аномалии нет
+		"anomaly": false,    #  Биологическая тварь, аномалии нет
+		"sprite": preload("res://assets/art/threats1.png")
 	}
 }
 
@@ -172,6 +176,7 @@ func generate_level_settings():
 	var selected_monster_id = monster_keys.pick_random()
 	var active_monster = MONSTERS[selected_monster_id]
 	Global.current_monster = active_monster.name
+	Global.monster_texture = active_monster.sprite
 	
 	# Генерируем квартиру и ПРИВЯЗЫВАЕМ к ней этаж
 	Global.infected_apartment = randi_range(1, 6)
