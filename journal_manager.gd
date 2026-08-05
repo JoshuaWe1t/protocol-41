@@ -14,6 +14,9 @@ const RETURN_TO_MENU: String = "res://src/levels/menu/menu.tscn"
 @onready var oper_photo: TextureRect = $ResultsUI/Mask/TextureRect/OperPhoto
 @onready var oper_name: RichTextLabel = $ResultsUI/Mask/TextureRect/OperName
 
+@onready var monster_photo: TextureRect = $ResultsUI/Mask/TextureRect/MonsterPhoto
+
+
 @onready var btn_next = $JournalUI/NextBtn
 @onready var btn_prev = $JournalUI/PrevBtn
 
@@ -56,6 +59,8 @@ var is_transitioning: bool = false
 var key_result: String
 
 func _ready() -> void:
+	# Переключаем трек на игровую музыку
+	#MusicController.play_game_music()
 	# ЭТА СТРОКА ГАРАНТИРУЕТ, ЧТО СКРИПТ БУДЕТ РАБОТАТЬ ВО ВРЕМЯ ПАУЗЫ
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	
@@ -76,6 +81,9 @@ func _ready() -> void:
 	# Скрываем поле этажа аномалии, если галочка не стоит
 	anomaly_floor_option.visible = anomaly_check.button_pressed
 	anomaly_check.toggled.connect(_on_anomaly_check_toggled)
+	
+	# ПОДКЛЮЧАЕМ СИГНАЛ ПРОИГРЫША
+	Events.game_over.connect(_on_game_over)
 
 
 # Заменили _unhandled_input на _input
@@ -220,18 +228,22 @@ func _on_submit_btn_pressed():
 	# [infected_floor, infected_apartment, current_monster, has_anomaly, anomaly_located_floor]
 	
 	# Считываем данные от игрока
-	# Для OptionButton получаем текст выбранного пункта
-	var guessed_floor = floor_option.get_item_id(floor_option.selected)# .get_item_text(floor_option.selected).to_int()
-	var guessed_apt = apt_option.get_item_id(apt_option.selected)# .get_item_text(floor_option.selected).to_int()
-	var guessed_monster = monster_option.get_item_text(monster_option.selected)
+	# Для Op# --- БЕЗОПАСНОЕ считывание данных (если ничего не выбрано, ставим значение -1 или пустоту) ---
+	var guessed_floor = floor_option.get_item_id(floor_option.selected) if floor_option.selected != -1 else -1
+	var guessed_apt = apt_option.get_item_id(apt_option.selected) if apt_option.selected != -1 else -1
+	var guessed_monster = monster_option.get_item_text(monster_option.selected) if monster_option.selected != -1 else ""
 	var guessed_has_anomaly = anomaly_check.button_pressed
-	var guessed_anomaly_floor = anomaly_floor_option.get_item_id(anomaly_floor_option.selected) # .get_item_text(anomaly_floor_option.selected).to_int()
+	var guessed_anomaly_floor = anomaly_floor_option.get_item_id(anomaly_floor_option.selected) if anomaly_floor_option.selected != -1 else -1
 	
+	# ВНИМАНИЕ: Обязательно очищайте key_result перед сборкой, 
+	# иначе при багах он может склеиться дважды!
+	key_result = "" 
+
 	key_result += "1" if guessed_floor == correct_floor else "0"
 	key_result += "1" if guessed_apt == correct_apt else "0"
 	key_result += "1" if guessed_monster == correct_monster else "0"
 	key_result += "1" if guessed_has_anomaly == correct_has_anomaly else "0"
-	
+
 	if guessed_has_anomaly == correct_has_anomaly:
 		if guessed_has_anomaly and guessed_anomaly_floor == correct_anomaly_floor:
 			key_result += "1"
@@ -241,9 +253,8 @@ func _on_submit_btn_pressed():
 			key_result += "1"
 	else:
 		key_result += "0"
-	
+		
 	print("key_result: ", key_result)
-	
 	var checker = {
 		"guessed_floor": guessed_floor,
 		"guessed_apt": guessed_apt, 
@@ -258,20 +269,8 @@ func _on_submit_btn_pressed():
 	}
 	print("journal_manager.checker: ", checker)
 	
-	var newspaper_data: Dictionary = VictoriesCombinations.victory_combinations.get(key_result, "-1")
-	var title_1_txt: String = newspaper_data.get("title1", "-1")
-	var article_1_txt: String = newspaper_data.get("article1", "-1")
-	var title_2_txt: String = newspaper_data.get("title2", "-1")
-	var article_2_txt: String = newspaper_data.get("article2", "-1")
-	 
-	title_1.text = "[center][b]%s[/b][/center]" % title_1_txt
-	article_1.text = article_1_txt
-	title_2.text =  "[center][b]%s[/b][/center]" % title_2_txt
-	article_2.text = article_2_txt
-	oper_photo.texture = searcher_avatar
-	oper_name.text = "[center][b]%s[/b][/center]" % searcher_name
-	# Показываем результаты (в RichTextLabel обязательно включите bbcode_enabled = true)
-	results_ui.visible = true
+	# ВМЕСТО КУЧИ КОДА НИЖЕ, МЫ ПРОСТО ВЫЗЫВАЕМ НАШУ НОВУЮ ФУНКЦИЮ:
+	show_results_screen(key_result)
 
 
 func _on_restart_btn_pressed():
@@ -305,3 +304,39 @@ func force_open_report_page():
 	if target_index != -1:
 		current_page_index = target_index
 		update_pages_visibility()
+
+
+# --- НОВАЯ ФУНКЦИЯ ДЛЯ ВЫВОДА ИТОГОВ ---
+func show_results_screen(final_key: String) -> void:
+	var newspaper_data: Dictionary = VictoriesCombinations.victory_combinations.get(final_key, {})
+	var title_1_txt: String = newspaper_data.get("title1", "Данные утеряны")
+	var article_1_txt: String = newspaper_data.get("article1", "Данные утеряны")
+	var title_2_txt: String = newspaper_data.get("title2", "Данные утеряны")
+	var article_2_txt: String = newspaper_data.get("article2", "Данные утеряны")
+	 
+	title_1.text = "[center][b]%s[/b][/center]" % title_1_txt
+	article_1.text = article_1_txt
+	title_2.text =  "[center][b]%s[/b][/center]" % title_2_txt
+	article_2.text = article_2_txt
+	oper_photo.texture = searcher_avatar
+	oper_name.text = "[center][b]%s[/b][/center]" % searcher_name
+	monster_photo.texture = Global.monster_texture
+	
+	# Показываем результаты
+	results_ui.visible = true
+
+
+# --- ОБРАБОТЧИК СИГНАЛА ИЗ ИГРОКА ---
+func _on_game_over(game_over_key: String) -> void:
+	# 1. Прячем журнал (если он был открыт) и блокируем его
+	journal_ui.visible = false
+	is_journal_open = false
+	is_journal_locked = true
+	timer_active = false # Останавливаем таймер
+	
+	# 2. Ставим игру на паузу и показываем мышь
+	get_tree().paused = true
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
+	# 3. Вызываем функцию экрана итогов и передаем ей ключ "22222"
+	show_results_screen(game_over_key)
