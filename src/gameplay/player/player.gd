@@ -334,7 +334,6 @@ func trigger_anomaly_effect() -> void:
 	state_machine.change_state(state_machine.get_node("IdleState"))
 
 
-
 func check_anomaly_effect(value: int) -> void:
 	print("player.check_anomaly_effect.value: ", value)
 	var rng = RandomNumberGenerator.new()
@@ -342,4 +341,4 @@ func check_anomaly_effect(value: int) -> void:
 		print("player.check_anomaly_effect.value % 5: ", value % 5 == 0)
 		if rng.randf() < Global.chance_game_over:
 			print("Game over")
-			Events.game_over.emit("Player was killed by anomaly")
+			Events.game_over.emit("22222")
