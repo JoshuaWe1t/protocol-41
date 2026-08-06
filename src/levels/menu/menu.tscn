@@ -124,3 +124,13 @@ vertical_alignment = 1
 stream = ExtResource("9_5atdl")
 volume_db = -15.0
 autoplay = true
+
+[node name="Version" type="Label" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 681.0
+offset_right = 98.0
+offset_bottom = 726.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.43137255)
+theme_override_font_sizes/font_size = 32
+text = "v0.1.0"
