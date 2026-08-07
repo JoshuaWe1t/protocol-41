@@ -77,8 +77,3 @@ var misleading_lines = [
 func _ready() -> void:
 	# print("Dwellers: ", hints_dialog_lines[0] % Global.infected_apartment)
 	pass
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass

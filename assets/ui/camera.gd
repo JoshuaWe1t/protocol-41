@@ -16,7 +16,6 @@ func _on_player_entered_floor(floor_number: int) -> void:
 func move_camera_to_floor(floor_number: int, duration: float = 3.0) -> void:
 	var target_y = - (floor_number - 1) * screen_height
 	
-	# --- НОВАЯ ПРОВЕРКА ---
 	# Если камера уже находится на целевой высоте (с небольшой погрешностью),
 	# значит мы только что запустили игру или уже на этом этаже.
 	# Прерываем функцию, чтобы не замораживать игрока!

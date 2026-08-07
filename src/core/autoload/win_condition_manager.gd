@@ -1,10 +1,6 @@
 extends Node
 
-var collected_evidence: Array[String] = []
-var anomalies_encountered: Array[String] = []
-var threats_encountered: Array[String] = []
-
-# База данных наших монстров (Синтаксис исправлен для GDScript)
+# База данных наших монстров
 const MONSTERS = {
 	"perekzhnik": {
 		"name": "Перекожник",
@@ -36,7 +32,7 @@ const MONSTERS = {
 	}
 }
 
-# Оставляем структуру словаря как базовый шаблон
+
 var floor_condition = {
 	"active_monster_id": "",
 	"active_monster_name": "",
@@ -159,17 +155,13 @@ var floor_condition = {
 	}
 }
 
-var all_possible_evidence: Array[String] = ["Следы спор", "Черная вода", "Странный запах", "Слизь на стенах"]
-var all_possible_anomalies: Array[String] = ["Искажение пространства", "Аномальный холод", "Радиопомехи"]
-var all_possible_threats: Array[String] = ["Агрессивный жилец", "Облако спор", "Мутировавшая крыса"]
 
 func _ready():
 	randomize()
 	generate_level_settings()
 
+
 func generate_level_settings():
-	# Очищаем данные на случай рестарта уровня
-	anomalies_encountered.clear()
 	
 	# === ВЫБОР МОНСТРА ===
 	var monster_keys = MONSTERS.keys()

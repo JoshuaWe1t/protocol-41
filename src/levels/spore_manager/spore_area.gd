@@ -49,6 +49,7 @@ func _ready() -> void:
 	for floor_num in floor_spore_stages.keys():
 		update_spore_sprite(floor_spore_stages[floor_num]["sprite_node"], 0)
 
+
 func _on_entered_spore_area(body: Node2D, floor_number: int, spore_level: String) -> void:
 	var spore_lvl = spore_level
 	if body.name == "Player":

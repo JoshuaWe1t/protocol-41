@@ -59,6 +59,7 @@ func try_go_up() -> void:
 	elif at_stairs:
 		show_dialogue("Выше подниматься некуда...")
 
+
 func try_go_down() -> void:
 	if can_down:
 		hide_interaction_icon() # <--- Скрываем старую иконку перед телепортом
@@ -91,14 +92,14 @@ func _on_entered_stairs(is_can_up: bool, is_can_down: bool) -> void:
 	can_up = is_can_up
 	can_down = is_can_down
 	at_stairs = true
-	update_stairs_icon() # <--- Вызываем здесь
+	update_stairs_icon()
 
 
 func _on_exited_stairs() -> void:
 	print("Игрок вышел из зоны лестницы")
 	can_up = false
 	can_down = false
-	at_stairs = false # <--- ДОБАВЛЕНО: Игрок ушел от лестницы
+	at_stairs = false 
 	hide_interaction_icon()
 
 

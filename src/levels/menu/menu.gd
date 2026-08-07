@@ -1,11 +1,5 @@
 extends Control
 
-# Прописываем пути к нужным узлам
-#@onready var level_1_button: TextureButton = $Levels/level1
-#@onready var level_2_button: TextureButton = $Levels/level2
-#@onready var level_3_button: TextureButton = $Levels/level3
-#@onready var level_4_button: TextureButton = $Levels/level4
-
 
 @onready var level_1_button: TextureButton = $Menu/Levels/level1
 @onready var level_2_button: TextureButton = $Menu/Levels/level2
