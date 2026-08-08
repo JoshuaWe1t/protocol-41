@@ -48,5 +48,9 @@ const SPRITE_OPER_LIST = [
 	preload("res://assets/art/avatar4.png")
 ]
 
+var item_cooldowns: Dictionary = {}
+var item_charges: Dictionary = {}
+var item_names: Dictionary = {}
+
 func _ready():
 	print("GlobalData инициализирован")
