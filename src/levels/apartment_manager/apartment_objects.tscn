@@ -26,12 +26,14 @@ script = ExtResource("1_sibv8")
 [node name="Floor1" type="Node2D" parent="."]
 
 [node name="Apartment1" type="Area2D" parent="Floor1"]
+unique_name_in_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor1/Apartment1"]
 position = Vector2(200, 480)
 shape = SubResource("RectangleShape2D_sibv8")
 
 [node name="Apartment2" type="Area2D" parent="Floor1"]
+unique_name_in_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor1/Apartment2"]
 position = Vector2(550, 480)
@@ -40,12 +42,14 @@ shape = SubResource("RectangleShape2D_vrs7u")
 [node name="Floor2" type="Node2D" parent="."]
 
 [node name="Apartment3" type="Area2D" parent="Floor2"]
+unique_name_in_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor2/Apartment3"]
 position = Vector2(200, -240)
 shape = SubResource("RectangleShape2D_i0t7q")
 
 [node name="Apartment4" type="Area2D" parent="Floor2"]
+unique_name_in_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor2/Apartment4"]
 position = Vector2(550, -240)
@@ -54,12 +58,14 @@ shape = SubResource("RectangleShape2D_g37jc")
 [node name="Floor3" type="Node2D" parent="."]
 
 [node name="Apartment5" type="Area2D" parent="Floor3"]
+unique_name_in_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor3/Apartment5"]
 position = Vector2(200, -960)
 shape = SubResource("RectangleShape2D_2wdy1")
 
 [node name="Apartment6" type="Area2D" parent="Floor3"]
+unique_name_in_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor3/Apartment6"]
 position = Vector2(550, -960)

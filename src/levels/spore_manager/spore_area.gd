@@ -4,14 +4,18 @@ extends Node
 @export var spore_tex_2: Texture2D = preload("res://src/levels/spore_manager/spore2.png")
 @export var spore_tex_3: Texture2D = preload("res://src/levels/spore_manager/spore3.png")
 
-@onready var collision_spore1 = $Floor1/CollisionSporeFl1
-@onready var collision_spore2 = $Floor2/CollisionSporeFl2
-@onready var collision_spore3 = $Floor3/CollisionSporeFl3
-@onready var timer_activite = $TimerActivateSpore
+@onready var collision_spore1 = %CollisionSporeFl1
+@onready var collision_spore2 = %CollisionSporeFl2
+@onready var collision_spore3 = %CollisionSporeFl3
+@onready var timer_activite = %TimerActivateSpore
 
-@onready var spore_sprite_1 = $Floor1/CollisionSporeFl1/Sprite2D
-@onready var spore_sprite_2 = $Floor2/CollisionSporeFl2/Sprite2D
-@onready var spore_sprite_3 = $Floor3/CollisionSporeFl3/Sprite2D
+@onready var spore_sprite_1 = %SpriteFloor1
+@onready var spore_sprite_2 = %SpriteFloor2
+@onready var spore_sprite_3 = %SpriteFloor3
+
+@onready var floor1 = %Floor1
+@onready var floor2 = %Floor2
+@onready var floor3 = %Floor3
 
 # Словарь для отслеживания текущей стадии каждой споры и её спрайта
 @onready var floor_spore_stages: Dictionary = {
@@ -23,17 +27,17 @@ extends Node
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 		# Отключаем детекцию до первого тика таймера
-	$Floor1.monitoring = false
-	$Floor2.monitoring = false
-	$Floor3.monitoring = false
+	floor1.monitoring = false
+	floor2.monitoring = false
+	floor3.monitoring = false
 	
-	$Floor1.body_entered.connect(_on_entered_spore_area.bind(1, setup_infected_level(1)))
-	$Floor2.body_entered.connect(_on_entered_spore_area.bind(2, setup_infected_level(2)))
-	$Floor3.body_entered.connect(_on_entered_spore_area.bind(3, setup_infected_level(3)))
+	floor1.body_entered.connect(_on_entered_spore_area.bind(1, setup_infected_level(1)))
+	floor2.body_entered.connect(_on_entered_spore_area.bind(2, setup_infected_level(2)))
+	floor3.body_entered.connect(_on_entered_spore_area.bind(3, setup_infected_level(3)))
 	
-	$Floor1.body_exited.connect(_on_exited_spore_area)
-	$Floor2.body_exited.connect(_on_exited_spore_area)
-	$Floor3.body_exited.connect(_on_exited_spore_area)
+	floor1.body_exited.connect(_on_exited_spore_area)
+	floor2.body_exited.connect(_on_exited_spore_area)
+	floor3.body_exited.connect(_on_exited_spore_area)
 	
 	# Вызываем нашу новую универсальную функцию для каждого этажа
 	setup_spore_properties(1, collision_spore1, spore_sprite_1)

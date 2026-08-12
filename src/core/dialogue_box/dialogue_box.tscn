@@ -24,6 +24,7 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="Label" type="Label" parent="MarginContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 text = "Не ходите на верхний этаж без нужды. Там воздух такой тяжелый, голова сразу кружиться начинает."
@@ -32,3 +33,4 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true

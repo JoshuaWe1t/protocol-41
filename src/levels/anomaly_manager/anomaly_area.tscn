@@ -10,13 +10,16 @@ size = Vector2(250, 126)
 script = ExtResource("1_gme17")
 
 [node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+unique_name_in_owner = true
 position = Vector2(972, -964)
 shape = SubResource("RectangleShape2D_gme17")
 debug_color = Color(0.654902, 0.16862746, 0.12941177, 0.41960785)
 
 [node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
 
 [node name="Floors" type="Node" parent="."]
 

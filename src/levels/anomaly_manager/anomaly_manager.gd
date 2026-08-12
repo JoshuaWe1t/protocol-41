@@ -1,16 +1,16 @@
 extends Node
 
-@onready var area = $Area2D
-@onready var collision_shape = $Area2D/CollisionShape2D
-@onready var timer = $Timer
+@onready var area = %Area2D
+@onready var collision_shape = %CollisionShape2D
+@onready var timer = %Timer
 
 # Переменная для проверки, может ли игрок уже взаимодействовать с аномалией
 var is_active: bool = false 
 
 func _ready() -> void:
 	
-	$Area2D.body_entered.connect(_on_player_entered_anomaly)
-	$Area2D.body_exited.connect(_on_player_exited_anomaly)
+	area.body_entered.connect(_on_player_entered_anomaly)
+	area.body_exited.connect(_on_player_exited_anomaly)
 	
 	# 1. Если этаж равен 0 — значит, аномалии в этом матче нет
 	if Global.anomaly_located_floor == 0:

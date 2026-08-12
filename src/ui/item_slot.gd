@@ -1,8 +1,8 @@
 extends Control
 
-@onready var item_icon: TextureRect = $ItemIcon
-@onready var cooldown_bar: TextureProgressBar = $ItemIcon/CooldownOverlay
-@onready var hotkey_label: Label = $ItemIcon/HotkeyText
+@onready var item_icon: TextureRect = %ItemIcon
+@onready var cooldown_bar: TextureProgressBar = %CooldownOverlay
+@onready var hotkey_label: Label = %HotkeyText
 
 var max_charges: int = 3
 var current_charges: int = 3

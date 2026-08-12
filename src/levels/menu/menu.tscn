@@ -49,6 +49,7 @@ texture = ExtResource("1_0ouma")
 [node name="Levels" type="Node" parent="Menu"]
 
 [node name="level1" type="TextureButton" parent="Menu/Levels"]
+unique_name_in_owner = true
 offset_left = 164.0
 offset_top = 177.0
 offset_right = 300.0
@@ -58,6 +59,7 @@ ignore_texture_size = true
 stretch_mode = 4
 
 [node name="level2" type="TextureButton" parent="Menu/Levels"]
+unique_name_in_owner = true
 offset_left = 336.0
 offset_top = 177.0
 offset_right = 472.0
@@ -67,6 +69,7 @@ ignore_texture_size = true
 stretch_mode = 4
 
 [node name="level3" type="TextureButton" parent="Menu/Levels"]
+unique_name_in_owner = true
 offset_left = 508.0
 offset_top = 177.0
 offset_right = 644.0
@@ -76,6 +79,7 @@ ignore_texture_size = true
 stretch_mode = 4
 
 [node name="level4" type="TextureButton" parent="Menu/Levels"]
+unique_name_in_owner = true
 offset_left = 679.0
 offset_top = 177.0
 offset_right = 815.0
@@ -85,6 +89,7 @@ ignore_texture_size = true
 stretch_mode = 4
 
 [node name="ExitButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 951.0
 offset_top = 205.00005
@@ -94,6 +99,7 @@ scale = Vector2(0.6, 0.6)
 texture_normal = ExtResource("4_f6dtr")
 
 [node name="InfoPlate" type="Panel" parent="."]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
 anchors_preset = 6
@@ -109,6 +115,7 @@ grow_horizontal = 0
 grow_vertical = 2
 
 [node name="Description" type="RichTextLabel" parent="InfoPlate"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

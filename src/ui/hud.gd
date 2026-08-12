@@ -4,7 +4,7 @@ extends CanvasLayer
 @export var item_slot_scene: PackedScene = preload("res://src/ui/item_slot.tscn")
 
 # Путь до твоего контейнера (проверь, чтобы имя совпадало с твоим деревом)
-@onready var hbox: HBoxContainer = $UIRoot/HBoxContainer
+@onready var hbox: HBoxContainer = %HBoxContainer
 
 var items: Dictionary = Items.items
 

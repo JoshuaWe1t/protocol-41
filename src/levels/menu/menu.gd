@@ -1,15 +1,16 @@
 extends Control
 
 
-@onready var level_1_button: TextureButton = $Menu/Levels/level1
-@onready var level_2_button: TextureButton = $Menu/Levels/level2
-@onready var level_3_button: TextureButton = $Menu/Levels/level3
-@onready var level_4_button: TextureButton = $Menu/Levels/level4
+@onready var level_1_button: TextureButton = %level1
+@onready var level_2_button: TextureButton = %level2
+@onready var level_3_button: TextureButton = %level3
+@onready var level_4_button: TextureButton = %level4
 
-@onready var exit_button = $ExitButton
+@onready var exit_button = %ExitButton
 
-@onready var info_plate = $InfoPlate
-@onready var info_label = $InfoPlate/Description
+@onready var info_plate = %InfoPlate
+@onready var info_label = %Description
+
 # Путь к сцене самого уровня (замени на свой)
 const LEVEL_1_SCENE_PATH = "res://src/levels/sand_box/sand_box.tscn"
 const LEVELS_DESCKRIPTION: Dictionary = {

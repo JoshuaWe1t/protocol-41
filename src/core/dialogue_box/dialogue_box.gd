@@ -1,7 +1,7 @@
 extends PanelContainer
 
-@onready var label: Label = $MarginContainer/Label
-@onready var timer: Timer = $Timer
+@onready var label: Label = %Label
+@onready var timer: Timer = %Timer
 
 func _ready() -> void:
 	# Подключаем таймер (чтобы не делать это вручную в редакторе)
