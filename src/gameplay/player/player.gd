@@ -3,17 +3,17 @@ extends CharacterBody2D
 const DIALOGUE_BUBBLE = preload("res://src/core/dialogue_box/dialogue_box.tscn")
 const SPEED: float = 300.0
 
-@onready var anim_player: AnimationPlayer = $AnimationPlayer
-@onready var sprite: Sprite2D = $Sprite2D
-@onready var dialogue_box: PanelContainer = $DialogueBox
+@onready var anim_player: AnimationPlayer = %AnimationPlayer
+@onready var sprite: Sprite2D = %Sprite2D
+@onready var dialogue_box: PanelContainer = %DialogueBox
 @onready var dialogue_label: Label = $DialogueBox/DialogueBox
-@onready var dialogue_timer: Timer = $DialogueBox/DialogueTimer
-@onready var state_machine: StateMachine = $StateMachine # Ссылка на машину состояний
-@onready var interaction_icon: Sprite2D = $InteractionIcon
+@onready var dialogue_timer: Timer = %DialogueTimer
+@onready var state_machine: StateMachine = %StateMachine # Ссылка на машину состояний
+@onready var interaction_icon: Sprite2D = %InteractionIcon
 # Запоминаем изначальную позицию иконки по Y
 @onready var base_icon_y: float = interaction_icon.position.y
-@onready var walk_sound = $WalkSound
-@onready var knock_sound = $KnockSound
+@onready var walk_sound = %WalkSound
+@onready var knock_sound = %KnockSound
 
 var icon_tween: Tween
 var current_floor: int

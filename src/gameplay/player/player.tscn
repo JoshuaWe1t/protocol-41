@@ -127,6 +127,7 @@ corner_radius_bottom_left = 3
 script = ExtResource("1_d3trc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 scale = Vector2(0.65, 0.65)
 texture = ExtResource("2_hmrcn")
 hframes = 11
@@ -139,6 +140,7 @@ shape = SubResource("RectangleShape2D_64h4j")
 debug_color = Color(0.7323606, 0.4388022, 0.4755234, 0.41960785)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+unique_name_in_owner = true
 script = ExtResource("2_sjr3t")
 initial_state = NodePath("IdleState")
 metadata/_custom_type_script = "uid://cj3i7ewn4l1p4"
@@ -172,11 +174,13 @@ idle_state = NodePath("../IdleState")
 metadata/_custom_type_script = "uid://dd0pbyv5o86oo"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_rdc6l")
 }
 
 [node name="DialogueBox" type="PanelContainer" parent="."]
+unique_name_in_owner = true
 anchors_preset = -1
 anchor_left = 400.0
 anchor_top = 500.0
@@ -198,19 +202,23 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="DialogueTimer" type="Timer" parent="DialogueBox"]
+unique_name_in_owner = true
 wait_time = 2.0
 one_shot = true
 
 [node name="HUD" parent="." instance=ExtResource("8_uia4o")]
 
 [node name="InteractionIcon" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 z_index = 10
 position = Vector2(0, -212.00002)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("10_xdbtd")
 
 [node name="WalkSound" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
 stream = ExtResource("11_hmrcn")
 
 [node name="KnockSound" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
 stream = ExtResource("12_en18r")
