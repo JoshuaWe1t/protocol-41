@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o24o52r4hm7k"
-path="res://.godot/imported/states-of-game_scenes.png-f58a0cf0e12a83d7ce8344254281a1ee.ctex"
+uid="uid://bb1bw53y5083o"
+path="res://.godot/imported/states-of-lift.png-08f2b71d33b6dc67b9d35ae9214d6743.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://states-of-game_scenes.png"
-dest_files=["res://.godot/imported/states-of-game_scenes.png-f58a0cf0e12a83d7ce8344254281a1ee.ctex"]
+source_file="res://docs/states-of-lift.png"
+dest_files=["res://.godot/imported/states-of-lift.png-08f2b71d33b6dc67b9d35ae9214d6743.ctex"]
 
 [params]
 

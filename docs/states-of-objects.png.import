@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b13bfokqrebd0"
-path="res://.godot/imported/states-of-player.png-674c0a6e90ca019913a231cc4d1d68d6.ctex"
+uid="uid://uabij4rutgn3"
+path="res://.godot/imported/states-of-objects.png-60b13477018edeed42fb0d3c6d25a656.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://states-of-player.png"
-dest_files=["res://.godot/imported/states-of-player.png-674c0a6e90ca019913a231cc4d1d68d6.ctex"]
+source_file="res://docs/states-of-objects.png"
+dest_files=["res://.godot/imported/states-of-objects.png-60b13477018edeed42fb0d3c6d25a656.ctex"]
 
 [params]
 
