@@ -47,3 +47,12 @@ var items: Dictionary = {
 		}
 	]
 }
+
+func _ready() -> void:
+	print("Items инициализированы")
+
+
+func reset_items():
+	for key in items.keys():
+		for item in items[key]:
+			item["current_charges_cnt"] = item["total_charges_cnt"]

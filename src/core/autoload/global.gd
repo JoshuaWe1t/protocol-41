@@ -54,3 +54,19 @@ var item_names: Dictionary = {}
 
 func _ready():
 	print("GlobalData инициализирован")
+
+
+func reset_state():
+	infected_apartment = 0
+	infected_floor = 0
+	current_apartment = 0
+	current_floor = 0
+	current_monster = ""
+	current_item_number = 0
+	has_anomaly = false
+	anomaly_located_floor = 0
+	touch_anomaly_cnt = 0
+	current_spore_level = ""
+	
+	item_cooldowns.clear()
+	item_charges.clear()

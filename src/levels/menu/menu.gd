@@ -110,8 +110,14 @@ func _on_level4_mouse_exited():
 
 
 # Срабатывает при клике ЛКМ
+# В скрипт главного меню (source: 7)
 func _on_level1_pressed():
-	# Запускаем переход на сцену уровня
+	# 1. Сбрасываем старые данные
+	Global.reset_state() # Укажи здесь правильное имя Autoload'а глобальных данных (возможно, просто Global)
+	Items.reset_items() # Укажи правильное имя Autoload'а предметов
+	WinConditionManager.reset_and_generate_level() 
+	
+	# 2. Запускаем переход на сцену уровня
 	get_tree().change_scene_to_file(LEVEL_1_SCENE_PATH)
 
 

@@ -155,18 +155,33 @@ var floor_condition = {
 	}
 }
 
+var monster_keys
+var selected_monster_id
+var active_monster
 
 func _ready():
 	randomize()
+	#generate_level_settings()
+
+func reset_and_generate_level():
+	# Очищаем массивы диалогов жильцов от прошлого забега
+	for floor_num in range(1, 4):
+		for apt in floor_condition[floor_num]["apartments"]:
+			apt["is_infected"] = false
+			apt["water_infected_level"] = 0
+			apt["dweller"]["common_dialog_lines"].clear()
+			apt["dweller"]["hints_dialog_lines"].clear()
+			apt["dweller"]["full_dialog_lines"].clear()
+	
+	# === ВЫБОР МОНСТРА ===
+	monster_keys = MONSTERS.keys()
+	selected_monster_id = monster_keys.pick_random()
+	active_monster = MONSTERS[selected_monster_id]
+	# Генерируем новый уровень
 	generate_level_settings()
 
 
 func generate_level_settings():
-	
-	# === ВЫБОР МОНСТРА ===
-	var monster_keys = MONSTERS.keys()
-	var selected_monster_id = monster_keys.pick_random()
-	var active_monster = MONSTERS[selected_monster_id]
 	Global.current_monster = active_monster.name
 	Global.monster_texture = active_monster.sprite
 	
