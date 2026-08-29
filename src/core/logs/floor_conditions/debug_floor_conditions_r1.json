@@ -1,0 +1,175 @@
+{
+	"1": {
+		"apartments": [
+			{
+				"apartment_name": "Apartment1",
+				"apartment_number": 1,
+				"dweller": {
+					"bataries_cnt": 0,
+					"common_dialog_lines": [
+						"Вы бы лучше хулиганов ловили.",
+						"Слышали, в соседнем доме тоже проверку устроили? Ищут чего-то..."
+					],
+					"full_dialog_lines": [
+						"Вы бы лучше хулиганов ловили.",
+						"Слышали, в соседнем доме тоже проверку устроили? Ищут чего-то...",
+						"Вчера из крана черная муть потекла!"
+					],
+					"has_bataries": false,
+					"hints_dialog_lines": [
+						"Вчера из крана черная муть потекла!"
+					],
+					"name": ""
+				},
+				"is_infected": false,
+				"last_interaction_time": 0,
+				"water_infected_level": 1
+			},
+			{
+				"apartment_name": "Apartment2",
+				"apartment_number": 2,
+				"dweller": {
+					"bataries_cnt": 0,
+					"common_dialog_lines": [
+						"Опять цены на коммуналку подняли.",
+						"Управдому нашему лишь бы взносы собирать.",
+						"Скажите, чтобы во дворе машины на газон не ставили."
+					],
+					"full_dialog_lines": [
+						"Опять цены на коммуналку подняли.",
+						"Управдому нашему лишь бы взносы собирать.",
+						"Скажите, чтобы во дворе машины на газон не ставили.",
+						"В 6 квартире кто-то мебель двигает каждую ночь. И бормочет не по-нашему."
+					],
+					"has_bataries": false,
+					"hints_dialog_lines": [
+						"В 6 квартире кто-то мебель двигает каждую ночь. И бормочет не по-нашему."
+					],
+					"name": ""
+				},
+				"is_infected": false,
+				"last_interaction_time": 0,
+				"water_infected_level": 0
+			}
+		],
+		"has_anomaly": true,
+		"has_spore_activity": false,
+		"spore_level": ""
+	},
+	"2": {
+		"apartments": [
+			{
+				"apartment_name": "Apartment3",
+				"apartment_number": 3,
+				"dweller": {
+					"bataries_cnt": 0,
+					"common_dialog_lines": [
+						"Опять кто-то мусоропровод забил! ",
+						"Почему в подъезде так воняет?"
+					],
+					"full_dialog_lines": [
+						"Опять кто-то мусоропровод забил! ",
+						"Почему в подъезде так воняет?"
+					],
+					"has_bataries": false,
+					"hints_dialog_lines": [],
+					"name": ""
+				},
+				"is_infected": false,
+				"last_interaction_time": 0,
+				"water_infected_level": 0
+			},
+			{
+				"apartment_name": "Apartment4",
+				"apartment_number": 4,
+				"dweller": {
+					"bataries_cnt": 0,
+					"common_dialog_lines": [
+						"Вы участковый, да?",
+						"Вы не из ЖЭКа?",
+						"Ходют тут всякие, а потом лампочки на площадке пропадают."
+					],
+					"full_dialog_lines": [
+						"Вы участковый, да?",
+						"Вы не из ЖЭКа?",
+						"Ходют тут всякие, а потом лампочки на площадке пропадают."
+					],
+					"has_bataries": false,
+					"hints_dialog_lines": [],
+					"name": ""
+				},
+				"is_infected": false,
+				"last_interaction_time": 0,
+				"water_infected_level": 0
+			}
+		],
+		"has_anomaly": false,
+		"has_spore_activity": false,
+		"spore_level": ""
+	},
+	"3": {
+		"apartments": [
+			{
+				"apartment_name": "Apartment5",
+				"apartment_number": 5,
+				"dweller": {
+					"bataries_cnt": 0,
+					"common_dialog_lines": [
+						"Я за квартиру плачу исправно",
+						"Молодежь нынче пошла... Хоть бы раз кто поздоровался!",
+						"Тут сквозняки такие, что двери сами хлопают."
+					],
+					"full_dialog_lines": [
+						"Я за квартиру плачу исправно",
+						"Молодежь нынче пошла... Хоть бы раз кто поздоровался!",
+						"Тут сквозняки такие, что двери сами хлопают.",
+						"Из 5 квартиры запах какой-то... сладковато-гнилостный."
+					],
+					"has_bataries": false,
+					"hints_dialog_lines": [
+						"Из 5 квартиры запах какой-то... сладковато-гнилостный."
+					],
+					"name": ""
+				},
+				"is_infected": false,
+				"last_interaction_time": 0,
+				"water_infected_level": 0
+			},
+			{
+				"apartment_name": "Apartment6",
+				"apartment_number": 6,
+				"dweller": {
+					"bataries_cnt": 0,
+					"common_dialog_lines": [
+						"Старый дом, сыплется весь.",
+						"Pемонт в подъезде с восьмидесятых не делали"
+					],
+					"full_dialog_lines": [
+						"Старый дом, сыплется весь.",
+						"Pемонт в подъезде с восьмидесятых не делали",
+						"Ищите проблему в подвале, у меня в квартире сырости нет!"
+					],
+					"has_bataries": false,
+					"hints_dialog_lines": [
+						"Ищите проблему в подвале, у меня в квартире сырости нет!"
+					],
+					"name": ""
+				},
+				"is_infected": true,
+				"last_interaction_time": 0,
+				"water_infected_level": 7
+			}
+		],
+		"has_anomaly": false,
+		"has_spore_activity": true,
+		"spore_level": "red"
+	},
+	"active_monster_id": "perekzhnik",
+	"active_monster_name": "Перекожник",
+	"anomaly_floor_located": 1,
+	"infected_apartment": 6,
+	"infected_floor": 3,
+	"is_anomaly_exist": true,
+	"is_spore_exist": true,
+	"spore_floor_located": 3
+}

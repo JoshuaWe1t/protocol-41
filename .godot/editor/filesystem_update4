@@ -1,0 +1,5 @@
+res://src/levels/spore_manager/spore_area.tscn
+res://src/gameplay/player/player.gd
+res://src/gameplay/player/use_item_state.gd
+res://src/core/autoload/win_condition_manager.gd
+res://src/levels/menu/menu.tscn
