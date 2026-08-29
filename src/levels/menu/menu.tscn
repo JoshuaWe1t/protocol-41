@@ -140,4 +140,4 @@ offset_right = 98.0
 offset_bottom = 726.0
 theme_override_colors/font_color = Color(1, 1, 1, 0.43137255)
 theme_override_font_sizes/font_size = 32
-text = "v0.1.0"
+text = "v0.1.1-demo"
