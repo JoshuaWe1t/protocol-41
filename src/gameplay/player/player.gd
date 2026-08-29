@@ -211,6 +211,46 @@ func spawn_door_dialogue(door_global_position: Vector2, text: String = "...") ->
 	bubble_instance.setup(text, offset_position)
 
 
+#func get_unique_dialogue_line(floor_number: int, apt_number: int) -> String:
+	#var win_condition = WinConditionManager.floor_condition.get(floor_number)
+	#
+	#if win_condition == null:
+		#return "..." 
+		#
+	#var apartments = win_condition.get("apartments", [])
+	#
+	#for apt in apartments:
+		#if apt["apartment_number"] == apt_number:
+			#
+			## Получаем текущее время работы игры в миллисекундах
+			#var current_time = Time.get_ticks_msec()
+			#
+			## Проверяем, стучали ли мы уже в эту дверь (если нет, по умолчанию 0)
+			#var last_interact_time = apt.get("last_interaction_time", 0)
+			#
+			## Если время записано и прошло меньше 15000 миллисекунд (15 сек)
+			#if last_interact_time > 0 and (current_time - last_interact_time) < 15000:
+				#return "Не беспокойте меня хотя бы немного..."
+				#
+			## Обновляем таймер: записываем текущее время как момент последнего стука
+			#apt["last_interaction_time"] = current_time
+			#
+			## Получаем доступ к массиву фраз
+			#var dialog_lines: Array = apt["dweller"]["full_dialog_lines"]
+			#
+			#if dialog_lines.is_empty():
+				#return "..." 
+				#
+			#var random_index = randi() % dialog_lines.size()
+			#var selected_line = dialog_lines[random_index]
+			#dialog_lines.remove_at(random_index)
+			#
+			#return selected_line
+			#
+	#return "Дверь заперта."
+
+
+# Замени эту функцию в скрипте player.gd (source: 13)
 func get_unique_dialogue_line(floor_number: int, apt_number: int) -> String:
 	var win_condition = WinConditionManager.floor_condition.get(floor_number)
 	
@@ -222,24 +262,27 @@ func get_unique_dialogue_line(floor_number: int, apt_number: int) -> String:
 	for apt in apartments:
 		if apt["apartment_number"] == apt_number:
 			
-			# Получаем текущее время работы игры в миллисекундах
-			var current_time = Time.get_ticks_msec()
+			# 1. ПРОВЕРКА НА ПУСТУЮ КВАРТИРУ
+			# Если базовый массив фраз пуст - значит жильца не сгенерировало
+			if apt["dweller"]["common_dialog_lines"].is_empty():
+				# Возвращаем статичный текст, ИГНОРИРУЯ таймер
+				return "Тишина... Похоже, никого нет дома."
 			
-			# Проверяем, стучали ли мы уже в эту дверь (если нет, по умолчанию 0)
+			# 2. ЛОГИКА ДЛЯ КВАРТИРЫ С ЖИЛЬЦОМ
+			var current_time = Time.get_ticks_msec()
 			var last_interact_time = apt.get("last_interaction_time", 0)
 			
-			# Если время записано и прошло меньше 15000 миллисекунд (15 сек)
+			# Проверка таймера (кулдаун 15 секунд)
 			if last_interact_time > 0 and (current_time - last_interact_time) < 15000:
 				return "Не беспокойте меня хотя бы немного..."
 				
-			# Обновляем таймер: записываем текущее время как момент последнего стука
+			# Обновляем таймер последнего стука
 			apt["last_interaction_time"] = current_time
-			
-			# Получаем доступ к массиву фраз
 			var dialog_lines: Array = apt["dweller"]["full_dialog_lines"]
 			
 			if dialog_lines.is_empty():
-				return "..." 
+				# Жилец есть, но мы вытянули из него все фразы
+				return "Я вам уже всё сказал, уходите!" 
 				
 			var random_index = randi() % dialog_lines.size()
 			var selected_line = dialog_lines[random_index]
@@ -248,7 +291,6 @@ func get_unique_dialogue_line(floor_number: int, apt_number: int) -> String:
 			return selected_line
 			
 	return "Дверь заперта."
-
 
 func show_interaction_icon(type_interact: String = "interact") -> void:
 	var texture_path = Global.icons.get(type_interact, "")

@@ -91,6 +91,21 @@ func get_water_sample(current_used_item_number: int) -> void:
 		await get_tree().create_timer(2.3).timeout
 		print("use_item_state.get_water_sample.current_apartment:", player.current_apartment)
 
+		var is_empty_apt = false
+		var floor_data = WinConditionManager.floor_condition.get(Global.current_floor)
+		for apt in floor_data.get("apartments", []):
+			if apt["apartment_number"] == Global.current_apartment:
+				if apt["dweller"]["common_dialog_lines"].is_empty():
+					is_empty_apt = true
+
+		if is_empty_apt:
+			player.show_dialogue("Никто не открыл. Не у кого взять воду...")
+			Events.item_used.emit(current_used_item_number) # Тратим заряд (или можешь убрать, чтобы не тратился)
+			switch_state.emit(idle_state)
+			return
+
+# ... дальше идет твой оригинальный код (1. Спавним ответ из-за двери и т.д.)
+		
 		# 1. Спавним ответ из-за двериd
 		_on_get_text_line() 
 
