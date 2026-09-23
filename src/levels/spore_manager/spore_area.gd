@@ -160,10 +160,16 @@ func setup_spore_properties(floor_number: int, collision_obj: CollisionShape2D, 
 	var radius: float = random_spore_data.get("radius")
 	if collision_obj.shape is CircleShape2D:
 		collision_obj.shape.radius = radius
-		
+	
+	# 2. Настраиваем ширину коллизии
+	var width = 3000
+	if collision_obj.shape is RectangleShape2D:
+		collision_obj.shape.size = Vector2(width, 10)
+	
 	# 3. Настраиваем размер (Scale) спрайта
 	var scale_x: float = random_spore_data.get("scale_x")
 	var scale_y: float = random_spore_data.get("scale_y")
 	sprite_obj.scale = Vector2(scale_x, scale_y)
 
-	print("Spore Area [Floor %d] Setup: Pos(%f, %f), Radius(%f), Scale(%f, %f)" % [floor_number, pos_x, pos_y, radius, scale_x, scale_y])
+	#print("Spore Area [Floor %d] Setup: Pos(%f, %f), Radius(%f), Scale(%f, %f)" % [floor_number, pos_x, pos_y, radius, scale_x, scale_y])
+	print("Spore Area [Floor %d] Setup: Pos(%f, %f), Width(%f), Scale(%f, %f)" % [floor_number, pos_x, pos_y, width, scale_x, scale_y])
