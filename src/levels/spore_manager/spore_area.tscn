@@ -39,7 +39,6 @@ debug_color = Color(0.9019608, 0.24313726, 0.4862745, 0.41960785)
 
 [node name="SpriteFloor2" type="Sprite2D" parent="Floor2/CollisionSporeFl2"]
 unique_name_in_owner = true
-position = Vector2(671, -202)
 scale = Vector2(0.25, 0.25)
 
 [node name="Floor3" type="Area2D" parent="."]
