@@ -21,7 +21,6 @@ unique_name_in_owner = true
 
 [node name="CollisionSporeFl1" type="CollisionShape2D" parent="Floor1"]
 unique_name_in_owner = true
-position = Vector2(50, 0)
 shape = SubResource("RectangleShape2D_toulw")
 debug_color = Color(0.90260875, 0.24428764, 0.48697972, 0.41960785)
 
@@ -51,3 +50,4 @@ debug_color = Color(0.9019608, 0.24313726, 0.4862745, 0.41960785)
 
 [node name="SpriteFloor3" type="Sprite2D" parent="Floor3/CollisionSporeFl3"]
 unique_name_in_owner = true
+scale = Vector2(0.25, 0.25)
