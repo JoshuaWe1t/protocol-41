@@ -6,13 +6,14 @@ extends Control
 @onready var level_3_button: TextureButton = %level3
 @onready var level_4_button: TextureButton = %level4
 
-@onready var exit_button = %ExitButton
+@onready var tutorial_button = %TutorialButton
 
 @onready var info_plate = %InfoPlate
 @onready var info_label = %Description
 
 # Путь к сцене самого уровня (замени на свой)
 const LEVEL_1_SCENE_PATH = "res://src/levels/sand_box/sand_box.tscn"
+const TUTORIAL_LEVEL = "res://src/levels/tutorial/tutorial_area.tscn"
 const LEVELS_DESCKRIPTION: Dictionary = {
 	1 : {
 		"text": "Вас отправили в старую хрущевку с подозрением на биологическое заражение.\n\nДействуя под прикрытием полицейского, вы должны за ограниченное время обойти 3 этажа и опросить жильцов.\n\nНайдите источник распространения спор О-41, отметьте все улики в журнале и составьте Акт обследования, чтобы успешно завершить миссию."
@@ -47,7 +48,7 @@ func _ready():
 	level_4_button.mouse_exited.connect(_on_level4_mouse_exited)
 	
 	# Подключаем сигнал нажатия кнопки выхода
-	exit_button.pressed.connect(_on_exit_pressed)
+	tutorial_button.pressed.connect(_on_tutorial_pressed)
 	
 	# 3. Подключаем сигнал нажатия на кнопку
 	level_1_button.pressed.connect(_on_level1_pressed)
@@ -121,6 +122,8 @@ func _on_level1_pressed():
 	get_tree().change_scene_to_file(LEVEL_1_SCENE_PATH)
 
 
-# Функция, которая сработает при нажатии на кнопку выхода
-func _on_exit_pressed():
-	get_tree().quit()
+# Функция, которая сработает при нажатии на кнопку с обучением 
+func _on_tutorial_pressed():
+	#get_tree().quit()
+	# 2. Запускаем переход на сцену уровня
+	get_tree().change_scene_to_file(TUTORIAL_LEVEL)
