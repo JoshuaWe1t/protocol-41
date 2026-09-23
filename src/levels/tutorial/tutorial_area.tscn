@@ -1,0 +1,296 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpp3ojov1r7vq"]
+
+[ext_resource type="Script" uid="uid://bctq5nrhl8jlr" path="res://src/levels/tutorial/tutorial_area.gd" id="1_o073o"]
+[ext_resource type="Texture2D" uid="uid://m2h4ur8xx00m" path="res://assets/art/tutorial_level.png" id="2_qkq8r"]
+
+[node name="TutorialScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o073o")
+
+[node name="Background" type="TextureRect" parent="."]
+z_index = -2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_qkq8r")
+expand_mode = 1
+
+[node name="TooltipLabel" type="RichTextLabel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 197.0
+offset_top = -69.0
+offset_right = -236.0
+offset_bottom = 76.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 1, 0, 1)
+bbcode_enabled = true
+text = "TIP SHOW HERE"
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractiveAreas" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Npc_1" type="TextureButton" parent="InteractiveAreas"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 361.0
+offset_right = 107.0
+offset_bottom = 609.0
+stretch_mode = 5
+
+[node name="ColorRect" type="ColorRect" parent="InteractiveAreas/Npc_1" groups=["highlight_buttons"]]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 0.078431375, 0.12941177)
+
+[node name="Door_2" type="TextureButton" parent="InteractiveAreas"]
+layout_mode = 0
+offset_left = 118.0
+offset_top = 305.0
+offset_right = 277.0
+offset_bottom = 614.0
+
+[node name="ColorRect" type="ColorRect" parent="InteractiveAreas/Door_2" groups=["highlight_buttons"]]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 0.078431375, 0.12941177)
+
+[node name="Door_3" type="TextureButton" parent="InteractiveAreas"]
+layout_mode = 0
+offset_left = 474.0
+offset_top = 312.0
+offset_right = 617.0
+offset_bottom = 611.0
+
+[node name="ColorRect" type="ColorRect" parent="InteractiveAreas/Door_3" groups=["highlight_buttons"]]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 0.078431375, 0.12941177)
+
+[node name="Stairs_4" type="TextureButton" parent="InteractiveAreas"]
+layout_mode = 0
+offset_left = 714.0
+offset_top = 123.0
+offset_right = 958.0
+offset_bottom = 611.0
+
+[node name="ColorRect" type="ColorRect" parent="InteractiveAreas/Stairs_4" groups=["highlight_buttons"]]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 0.078431375, 0.12941177)
+
+[node name="Elevator_5" type="TextureButton" parent="InteractiveAreas"]
+layout_mode = 0
+offset_left = 1005.0
+offset_top = 290.0
+offset_right = 1245.0
+offset_bottom = 615.0
+
+[node name="ColorRect" type="ColorRect" parent="InteractiveAreas/Elevator_5" groups=["highlight_buttons"]]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 0.078431375, 0.12941177)
+
+[node name="InterfaceBar_6" type="TextureButton" parent="InteractiveAreas"]
+z_index = -1
+layout_mode = 0
+offset_left = 6.0
+offset_top = 14.0
+offset_right = 1255.0
+offset_bottom = 118.0
+
+[node name="ColorRect" type="ColorRect" parent="InteractiveAreas/InterfaceBar_6" groups=["highlight_buttons"]]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 0.078431375, 0.12941177)
+
+[node name="Item_7" type="TextureButton" parent="InteractiveAreas"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 17.0
+offset_right = 119.0
+offset_bottom = 114.0
+
+[node name="ColorRect" type="ColorRect" parent="InteractiveAreas/Item_7" groups=["highlight_buttons"]]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 0.078431375, 0.12941177)
+
+[node name="Item_8" type="TextureButton" parent="InteractiveAreas"]
+layout_mode = 0
+offset_left = 149.0
+offset_top = 21.0
+offset_right = 243.0
+offset_bottom = 112.0
+
+[node name="ColorRect" type="ColorRect" parent="InteractiveAreas/Item_8" groups=["highlight_buttons"]]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 0.078431375, 0.12941177)
+
+[node name="Item_9" type="TextureButton" parent="InteractiveAreas"]
+layout_mode = 0
+offset_left = 270.0
+offset_top = 20.0
+offset_right = 365.0
+offset_bottom = 114.0
+
+[node name="ColorRect" type="ColorRect" parent="InteractiveAreas/Item_9" groups=["highlight_buttons"]]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 0.078431375, 0.12941177)
+
+[node name="Item_10" type="TextureButton" parent="InteractiveAreas"]
+layout_mode = 0
+offset_left = 588.0
+offset_top = 15.0
+offset_right = 692.0
+offset_bottom = 55.0
+
+[node name="ColorRect" type="ColorRect" parent="InteractiveAreas/Item_10" groups=["highlight_buttons"]]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 0.078431375, 0.12941177)
+
+[node name="Item_11" type="TextureButton" parent="InteractiveAreas"]
+layout_mode = 0
+offset_left = 1157.0
+offset_top = 10.0
+offset_right = 1262.0
+offset_bottom = 115.0
+
+[node name="ColorRect" type="ColorRect" parent="InteractiveAreas/Item_11" groups=["highlight_buttons"]]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 0.078431375, 0.12941177)
+
+[node name="DimmingOverlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5882353)
+
+[node name="CentredMessage" type="RichTextLabel" parent="DimmingOverlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -151.85463
+offset_top = -54.0
+offset_right = 151.85463
+offset_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.0057907267
+bbcode_enabled = true
+text = "Кликните по элементу сцены, чтобы получить информацию"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExitMessage" type="Label" parent="DimmingOverlay"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -211.0
+offset_top = -28.0
+offset_right = 211.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 0.47843137, 1)
+theme_override_font_sizes/font_size = 20
+text = "Для выхода из инструктожа нажмите ESC"
+horizontal_alignment = 1
+vertical_alignment = 1
